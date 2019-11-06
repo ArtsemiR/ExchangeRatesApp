@@ -293,6 +293,7 @@
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ExchangeRatesApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -313,6 +314,7 @@
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ExchangeRatesApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
