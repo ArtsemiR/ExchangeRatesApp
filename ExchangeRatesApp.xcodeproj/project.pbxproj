@@ -14,6 +14,7 @@
 		227CE6592372BEA60041808D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227CE6582372BEA60041808D /* Assets.xcassets */; };
 		227CE65C2372BEA60041808D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227CE65B2372BEA60041808D /* Preview Assets.xcassets */; };
 		227CE65F2372BEA60041808D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227CE65D2372BEA60041808D /* LaunchScreen.storyboard */; };
+		227CE6682372F8190041808D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 227CE6672372F8180041808D /* Alamofire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		227CE65B2372BEA60041808D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		227CE65E2372BEA60041808D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		227CE6602372BEA60041808D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		227CE6672372F8180041808D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227CE6682372F8190041808D /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 			children = (
 				227CE64E2372BEA40041808D /* ExchangeRatesApp */,
 				227CE64D2372BEA40041808D /* Products */,
+				227CE6662372F8180041808D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +82,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		227CE6662372F8180041808D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				227CE6672372F8180041808D /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -88,6 +100,8 @@
 				227CE6482372BEA40041808D /* Sources */,
 				227CE6492372BEA40041808D /* Frameworks */,
 				227CE64A2372BEA40041808D /* Resources */,
+				227CE66B2372F8540041808D /* carthage */,
+				227CE66C2372FCC50041808D /* swiftlint */,
 			);
 			buildRules = (
 			);
@@ -143,6 +157,46 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		227CE66B2372F8540041808D /* carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+			);
+			name = carthage;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		227CE66C2372FCC50041808D /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		227CE6482372BEA40041808D /* Sources */ = {
@@ -292,6 +346,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ExchangeRatesApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ExchangeRatesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -313,6 +371,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ExchangeRatesApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ExchangeRatesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
