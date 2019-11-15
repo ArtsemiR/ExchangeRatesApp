@@ -9,8 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    let extractedExpr: Text = Text("Hello, World!")
     var body: some View {
-        Text("Hello, World!")
+        VStack(alignment: .leading) {
+            Text("Placeholder")
+                .font(.title)
+                .fontWeight(.semibold)
+            extractedExpr
+                .font(.subheadline)
+                .foregroundColor(.green)
+        }
     }
 }
 

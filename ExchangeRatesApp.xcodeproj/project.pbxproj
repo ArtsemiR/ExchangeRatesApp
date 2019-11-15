@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22588F78237AE4E2008B9916 /* ARRatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F77237AE4E2008B9916 /* ARRatesManager.swift */; };
+		22588F7B237AE54D008B9916 /* ARNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F7A237AE54D008B9916 /* ARNetwork.swift */; };
+		22588F7E237AE668008B9916 /* DataEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F7D237AE668008B9916 /* DataEx.swift */; };
+		22588F80237AE8E2008B9916 /* StringEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F7F237AE8E2008B9916 /* StringEx.swift */; };
+		22588F82237AE938008B9916 /* EncodableEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F81237AE938008B9916 /* EncodableEx.swift */; };
+		22588F86237AEA92008B9916 /* ARRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F85237AEA92008B9916 /* ARRateModel.swift */; };
+		22588F89237E928E008B9916 /* everyDayRates.json in Resources */ = {isa = PBXBuildFile; fileRef = 22588F88237E928E008B9916 /* everyDayRates.json */; };
+		22588F8F237E935F008B9916 /* ARCurrencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F8E237E935F008B9916 /* ARCurrencyRow.swift */; };
+		22588F91237E9668008B9916 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F90237E9668008B9916 /* Data.swift */; };
 		227CE6502372BEA40041808D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE64F2372BEA40041808D /* AppDelegate.swift */; };
 		227CE6522372BEA40041808D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6512372BEA40041808D /* SceneDelegate.swift */; };
 		227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6532372BEA40041808D /* ExchangeRatesApp.xcdatamodeld */; };
@@ -18,6 +27,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22588F77237AE4E2008B9916 /* ARRatesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRatesManager.swift; sourceTree = "<group>"; };
+		22588F7A237AE54D008B9916 /* ARNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARNetwork.swift; sourceTree = "<group>"; };
+		22588F7D237AE668008B9916 /* DataEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEx.swift; sourceTree = "<group>"; };
+		22588F7F237AE8E2008B9916 /* StringEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEx.swift; sourceTree = "<group>"; };
+		22588F81237AE938008B9916 /* EncodableEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableEx.swift; sourceTree = "<group>"; };
+		22588F85237AEA92008B9916 /* ARRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRateModel.swift; sourceTree = "<group>"; };
+		22588F88237E928E008B9916 /* everyDayRates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = everyDayRates.json; sourceTree = "<group>"; };
+		22588F8E237E935F008B9916 /* ARCurrencyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCurrencyRow.swift; sourceTree = "<group>"; };
+		22588F90237E9668008B9916 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		227CE64C2372BEA40041808D /* ExchangeRatesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExchangeRatesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		227CE64F2372BEA40041808D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		227CE6512372BEA40041808D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +60,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22588F76237AE483008B9916 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				22588F83237AEA25008B9916 /* Rates */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		22588F79237AE52E008B9916 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				22588F7A237AE54D008B9916 /* ARNetwork.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		22588F7C237AE656008B9916 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				22588F7D237AE668008B9916 /* DataEx.swift */,
+				22588F7F237AE8E2008B9916 /* StringEx.swift */,
+				22588F81237AE938008B9916 /* EncodableEx.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		22588F83237AEA25008B9916 /* Rates */ = {
+			isa = PBXGroup;
+			children = (
+				22588F84237AEA7E008B9916 /* Models */,
+				22588F77237AE4E2008B9916 /* ARRatesManager.swift */,
+			);
+			path = Rates;
+			sourceTree = "<group>";
+		};
+		22588F84237AEA7E008B9916 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22588F85237AEA92008B9916 /* ARRateModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22588F87237E91BF008B9916 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				22588F88237E928E008B9916 /* everyDayRates.json */,
+				22588F90237E9668008B9916 /* Data.swift */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
+		22588F8A237E92FF008B9916 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				22588F8B237E9319008B9916 /* Views */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		22588F8B237E9319008B9916 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22588F8E237E935F008B9916 /* ARCurrencyRow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		227CE6432372BEA40041808D = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +148,11 @@
 		227CE64E2372BEA40041808D /* ExchangeRatesApp */ = {
 			isa = PBXGroup;
 			children = (
+				22588F87237E91BF008B9916 /* TestData */,
+				22588F7C237AE656008B9916 /* Extensions */,
+				22588F79237AE52E008B9916 /* Network */,
+				22588F76237AE483008B9916 /* Managers */,
+				22588F8A237E92FF008B9916 /* Source */,
 				227CE64F2372BEA40041808D /* AppDelegate.swift */,
 				227CE6512372BEA40041808D /* SceneDelegate.swift */,
 				227CE6562372BEA40041808D /* ContentView.swift */,
@@ -152,6 +243,7 @@
 			files = (
 				227CE65F2372BEA60041808D /* LaunchScreen.storyboard in Resources */,
 				227CE65C2372BEA60041808D /* Preview Assets.xcassets in Resources */,
+				22588F89237E928E008B9916 /* everyDayRates.json in Resources */,
 				227CE6592372BEA60041808D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,8 +297,16 @@
 			files = (
 				227CE6502372BEA40041808D /* AppDelegate.swift in Sources */,
 				227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */,
+				22588F86237AEA92008B9916 /* ARRateModel.swift in Sources */,
+				22588F7E237AE668008B9916 /* DataEx.swift in Sources */,
 				227CE6572372BEA40041808D /* ContentView.swift in Sources */,
+				22588F78237AE4E2008B9916 /* ARRatesManager.swift in Sources */,
+				22588F80237AE8E2008B9916 /* StringEx.swift in Sources */,
+				22588F91237E9668008B9916 /* Data.swift in Sources */,
 				227CE6522372BEA40041808D /* SceneDelegate.swift in Sources */,
+				22588F82237AE938008B9916 /* EncodableEx.swift in Sources */,
+				22588F7B237AE54D008B9916 /* ARNetwork.swift in Sources */,
+				22588F8F237E935F008B9916 /* ARCurrencyRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

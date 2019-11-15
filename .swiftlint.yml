@@ -1,4 +1,6 @@
 disabled_rules:
+  - type_name
+  - identifier_name
   - comma
   - class_delegate_protocol
   - line_length
