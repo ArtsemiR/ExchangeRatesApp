@@ -12,8 +12,9 @@ struct ARCurrencyRow: View {
     var rateModel: ARDayRateModel
 
     var body: some View {
+        let extractedExpr: Text = Text(AMRate.s.getFlag(rateModel.Cur_Abbreviation))
         HStack(alignment: .center) {
-            Text("🇺🇸")
+            extractedExpr
                 .font(.largeTitle)
 
             VStack(alignment: .leading) {

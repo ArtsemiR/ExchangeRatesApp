@@ -17,6 +17,7 @@
 		22588F8F237E935F008B9916 /* ARCurrencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F8E237E935F008B9916 /* ARCurrencyRow.swift */; };
 		22588F91237E9668008B9916 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F90237E9668008B9916 /* Data.swift */; };
 		22588F93237EC90E008B9916 /* ARAllRatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F92237EC90E008B9916 /* ARAllRatesView.swift */; };
+		22588F96237EE88D008B9916 /* AMRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F95237EE88D008B9916 /* AMRate.swift */; };
 		227CE6502372BEA40041808D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE64F2372BEA40041808D /* AppDelegate.swift */; };
 		227CE6522372BEA40041808D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6512372BEA40041808D /* SceneDelegate.swift */; };
 		227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6532372BEA40041808D /* ExchangeRatesApp.xcdatamodeld */; };
@@ -38,6 +39,7 @@
 		22588F8E237E935F008B9916 /* ARCurrencyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCurrencyRow.swift; sourceTree = "<group>"; };
 		22588F90237E9668008B9916 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		22588F92237EC90E008B9916 /* ARAllRatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARAllRatesView.swift; sourceTree = "<group>"; };
+		22588F95237EE88D008B9916 /* AMRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMRate.swift; sourceTree = "<group>"; };
 		227CE64C2372BEA40041808D /* ExchangeRatesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExchangeRatesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		227CE64F2372BEA40041808D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		227CE6512372BEA40041808D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +67,7 @@
 		22588F76237AE483008B9916 /* Fetchers */ = {
 			isa = PBXGroup;
 			children = (
-				22588F83237AEA25008B9916 /* Rates */,
+				22588F83237AEA25008B9916 /* DayRate */,
 			);
 			path = Fetchers;
 			sourceTree = "<group>";
@@ -88,13 +90,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		22588F83237AEA25008B9916 /* Rates */ = {
+		22588F83237AEA25008B9916 /* DayRate */ = {
 			isa = PBXGroup;
 			children = (
 				22588F84237AEA7E008B9916 /* Models */,
 				22588F77237AE4E2008B9916 /* ARDayRatesFetcher.swift */,
 			);
-			path = Rates;
+			path = DayRate;
 			sourceTree = "<group>";
 		};
 		22588F84237AEA7E008B9916 /* Models */ = {
@@ -131,6 +133,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		22588F94237EE7A0008B9916 /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				22588F95237EE88D008B9916 /* AMRate.swift */,
+			);
+			path = "Business Logic";
+			sourceTree = "<group>";
+		};
 		227CE6432372BEA40041808D = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +164,7 @@
 				22588F87237E91BF008B9916 /* TestData */,
 				22588F7C237AE656008B9916 /* Extensions */,
 				22588F79237AE52E008B9916 /* Network */,
+				22588F94237EE7A0008B9916 /* Business Logic */,
 				22588F76237AE483008B9916 /* Fetchers */,
 				22588F8A237E92FF008B9916 /* Source */,
 				227CE64F2372BEA40041808D /* AppDelegate.swift */,
@@ -309,6 +320,7 @@
 				22588F91237E9668008B9916 /* Data.swift in Sources */,
 				227CE6522372BEA40041808D /* SceneDelegate.swift in Sources */,
 				22588F82237AE938008B9916 /* EncodableEx.swift in Sources */,
+				22588F96237EE88D008B9916 /* AMRate.swift in Sources */,
 				22588F7B237AE54D008B9916 /* ARNetwork.swift in Sources */,
 				22588F8F237E935F008B9916 /* ARCurrencyRow.swift in Sources */,
 			);

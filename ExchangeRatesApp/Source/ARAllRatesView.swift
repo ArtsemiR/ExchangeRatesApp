@@ -13,7 +13,7 @@ struct ARAllRatesView: View {
     
     var body: some View {
         NavigationView {
-            List(ratesFetcher.rates, id: \.Cur_ID) { dayRateModel in
+            List(everyDayRates, id: \.Cur_ID) { dayRateModel in
                 ARCurrencyRow(rateModel: dayRateModel)
             }
             .navigationBarTitle(Text("Валюты"))
