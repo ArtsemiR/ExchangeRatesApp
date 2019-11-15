@@ -12,14 +12,26 @@ struct ARCurrencyRow: View {
     var rateModel: ARDayRateModel
 
     var body: some View {
-        HStack {
-            Text(rateModel.Cur_Name)
+        HStack(alignment: .center) {
+            Text("🇺🇸")
+                .font(.largeTitle)
+
+            VStack(alignment: .leading) {
+                Text(self.rateModel.Cur_Abbreviation)
+                Text("\(self.rateModel.Cur_Scale) \(self.rateModel.Cur_Name)")
+            }
+            Spacer()
+
+            VStack(alignment: .trailing) {
+                Text("\(rateModel.Cur_OfficialRate)")
+                Text("BYN")
+            }
         }
     }
 }
 
 struct ARCurrencyRow_Previews: PreviewProvider {
     static var previews: some View {
-        ARCurrencyRow(rateModel: everyDayRates[0])
+        ARCurrencyRow(rateModel: everyDayRates.first!)
     }
 }

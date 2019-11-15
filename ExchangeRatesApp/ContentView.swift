@@ -11,13 +11,11 @@ import SwiftUI
 struct ContentView: View {
     let extractedExpr: Text = Text("Hello, World!")
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Placeholder")
-                .font(.title)
-                .fontWeight(.semibold)
-            extractedExpr
-                .font(.subheadline)
-                .foregroundColor(.green)
+        NavigationView {
+            List(everyDayRates) { dayRateModel in
+                ARCurrencyRow(rateModel: dayRateModel)
+            }
+            .navigationBarTitle(Text("Landmarks"))
         }
     }
 }
@@ -25,5 +23,6 @@ struct ContentView: View {
 struct ContentViewPreviews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
     }
 }

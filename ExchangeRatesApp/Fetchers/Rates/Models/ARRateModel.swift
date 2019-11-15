@@ -45,7 +45,8 @@ struct ARRateModel: Decodable {
     var Cur_DateEnd: String
 }
 
-struct ARDayRateModel: Decodable {
+struct ARDayRateModel: Hashable, Identifiable, Codable {
+    var id: Int?
     /// внутренний код
     var Cur_ID: Int
     /// дата, на которую запрашивается курс
@@ -53,9 +54,9 @@ struct ARDayRateModel: Decodable {
     /// буквенный код
     var Cur_Abbreviation: String
     /// количество единиц иностранной валюты
-    var Cur_Scale: String
+    var Cur_Scale: Int
     /// наименование валюты на русском языке во множественном, либо в единственном числе, в зависимости от количества единиц
     var Cur_Name: String
     /// курс
-    var Cur_OfficialRate: Int
+    var Cur_OfficialRate: Double
 }

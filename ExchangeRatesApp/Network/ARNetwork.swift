@@ -14,7 +14,7 @@ class ARNetwork {
 
     var userHeaders: [String: String] = ["Content-Type": "application/json"]
     var baseUrl: String {
-        return "http://localhost:3000/"
+        return "http://www.nbrb.by/"
     }
 
     var alamofireManager: SessionManager
@@ -24,7 +24,7 @@ class ARNetwork {
     }
 
     func userRequest<T: Decodable>(
-        fullPath: String, action: String, model: Encodable?,
+        fullPath: String, action: String, model: Encodable? = nil,
         parameters: [String: String]? = nil, okHandler: @escaping (T) -> Void) {
         var url: String = ""
 
@@ -54,17 +54,24 @@ class ARNetwork {
                 let statusCode: Int = response.response?.statusCode ?? 0
                 switch statusCode {
                 case 200:
-                    if let json = response.value as? [String: Any] {
-                        print(json)
-                        do {
-                            let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-                            let decoder = JSONDecoder()
-                            let res = try decoder.decode(T.self, from: data)
-                            okHandler(res)
-                        } catch let error {
-                            print(error)
-                        }
+                    do {
+                        let decoder = JSONDecoder()
+                        let res = try decoder.decode(T.self, from: response.data!)
+                        okHandler(res)
+                    } catch {
+                        fatalError("Couldn't decode json from data")
                     }
+//                    if let json = response.value as? [String: Any] {
+//                        print(json)
+//                        do {
+//                            let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+//                            let decoder = JSONDecoder()
+//                            let res = try decoder.decode(T.self, from: data)
+//                            okHandler(res)
+//                        } catch let error {
+//                            print(error)
+//                        }
+//                    }
                 default:
                     break
                 }
