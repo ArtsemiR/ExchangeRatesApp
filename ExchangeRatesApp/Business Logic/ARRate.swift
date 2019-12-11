@@ -1,5 +1,5 @@
 //
-//  AMRate.swift
+//  ARRate.swift
 //  ExchangeRatesApp
 //
 //  Created by Artsemi Ryzhankou on 11/15/19.
@@ -8,14 +8,17 @@
 
 import Foundation
 
-class AMRate {
-    static let s: AMRate = AMRate()
+class ARRate {
+    static let s: ARRate = ARRate()
     var flagsCache: [String: String] = [:]
 
     private init() {
+        self.flagsCache["AUD"] = "🇦🇺"
+        self.flagsCache["DKK"] = "🇩🇰"
         self.flagsCache["USD"] = "🇺🇸"
         self.flagsCache["EUR"] = "🇪🇺"
-        self.flagsCache["XDR"] = "🏳️"
+        self.flagsCache["XDR"] = "🌍"
+        self.flagsCache["NONE"] = "🏴"
     }
 
     func getFlag(_ currencyCode: String) -> String {
@@ -31,13 +34,14 @@ class AMRate {
         if let flag = flagsCache[currencyCode] {
             return flag
         } else {
-            for localeId in Locale.availableIdentifiers {
-                let locale = Locale(identifier: localeId)
+            var isoCountryCode: [String] = []
+            Locale.isoRegionCodes.forEach { (code) in
+                let locale = Locale(identifier: Locale.identifier(fromComponents: [NSLocale.Key.countryCode.rawValue : code]))
                 if locale.currencyCode == currencyCode {
-                    return flag(countryCode: locale.regionCode ?? "")
+                    isoCountryCode.append(code)
                 }
             }
-            return currencyCode
+            return flag(countryCode: isoCountryCode.first ?? "NONE")
         }
     }
 }

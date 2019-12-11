@@ -1,4 +1,5 @@
 disabled_rules:
+  - large_tuple
   - type_name
   - identifier_name
   - comma

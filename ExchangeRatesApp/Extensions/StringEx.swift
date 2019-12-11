@@ -20,4 +20,17 @@ extension String {
         let range = start..<end
         return String(self[range])
     }
+
+    public func formattedDate() -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd.MM.yy"
+
+        if let date = dateFormatterGet.date(from: self) {
+            return dateFormatterPrint.string(from: date)
+        }
+        return ""
+    }
 }

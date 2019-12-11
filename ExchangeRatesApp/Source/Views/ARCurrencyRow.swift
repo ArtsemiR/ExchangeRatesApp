@@ -9,27 +9,49 @@
 import SwiftUI
 
 struct ARCurrencyRow: View {
+
     var rateModel: ARDayRateModel
 
+    // MARK: - GUI
+
+    fileprivate func title() -> Text {
+        return Text(ARRate.s.getFlag(rateModel.Cur_Abbreviation))
+            .font(.largeTitle)
+    }
+
+    fileprivate func currencyCode() -> Text {
+        return Text(self.rateModel.Cur_Abbreviation)
+    }
+
+    fileprivate func currencyName() -> Text {
+        return Text("\(self.rateModel.Cur_Scale) \(self.rateModel.Cur_Name)")
+    }
+
+    // MARK: - Body
+
+    fileprivate func officialRate() -> Text {
+        return Text("\(rateModel.Cur_OfficialRate.toAmountString)")
+    }
+
     var body: some View {
-        let extractedExpr: Text = Text(AMRate.s.getFlag(rateModel.Cur_Abbreviation))
         HStack(alignment: .center) {
-            extractedExpr
-                .font(.largeTitle)
+            self.title()
 
             VStack(alignment: .leading) {
-                Text(self.rateModel.Cur_Abbreviation)
-                Text("\(self.rateModel.Cur_Scale) \(self.rateModel.Cur_Name)")
+                self.currencyCode()
+                self.currencyName()
             }
             Spacer()
 
             VStack(alignment: .trailing) {
-                Text("\(rateModel.Cur_OfficialRate)")
+                self.officialRate()
                 Text("BYN")
             }
         }
     }
 }
+
+// MARK: - Preview
 
 struct ARCurrencyRow_Previews: PreviewProvider {
     static var previews: some View {

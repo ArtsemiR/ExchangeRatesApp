@@ -51,27 +51,21 @@ class ARNetwork {
             parameters: modelParameters,
             encoding: JSONEncoding.default,
             headers: self.userHeaders).responseJSON { (response) in
+                ARLogManager.logToConsole(response)
                 let statusCode: Int = response.response?.statusCode ?? 0
                 switch statusCode {
                 case 200:
                     do {
                         let decoder = JSONDecoder()
-                        let res = try decoder.decode(T.self, from: response.data!)
-                        okHandler(res)
+                        if let jsonData = response.data {
+                            let res = try decoder.decode(T.self, from: jsonData)
+                            okHandler(res)
+                        } else {
+                            fatalError("Couldn't decode json from data")
+                        }
                     } catch {
                         fatalError("Couldn't decode json from data")
                     }
-//                    if let json = response.value as? [String: Any] {
-//                        print(json)
-//                        do {
-//                            let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-//                            let decoder = JSONDecoder()
-//                            let res = try decoder.decode(T.self, from: data)
-//                            okHandler(res)
-//                        } catch let error {
-//                            print(error)
-//                        }
-//                    }
                 default:
                     break
                 }
@@ -91,5 +85,65 @@ class ARNetwork {
             }
         }
         return url
+    }
+}
+
+final class ARLogManager {
+
+    private static func prettyPrint(with json: [[String: Any]]) -> String? {
+        if let data = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+            let string = String(data: data, encoding: String.Encoding.utf8)
+            return string
+        }
+        return nil
+    }
+
+    public static func logToConsole<T>(_ response: Alamofire.DataResponse<T>) {
+        #if DEBUG
+        if let httpBody = response.request?.httpBody {
+            var body: String?
+            do {
+                if let dict = try JSONSerialization.jsonObject(with: httpBody, options: []) as? [[String: Any]] {
+                    body = ARLogManager.prettyPrint(with: dict) ?? ""
+                }
+            } catch {
+                body = String(data: httpBody, encoding: String.Encoding.utf8)
+            }
+            if let request = body {
+                self.printRequest(
+                    url: response.request?.url?.absoluteString,
+                    request: request)
+            }
+        } else {
+            if let url = response.request?.url?.absoluteString {
+                self.printRequest(request: url)
+            }
+        }
+
+        if let error = response.error {
+            print(error.localizedDescription)
+        } else if let data = response.data {
+            if let str = String(data: data, encoding: String.Encoding.utf8),
+                let response = response.response {
+                do {
+                    if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
+                        print("\nRESPONSE\(String(repeating: "-", count: 25))\n Status Code: \(response.statusCode) \n \(self.prettyPrint(with: dict) ?? String())")
+                    }
+                } catch {
+                    print("\nRESPONSE\(String(repeating: "-", count: 25))\n Status Code: \(response.statusCode) \n \(str)")
+                }
+            }
+        } else {
+            print(response.error?.localizedDescription ?? "Error loading data")
+        }
+        #endif
+    }
+
+    private static func printRequest(url: String? = nil, request: String) {
+        if let url = url {
+            print("\nREQUEST\(String(repeating: "-", count: 50))\n URL: \(url) \n \(request)")
+        } else {
+            print("\nREQUEST\(String(repeating: "-", count: 50))\n \(request)")
+        }
     }
 }
