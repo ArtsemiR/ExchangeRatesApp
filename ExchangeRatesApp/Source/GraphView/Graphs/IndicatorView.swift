@@ -26,7 +26,7 @@ struct IndicatorView : View {
     }
  
     private var rangeY : Range<Int>? {
-        let rangeY = rangeOfRanges(chart.lines.filter{ !$0.isHidden }.map {$0.points[rangeTime].min()!..<$0.points[rangeTime].max()!})
+        let rangeY = rangeOfRanges(chart.lines.filter { !$0.isHidden }.map {$0.points[rangeTime].min()!..<$0.points[rangeTime].max()!})
          return rangeY == 0..<0 ? 0..<1 : rangeY
     }
     
@@ -86,7 +86,7 @@ struct IndicatorView : View {
                         self.positionIndicator = min(max(newPosition,0),1)
                         self.prevTranslation = value.translation.width
                 }
-                    .onEnded { value in
+                    .onEnded { _ in
                     self.prevTranslation = 0.0
                     }
             )

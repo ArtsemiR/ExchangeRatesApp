@@ -22,7 +22,7 @@ struct GraphsViewForChart: View {
        }
     var body: some View {
         GeometryReader { geometry in
-            ZStack{
+            ZStack {
                 YTickerView(chart:  self.chart,rangeTime: self.rangeTime, colorYAxis: Color("ColorTitle"), colorYMark: Color.primary)
                 
                 GraphsForChart(chart:  self.chart, rangeTime: self.rangeTime, lineWidth : 2)

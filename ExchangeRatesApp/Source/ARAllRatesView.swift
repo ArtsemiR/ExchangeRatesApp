@@ -36,7 +36,7 @@ struct ARAllRatesView: View {
 
     var body: some View {
         NavigationView {
-            GeometryReader{ geometry in
+            GeometryReader { geometry in
                 List {
                     if !self.dayRatesFetcher.rates.isEmpty {
                         Section(header: self.dayRateSectionHeader()) {

@@ -12,7 +12,7 @@ struct SimulatedButton: View {
 @Binding var line: Line
     var body: some View {
             CheckBoxView(line: $line)
-            .onTapGesture (count:1){self.line.isHidden.toggle()}
+            .onTapGesture(count:1) {self.line.isHidden.toggle()}
     } // body
 }
 

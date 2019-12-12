@@ -14,15 +14,15 @@ struct UnitRange <Value: FloatingPoint>: Equatable {
     var range : ClosedRange<Value>
     var defaultMinimumRangeDistance: Value
     
-    init(initialValue range : ClosedRange<Value>, _ defaultMinimumRangeDistance: Value){
+    init(initialValue range : ClosedRange<Value>, _ defaultMinimumRangeDistance: Value) {
         precondition( range.lowerBound <= range.upperBound)
         self.range = range
         self.defaultMinimumRangeDistance = defaultMinimumRangeDistance
     }
     
-    var wrappedValue: ClosedRange<Value>{
-        get{range}
-        set{
+    var wrappedValue: ClosedRange<Value> {
+        get { range }
+        set {
             let newUpper = newValue.upperBound
             let newLower = newValue.lowerBound
             guard newUpper >= 0 && newLower >= 0 else { return }
@@ -53,11 +53,11 @@ struct UnitRange <Value: FloatingPoint>: Equatable {
 }
 
 final class Bounds: ObservableObject {
-   let objectWillChange = PassthroughSubject<Void, Never>()
+    let objectWillChange = PassthroughSubject<Void, Never>()
 
-    @UnitRange (initialValue:0.3...0.8, 0.05) var range: ClosedRange <CGFloat>  {
-                   willSet {
-                       objectWillChange.send()
-                   }
-               }
+    @UnitRange (initialValue:0.3...0.8, 0.05) var range: ClosedRange <CGFloat> {
+        willSet {
+            objectWillChange.send()
+        }
+    }
 }

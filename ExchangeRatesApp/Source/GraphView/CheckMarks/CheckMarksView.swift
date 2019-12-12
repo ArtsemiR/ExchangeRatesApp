@@ -19,7 +19,7 @@ struct CheckMarksView : View {
     var body: some View {
         GeometryReader { geometry in
             HStack (alignment: .top) {
-                ForEach( self.chart.lines){ line in
+                ForEach(self.chart.lines) { line in
                     SimulatedButton(line:  self.$userData.charts[self.chartIndex].lines[self.lineIndex(line: line)])
                  // CheckButton(line:
                  // self.$userData.charts[self.chartIndex].lines[self.lineIndex(line: line)])

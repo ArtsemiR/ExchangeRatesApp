@@ -14,7 +14,7 @@ struct GraphView : View {
     var rangeY: Range<Int>?
     var lineWidth: CGFloat = 1
    
-    private var colorGraph: Color  { Color(uiColor: line.color!) }
+    private var colorGraph: Color { Color(uiColor: line.color!) }
     private var minY: Int {rangeY == nil ? line.points[rangeTime].min()! : rangeY!.lowerBound}
     private var maxY: Int {rangeY == nil ? line.points[rangeTime].max()!: rangeY!.upperBound}
     
@@ -27,7 +27,7 @@ struct GraphView : View {
                 let step = (width - origin.x) / CGFloat(self.rangeTime.distance - 1)
                 
                path.addLines(Array(self.rangeTime.lowerBound..<self.rangeTime.upperBound)
-                            .map{ CGPoint(x: origin.x + CGFloat($0 - self.rangeTime.lowerBound) * step,
+                            .map { CGPoint(x: origin.x + CGFloat($0 - self.rangeTime.lowerBound) * step,
                                          y: origin.y - CGFloat(self.line.points[$0]  - self.minY)  * scale)
                                 }
                              )

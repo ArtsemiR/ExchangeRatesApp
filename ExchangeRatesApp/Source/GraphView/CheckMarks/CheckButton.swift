@@ -12,7 +12,7 @@ struct CheckButton: View {
     @Binding var line: Line
     
     var body: some View {
-      Button (action: { self.line.isHidden.toggle()}) {
+      Button(action: {self.line.isHidden.toggle()}) {
           CheckBoxView(line: $line)
         } // Button
     } // body

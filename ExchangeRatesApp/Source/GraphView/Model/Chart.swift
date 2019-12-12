@@ -50,8 +50,7 @@ enum Column: Codable {
 
 // internal Model
 
-struct LinesSet:Equatable,
-                Identifiable  {
+struct LinesSet: Equatable, Identifiable {
     var id: Int = 0
     var namex = ""
     var xTime = [String] ()
@@ -62,7 +61,7 @@ struct LinesSet:Equatable,
     @UnitRange (initialValue:0.3...0.8, 0.05) var range: ClosedRange <CGFloat>
 }
 
-struct Line: Equatable, Identifiable  {
+struct Line: Equatable,Identifiable {
     var id: Int = 0
     var title: String?
     var points: [Int] = []

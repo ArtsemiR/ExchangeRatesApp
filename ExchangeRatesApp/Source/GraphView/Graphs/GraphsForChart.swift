@@ -23,12 +23,12 @@ struct GraphsForChart : View {
     var lineWidth: CGFloat = 2
     
   private var rangeY : Range<Int> {
-        let rangeY = rangeOfRanges(chart.lines.filter{!$0.isHidden}.map {$0.points[rangeTime].min()!..<$0.points[rangeTime].max()!})
+        let rangeY = rangeOfRanges(chart.lines.filter {!$0.isHidden}.map {$0.points[rangeTime].min()!..<$0.points[rangeTime].max()!})
          return rangeY == 0..<0 ? 0..<1 : rangeY
     }
 
     var body: some View {
-       ZStack{
+       ZStack {
         ForEach( chart.lines.filter{!$0.isHidden}) { line in
                     GraphViewNew(rangeTime: self.rangeTime,
                                  line:  line,

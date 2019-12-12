@@ -9,20 +9,10 @@ A model object that stores app data.
 
 import SwiftUI
 
-final class UserData: ObservableObject{
+final class UserData: ObservableObject {
     @Published var charts = chartsData
 
     func chartIndex(chart: LinesSet ) -> Int {
-           return charts.firstIndex(where: { $0.id == chart.id })!
-       }
+        return charts.firstIndex(where: { $0.id == chart.id })!
+    }
 }
-
-/*
-   let objectWillChange = PassthroughSubject<Void, Never>()
-
-      @UnitRange (initialValue:0.3...0.8, 0.05) var range: ClosedRange <CGFloat>  {
-                     willSet {
-                         objectWillChange.send()
-                     }
-                 }
-   */
