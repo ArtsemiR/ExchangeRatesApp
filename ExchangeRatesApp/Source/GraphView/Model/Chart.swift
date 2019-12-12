@@ -65,7 +65,7 @@ struct LinesSet:Equatable,
 struct Line: Equatable, Identifiable  {
     var id: Int = 0
     var title: String?
-    var points = [Int]()
+    var points: [Int] = []
     var color: UIColor?
     var isHidden: Bool = false
     var type: String?

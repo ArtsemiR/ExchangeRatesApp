@@ -83,7 +83,7 @@ extension AnyTransition {
 }
 
 extension Int {
-    func formatnumber() -> String {
+    func formatNumber() -> String {
         let formater = NumberFormatter()
         formater.groupingSeparator = " "
         formater.numberStyle = .decimal

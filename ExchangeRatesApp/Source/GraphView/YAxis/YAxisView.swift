@@ -15,9 +15,9 @@ struct YAxisView : View {
             GeometryReader { geometry in
                 Path { path in
                     path.move(to: CGPoint(x: 10, y: 0))
-                    path.addLine(to: CGPoint(x:10 , y: geometry.size.height))
-                    }
-                    .stroke(self.color, lineWidth: 2)
+                    path.addLine(to: CGPoint(x: 10 , y: geometry.size.height))
+                }
+                .stroke(self.color, lineWidth: 2)
             }
         }
     }

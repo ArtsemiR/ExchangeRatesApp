@@ -70,10 +70,10 @@ func convertToInternalModel(_ chatti: ChartElement ) -> LinesSet {
             case .string(let name): nameLine = name
             }
         }
-        switch nameLine  {
+        switch nameLine {
         case "x":
             graph.namex = "x"
-            graph.xTime = values.map{ dateFormatter.string (
+            graph.xTime = values.map { dateFormatter.string (
                 from:Date(timeIntervalSince1970: TimeInterval($0/1000))
                 )
             }

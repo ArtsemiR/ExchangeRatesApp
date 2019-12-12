@@ -26,19 +26,19 @@ struct IndicatorView : View {
     }
  
     private var rangeY : Range<Int>? {
-        let rangeY = rangeOfRanges(chart.lines.filter{!$0.isHidden}.map {$0.points[rangeTime].min()!..<$0.points[rangeTime].max()!})
+        let rangeY = rangeOfRanges(chart.lines.filter{ !$0.isHidden }.map {$0.points[rangeTime].min()!..<$0.points[rangeTime].max()!})
          return rangeY == 0..<0 ? 0..<1 : rangeY
     }
     
     
-    private var notHiddenLines: [Line]  {chart.lines.filter {!$0.isHidden }}
+    private var notHiddenLines: [Line] {chart.lines.filter {!$0.isHidden }}
     
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
                 ZStack {
                     VStack(alignment: .leading) {
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Text(self.chart.xTime[self.indexIndicator])
                                 .foregroundColor(self.color)
                             ForEach (self.notHiddenLines, id: \.title ) { line in
