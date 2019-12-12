@@ -9,18 +9,18 @@
 import SwiftUI
 
 struct ARGraphView: View {
-    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var userData: ARUserData
 
     var chart: LinesSet
     var colorXAxis: Color = Color.secondary
     var colorXMark: Color = Color.primary
     var indent: CGFloat = 0
 
-    var index: Int {userData.charts.firstIndex(where: { $0.id == chart.id })!}
+    var index: Int {userData.periodRates.firstIndex(where: { $0.id == chart.id })!}
 
     func rangeTimeFor(indexChat: Int) -> Range<Int> {
-        let numberPoints = userData.charts[indexChat].xTime.count
-        let rangeTime: Range<Int>  = Int(userData.charts[indexChat].lowerBound * CGFloat(numberPoints - 1))..<Int(userData.charts[indexChat].upperBound * CGFloat(numberPoints - 1))
+        let numberPoints = userData.periodRates[indexChat].xTime.count
+        let rangeTime: Range<Int>  = Int(userData.periodRates[indexChat].lowerBound * CGFloat(numberPoints - 1))..<Int(userData.periodRates[indexChat].upperBound * CGFloat(numberPoints - 1))
         return rangeTime
     }
 
@@ -33,19 +33,19 @@ struct ARGraphView: View {
                 Text(" ").font(.footnote)
 
                 GraphsViewForChart(
-                    chart: self.userData.charts[self.index],
+                    chart: self.userData.periodRates[self.index],
                     rangeTime: self.rangeTimeFor (indexChat: self.index))
                     .padding(self.indent)
                     .frame(height: geometry.size.height  * 0.63)
 
-                TickerView(rangeTime: self.rangeTimeFor (indexChat: self.index),chart: self.userData.charts[self.index], colorXAxis: self.colorXAxis, colorXMark: self.colorXMark, indent: self.indent)
+                TickerView(rangeTime: self.rangeTimeFor (indexChat: self.index),chart: self.userData.periodRates[self.index], colorXAxis: self.colorXAxis, colorXMark: self.colorXMark, indent: self.indent)
                     .frame(height: geometry.size.height  * 0.058)
 
-                RangeView(chart: self.userData.charts[self.index], indent: self.indent)
+                RangeView(chart: self.userData.periodRates[self.index], indent: self.indent)
                     .environmentObject(self.userData)
                     .frame(height: geometry.size.height  * 0.1)
 
-                CheckMarksView(chart: self.userData.charts[self.index])
+                CheckMarksView(chart: self.userData.periodRates[self.index])
                     .frame(height: geometry.size.height  * 0.05)
 
                 Text(" ").font(.footnote)
@@ -57,8 +57,8 @@ struct ARGraphView: View {
 struct ARGraphView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-        ARGraphView(chart: chartsData[0])
-              .environmentObject(UserData())
+        ARGraphView(chart: periodRatesData[0])
+              .environmentObject(ARUserData())
               .navigationBarTitle(Text("Followers"))
         }
         .colorScheme(.dark)

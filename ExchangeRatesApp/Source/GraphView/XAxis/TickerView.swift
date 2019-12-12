@@ -52,8 +52,8 @@ struct TickerView : View {
 
 struct TickerView_Previews : PreviewProvider {
     static var previews: some View {
-        TickerView(rangeTime: 0..<(chartsData[0].xTime.count - 1),
-                   chart: chartsData[0],
+        TickerView(rangeTime: 0..<(periodRatesData[0].xTime.count - 1),
+                   chart: periodRatesData[0],
                    colorXAxis: Color.blue,
                    colorXMark: Color.black,
                    indent: 0)

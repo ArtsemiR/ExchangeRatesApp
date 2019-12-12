@@ -18,7 +18,7 @@ struct SimulatedButton: View {
 
 struct SimulatedButton_Previews: PreviewProvider {
     static var previews: some View {
-        var linen = chartsData[0].lines[0]
+        var linen = periodRatesData[0].lines[0]
         linen.isHidden = false
         return NavigationView {
           SimulatedButton(line: .constant(linen))

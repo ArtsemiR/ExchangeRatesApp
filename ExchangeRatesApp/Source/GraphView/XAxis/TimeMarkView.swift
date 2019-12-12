@@ -34,7 +34,7 @@ struct TimeMarkView : View {
 struct TimeMarkView_Previews : PreviewProvider {
     static var previews: some View {
         TimeMarkView(index: 0,
-                     xTime: chartsData[0].xTime,
+                     xTime: periodRatesData[0].xTime,
                      colorXAxis: Color.red,
                      colorXMark: Color.black)
             .frame(width: 100, height: 30)

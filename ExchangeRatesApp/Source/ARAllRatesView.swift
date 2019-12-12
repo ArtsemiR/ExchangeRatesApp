@@ -32,8 +32,7 @@ struct ARAllRatesView: View {
 
     // MARK: Body
 
-    @EnvironmentObject var userData: UserData
-
+    @EnvironmentObject var userData: ARUserData
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -42,7 +41,7 @@ struct ARAllRatesView: View {
                         Section(header: self.dayRateSectionHeader()) {
                             ForEach(self.dayRatesFetcher.rates,
                                     id: \.Cur_ID) { dayRate in
-                                        NavigationLink(destination: ARGraphView(chart: self.userData.charts[0])
+                                        NavigationLink(destination: ARGraphView(chart: self.userData.periodRates[0])
                                             .frame(height: geometry.size.height)) {
                                                 ARCurrencyRow(rateModel: dayRate)
                                         }

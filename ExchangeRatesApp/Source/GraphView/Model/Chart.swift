@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-typealias Chat = [ChartElement]
-
 struct ChartElement: Codable {
     let columns: [[Column]]
     let types, names, colors: Names
@@ -58,7 +56,7 @@ struct LinesSet: Equatable, Identifiable {
     var lines = [Line] ()
     var lowerBound: CGFloat = 0.3
     var upperBound: CGFloat = 0.8
-    @UnitRange (initialValue:0.3...0.8, 0.05) var range: ClosedRange <CGFloat>
+    @UnitRange(initialValue:0.3...0.8, 0.05) var range: ClosedRange <CGFloat>
 }
 
 struct Line: Equatable,Identifiable {

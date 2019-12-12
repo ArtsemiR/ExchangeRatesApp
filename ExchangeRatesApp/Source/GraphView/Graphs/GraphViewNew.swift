@@ -56,8 +56,8 @@ struct GraphViewNew: View {
 
 struct GraphViewNew_Previews: PreviewProvider {
     static var previews: some View {
-        GraphViewNew(rangeTime: 0..<(chartsData[4].lines[0].points.count - 1),
-                     line: chartsData[4].lines[0],
+        GraphViewNew(rangeTime: 0..<(periodRatesData[4].lines[0].points.count - 1),
+                     line: periodRatesData[4].lines[0],
                      lineWidth: 2)
                     .frame( height: 400 )
     }

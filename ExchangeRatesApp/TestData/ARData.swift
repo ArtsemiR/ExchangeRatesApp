@@ -11,6 +11,7 @@ import SwiftUI
 import CoreLocation
 
 let everyDayRates: [ARDayRateModel] = load("everyDayRates.json")
+let yearRates: [ARStatsForDayModel] = load("yearStatistic.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

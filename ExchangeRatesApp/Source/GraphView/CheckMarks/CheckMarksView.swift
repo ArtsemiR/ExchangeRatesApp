@@ -9,18 +9,18 @@
 import SwiftUI
 
 struct CheckMarksView : View {
-    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var userData: ARUserData
     var chart: LinesSet
     
-    private var chartIndex: Int {userData.charts.firstIndex(where: { $0.id == chart.id })! }
+    private var chartIndex: Int {userData.periodRates.firstIndex(where: { $0.id == chart.id })! }
     private func lineIndex(line: Line) -> Int {
-        userData.charts[chartIndex].lines.firstIndex(where: { $0.id == line.id})!
+        userData.periodRates[chartIndex].lines.firstIndex(where: { $0.id == line.id})!
     }
     var body: some View {
         GeometryReader { geometry in
             HStack (alignment: .top) {
                 ForEach(self.chart.lines) { line in
-                    SimulatedButton(line:  self.$userData.charts[self.chartIndex].lines[self.lineIndex(line: line)])
+                    SimulatedButton(line:  self.$userData.periodRates[self.chartIndex].lines[self.lineIndex(line: line)])
                  // CheckButton(line:
                  // self.$userData.charts[self.chartIndex].lines[self.lineIndex(line: line)])
                 } // ForEach
@@ -33,9 +33,9 @@ struct CheckMarksView : View {
 struct CheckMarksView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CheckMarksView(chart: chartsData[0])
+            CheckMarksView(chart: periodRatesData[0])
                 .frame( height: 40)
-                .environmentObject(UserData())
+                .environmentObject(ARUserData())
         } // Navigation
         .colorScheme(.dark)
     }

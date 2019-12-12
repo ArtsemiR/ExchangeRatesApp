@@ -52,8 +52,8 @@ struct YTickerView : View {
 
 struct YTickerView_Previews : PreviewProvider {
     static var previews: some View {
-        YTickerView(chart: chartsData[0],
-                    rangeTime: 0..<(chartsData[0].xTime.count - 1),
+        YTickerView(chart: periodRatesData[0],
+                    rangeTime: 0..<(periodRatesData[0].xTime.count - 1),
                     colorYAxis: Color.red,
                     colorYMark: Color.blue)
             .frame(height: 500)

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RangeViewIn : View {
-    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var userData: ARUserData
     @Environment(\.colorScheme) var colorSchema: ColorScheme
     @State var prevTranslation: CGFloat = 0
     
@@ -20,9 +20,9 @@ struct RangeViewIn : View {
     
     private var chartIndex: Int {userData.chartIndex(chart: chart)}
     
-    private var widthRectangle1: CGFloat { widthRange * userData.charts[self.chartIndex].lowerBound}
-    private var widthImage: CGFloat { widthRange * (userData.charts[self.chartIndex].upperBound - userData.charts[self.chartIndex].lowerBound)}
-    private var widthRectangle2: CGFloat { widthRange * (1 - userData.charts[self.chartIndex].upperBound)}
+    private var widthRectangle1: CGFloat { widthRange * userData.periodRates[self.chartIndex].lowerBound}
+    private var widthImage: CGFloat { widthRange * (userData.periodRates[self.chartIndex].upperBound - userData.periodRates[self.chartIndex].lowerBound)}
+    private var widthRectangle2: CGFloat { widthRange * (1 - userData.periodRates[self.chartIndex].upperBound)}
     
     var body: some View {
         HStack (spacing: 0) {
@@ -60,7 +60,7 @@ struct RangeViewIn : View {
         )
     } //body
     
-    private var rightBorder: CGFloat {(userData.charts[self.chartIndex].upperBound - userData.charts[self.chartIndex].lowerBound)  * widthRange}
+    private var rightBorder: CGFloat {(userData.periodRates[self.chartIndex].upperBound - userData.periodRates[self.chartIndex].lowerBound)  * widthRange}
     private let defaultMinimumRangeDistance: CGFloat = 0.05
     private var selectionImage: String {colorSchema == ColorScheme.light ? "selection_frame_light" : "selection_frame_dark" }
     
@@ -68,7 +68,7 @@ struct RangeViewIn : View {
         let translationX = gesture.translation.width
         let locationX = gesture.location.x
         if locationX > 0 {
-            self.userData.charts[self.chartIndex].lowerBound = self.constrainedMin(byAdding: (translationX - self.prevTranslation) / self.widthRange)
+            self.userData.periodRates[self.chartIndex].lowerBound = self.constrainedMin(byAdding: (translationX - self.prevTranslation) / self.widthRange)
             self.prevTranslation = translationX
         }
     }
@@ -79,16 +79,16 @@ struct RangeViewIn : View {
         guard translationX != 0 else {return}
         
         if locationX > 16 && locationX < (self.rightBorder - 16) {
-            if  !(self.userData.charts[self.chartIndex].lowerBound == 0 && translationX < 0) &&
-                !(self.userData.charts[self.chartIndex].upperBound == 1 && translationX > 0) {
+            if  !(self.userData.periodRates[self.chartIndex].lowerBound == 0 && translationX < 0) &&
+                !(self.userData.periodRates[self.chartIndex].upperBound == 1 && translationX > 0) {
                 
-                self.userData.charts[self.chartIndex].lowerBound = self.constrainedMin(byAdding: (translationX - self.prevTranslation) / self.widthRange)
-                self.userData.charts[self.chartIndex].upperBound = self.constrainedMax(byAdding: (translationX - self.prevTranslation) / self.widthRange)
+                self.userData.periodRates[self.chartIndex].lowerBound = self.constrainedMin(byAdding: (translationX - self.prevTranslation) / self.widthRange)
+                self.userData.periodRates[self.chartIndex].upperBound = self.constrainedMax(byAdding: (translationX - self.prevTranslation) / self.widthRange)
             }
         } else if locationX < 16 {
-            self.userData.charts[self.chartIndex].lowerBound = self.constrainedMin(byAdding: (translationX ) / self.widthRange)
+            self.userData.periodRates[self.chartIndex].lowerBound = self.constrainedMin(byAdding: (translationX ) / self.widthRange)
         } else if locationX > (self.rightBorder - 16) {
-            self.userData.charts[self.chartIndex].upperBound = self.constrainedMax(byAdding: (translationX - self.prevTranslation) / self.widthRange)
+            self.userData.periodRates[self.chartIndex].upperBound = self.constrainedMax(byAdding: (translationX - self.prevTranslation) / self.widthRange)
             
             self.prevTranslation = translationX
         }
@@ -98,21 +98,21 @@ struct RangeViewIn : View {
         let translationX = gesture.translation.width
         let locationX = gesture.location.x
         if locationX > 0 {
-            self.userData.charts[self.chartIndex].upperBound = self.constrainedMax(byAdding: (translationX - self.prevTranslation) / self.widthRange)
+            self.userData.periodRates[self.chartIndex].upperBound = self.constrainedMax(byAdding: (translationX - self.prevTranslation) / self.widthRange)
         }
     }
     
     private func constrainedMin(byAdding delta: CGFloat) -> CGFloat {
-        return min(max(userData.charts[self.chartIndex].lowerBound + delta, 0), userData.charts[self.chartIndex].upperBound - defaultMinimumRangeDistance)
+        return min(max(userData.periodRates[self.chartIndex].lowerBound + delta, 0), userData.periodRates[self.chartIndex].upperBound - defaultMinimumRangeDistance)
     }
 
     private func constrainedMax(byAdding delta: CGFloat) -> CGFloat {
-        return max(min(userData.charts[self.chartIndex].upperBound + delta, 1), userData.charts[self.chartIndex].lowerBound + defaultMinimumRangeDistance)
+        return max(min(userData.periodRates[self.chartIndex].upperBound + delta, 1), userData.periodRates[self.chartIndex].lowerBound + defaultMinimumRangeDistance)
     }
 }
 
 struct RangeView : View {
-    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var userData: ARUserData
     var chart: LinesSet
     var indent: CGFloat
     
@@ -126,8 +126,8 @@ struct RangeView : View {
 
 struct RangeView_Previews : PreviewProvider {
     static var previews: some View {
-        RangeView(chart: chartsData[0],indent: 10)
-            .environmentObject(UserData())
+        RangeView(chart: periodRatesData[0],indent: 10)
+            .environmentObject(ARUserData())
             .frame(height: 100)
     }
 }

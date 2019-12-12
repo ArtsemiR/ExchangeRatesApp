@@ -118,8 +118,8 @@ struct IndicatorView_Previews : PreviewProvider {
     static var previews: some View {
          NavigationView {
             ZStack {
-                GraphsForChart(chart: chartsData[0], rangeTime: /*18..<40*/0..<(chartsData[0].xTime.count - 1), lineWidth : 2)
-                IndicatorView(color: Color.secondary, chart: chartsData[0],  rangeTime: /*18..<40*/0..<(chartsData[0].lines[0].points.count - 1))
+                GraphsForChart(chart: periodRatesData[0], rangeTime: /*18..<40*/0..<(periodRatesData[0].xTime.count - 1), lineWidth : 2)
+                IndicatorView(color: Color.secondary, chart: periodRatesData[0],  rangeTime: /*18..<40*/0..<(periodRatesData[0].lines[0].points.count - 1))
             }
         }
          .colorScheme(.dark)
