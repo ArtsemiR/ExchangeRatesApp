@@ -11,11 +11,11 @@ import SwiftUI
 import Combine
 
 let columns: [ChartElement] = load("chart.json")
-let periodRatesData: [LinesSet] = addID( charts: columns.compactMap { convertToInternalModel($0)})
+let periodRatesData: [LinesSet] = addID(charts: convertToInternalModel(yearRates))
 
 func addID(charts : [LinesSet] ) -> [LinesSet] {
     var i = 0
-    var newCharts = [LinesSet]()
+    var newCharts: [LinesSet] = []
     for chart in charts {
         var newChart = chart
         newChart.id = i
@@ -27,54 +27,24 @@ func addID(charts : [LinesSet] ) -> [LinesSet] {
     return newCharts
 }
 
-func convertToInternalModel(_ chatti: ChartElement ) -> LinesSet {
-    var nameLine = ""
-    var values = [Int]()
+func convertToInternalModel(_ dayStats: [ARStatsForDayModel]) -> [LinesSet] {
     var graph = LinesSet()
-    var lines = [Line] ()
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.locale = Locale(identifier: "en-US")
-    dateFormatter.setLocalizedDateFormatFromTemplate("MMM d yyyy")
-    
-    for line in chatti.columns {
-        for element in line {
-            switch element {
-            case .integer(let value): values.append(value)
-            case .string(let name): nameLine = name
-            }
-        }
-        switch nameLine {
-        case "x":
-            graph.namex = "x"
-            graph.xTime = values.map { dateFormatter.string (
-                from:Date(timeIntervalSince1970: TimeInterval($0/1000))
-                )
-            }
-        case "y0" :
-            lines.append(Line(id: lines.count,
-                              title: chatti.names.y0,
-                              points: values,
-                              color: chatti.colors.y0.hexStringToUIColor(),
-                              isHidden: false,
-                              type: chatti.types.y0,
-                              countY: values.count))
-        case "y1" :
-            lines.append(Line(id: lines.count,
-                              title: chatti.names.y1,
-                              points: values,
-                              color: chatti.colors.y1.hexStringToUIColor(),
-                              isHidden: false,
-                              type: chatti.types.y1,
-                              countY: values.count))
-        default: break
-        }
-        nameLine = ""
-        values = [Int]()
-        
-    }
-    graph.colorX = chatti.colors.x != nil ? chatti.colors.x!.hexStringToUIColor() : nil
-    graph.lines = lines
-    return graph
-}
 
+    graph.namex = "x"
+    graph.xTime = dayStats.map { $0.Date }
+
+    let points = dayStats.map { Int($0.Cur_OfficialRate * 100) }
+
+    var lines: [Line] = []
+    lines.append(Line(id: 1,
+                      title: "title",
+                      points: points,
+                      color: "#3DC23F".hexStringToUIColor(),
+                      isHidden: false,
+                      type: "type",
+                      countY: points.count))
+
+    graph.colorX = "#3DC23F".hexStringToUIColor()
+    graph.lines = lines
+    return [graph]
+}

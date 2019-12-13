@@ -12,22 +12,26 @@ struct CheckMarksView : View {
     @EnvironmentObject var userData: ARUserData
     var chart: LinesSet
     
-    private var chartIndex: Int {userData.periodRates.firstIndex(where: { $0.id == chart.id })! }
+    private var chartIndex: Int {
+        userData.periodRates.firstIndex(where: { $0.id == chart.id })!
+    }
+
     private func lineIndex(line: Line) -> Int {
         userData.periodRates[chartIndex].lines.firstIndex(where: { $0.id == line.id})!
     }
+    
     var body: some View {
         GeometryReader { geometry in
             HStack (alignment: .top) {
                 ForEach(self.chart.lines) { line in
                     SimulatedButton(line:  self.$userData.periodRates[self.chartIndex].lines[self.lineIndex(line: line)])
-                 // CheckButton(line:
-                 // self.$userData.charts[self.chartIndex].lines[self.lineIndex(line: line)])
-                } // ForEach
-            } // HStack
-                .frame(width: geometry.size.width, height: geometry.size.height,  alignment: .topLeading)
-        } // Geometry
-    } // body
+                } //ForEach
+            } //HStack
+                .frame(width: geometry.size.width,
+                       height: geometry.size.height,
+                       alignment: .topLeading)
+        } //Geometry
+    } //body
 }
 
 struct CheckMarksView_Previews : PreviewProvider {

@@ -29,7 +29,7 @@ struct GraphsForChart : View {
 
     var body: some View {
        ZStack {
-        ForEach( chart.lines.filter{!$0.isHidden}) { line in
+        ForEach( chart.lines.filter{ !$0.isHidden }) { line in
                     GraphViewNew(rangeTime: self.rangeTime,
                                  line:  line,
                                  rangeY: self.rangeY,

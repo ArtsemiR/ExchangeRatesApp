@@ -93,13 +93,12 @@ struct IndicatorView : View {
         }// Geometry
         
     }
-    private func betweenValue ( yInt: [Int]) -> CGFloat {
+    private func betweenValue (yInt: [Int]) -> CGFloat {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en-US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMM d yyyy")
-        
-        let doubleInd = Double(rangeTime.lowerBound) + Double(rangeTime.distance - 1 ) * Double(positionIndicator)
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+
+        let doubleInd = Double(rangeTime.lowerBound) + Double(rangeTime.distance - 1) * Double(positionIndicator)
         
         let date1 = dateFormatter.date(from: chart.xTime[indexIndicator])
         let date2 = dateFormatter.date(from: chart.xTime[indexIndicator + 1])
@@ -118,7 +117,9 @@ struct IndicatorView_Previews : PreviewProvider {
     static var previews: some View {
          NavigationView {
             ZStack {
-                GraphsForChart(chart: periodRatesData[0], rangeTime: /*18..<40*/0..<(periodRatesData[0].xTime.count - 1), lineWidth : 2)
+                GraphsForChart(chart: periodRatesData[0],
+                               rangeTime: /*18..<40*/0..<(periodRatesData[0].xTime.count - 1),
+                               lineWidth : 2)
                 IndicatorView(color: Color.secondary, chart: periodRatesData[0],  rangeTime: /*18..<40*/0..<(periodRatesData[0].lines[0].points.count - 1))
             }
         }

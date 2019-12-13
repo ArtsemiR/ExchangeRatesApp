@@ -50,6 +50,7 @@
 		22A5E46E23A0E673007E13F6 /* GraphsViewForChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E46D23A0E673007E13F6 /* GraphsViewForChart.swift */; };
 		22A5E47023A2300A007E13F6 /* yearStatistic.json in Resources */ = {isa = PBXBuildFile; fileRef = 22A5E46F23A2300A007E13F6 /* yearStatistic.json */; };
 		22A5E47223A234B7007E13F6 /* ARStatsForDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E47123A234B7007E13F6 /* ARStatsForDayModel.swift */; };
+		22A5E47423A3BC47007E13F6 /* ARYearRatesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E47323A3BC47007E13F6 /* ARYearRatesFetcher.swift */; };
 		22DF552A2386932A0058739C /* DoubleEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DF55292386932A0058739C /* DoubleEx.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +100,7 @@
 		22A5E46D23A0E673007E13F6 /* GraphsViewForChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphsViewForChart.swift; sourceTree = "<group>"; };
 		22A5E46F23A2300A007E13F6 /* yearStatistic.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = yearStatistic.json; sourceTree = "<group>"; };
 		22A5E47123A234B7007E13F6 /* ARStatsForDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARStatsForDayModel.swift; sourceTree = "<group>"; };
+		22A5E47323A3BC47007E13F6 /* ARYearRatesFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARYearRatesFetcher.swift; sourceTree = "<group>"; };
 		22DF55292386932A0058739C /* DoubleEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 			children = (
 				22588F84237AEA7E008B9916 /* Models */,
 				22588F77237AE4E2008B9916 /* ARDayRatesFetcher.swift */,
+				22A5E47323A3BC47007E13F6 /* ARYearRatesFetcher.swift */,
 			);
 			path = DayRate;
 			sourceTree = "<group>";
@@ -172,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				22A5E42423A0DC98007E13F6 /* GraphView */,
+				22A5E42523A0DCC8007E13F6 /* ARGraphView.swift */,
+				22A5E46D23A0E673007E13F6 /* GraphsViewForChart.swift */,
 				22588F8B237E9319008B9916 /* Views */,
 				22A5E41E239FABA0007E13F6 /* ARMainViewUIView.swift */,
 				22588F92237EC90E008B9916 /* ARAllRatesView.swift */,
@@ -252,11 +257,9 @@
 		22A5E42423A0DC98007E13F6 /* GraphView */ = {
 			isa = PBXGroup;
 			children = (
-				22A5E42523A0DCC8007E13F6 /* ARGraphView.swift */,
-				22A5E46D23A0E673007E13F6 /* GraphsViewForChart.swift */,
+				22A5E42F23A0DD95007E13F6 /* Model */,
 				22A5E43423A0DD95007E13F6 /* CheckMarks */,
 				22A5E43E23A0DD95007E13F6 /* Graphs */,
-				22A5E42F23A0DD95007E13F6 /* Model */,
 				22A5E43923A0DD95007E13F6 /* Range */,
 				22A5E44A23A0DD96007E13F6 /* XAxis */,
 				22A5E42B23A0DD95007E13F6 /* YAxis */,
@@ -297,10 +300,10 @@
 		22A5E43423A0DD95007E13F6 /* CheckMarks */ = {
 			isa = PBXGroup;
 			children = (
-				22A5E43523A0DD95007E13F6 /* SimulatedButton.swift */,
-				22A5E43623A0DD95007E13F6 /* CheckMarksView.swift */,
 				22A5E43723A0DD95007E13F6 /* CheckButton.swift */,
 				22A5E43823A0DD95007E13F6 /* CheckBoxView.swift */,
+				22A5E43523A0DD95007E13F6 /* SimulatedButton.swift */,
+				22A5E43623A0DD95007E13F6 /* CheckMarksView.swift */,
 			);
 			path = CheckMarks;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				227CE6502372BEA40041808D /* AppDelegate.swift in Sources */,
 				22A5E47223A234B7007E13F6 /* ARStatsForDayModel.swift in Sources */,
 				227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */,
+				22A5E47423A3BC47007E13F6 /* ARYearRatesFetcher.swift in Sources */,
 				22A5E46023A0DD96007E13F6 /* IndicatorView.swift in Sources */,
 				22588F86237AEA92008B9916 /* ARRateModel.swift in Sources */,
 				22588F78237AE4E2008B9916 /* ARDayRatesFetcher.swift in Sources */,

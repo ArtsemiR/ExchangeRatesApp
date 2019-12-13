@@ -9,8 +9,13 @@
 import SwiftUI
 
 struct ARAllRatesView: View {
+    @EnvironmentObject var userData: ARUserData
+
     @ObservedObject var dayRatesFetcher = ARDayRatesFetcher(.day)
     @ObservedObject var monthRatesFetcher = ARDayRatesFetcher(.month)
+
+    @State private var showModal = false
+    @State private var selectedCurrencyName = ""
 
     // MARK: - UI Variables
     
@@ -32,7 +37,6 @@ struct ARAllRatesView: View {
 
     // MARK: Body
 
-    @EnvironmentObject var userData: ARUserData
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -41,10 +45,8 @@ struct ARAllRatesView: View {
                         Section(header: self.dayRateSectionHeader()) {
                             ForEach(self.dayRatesFetcher.rates,
                                     id: \.Cur_ID) { dayRate in
-                                        NavigationLink(destination: ARGraphView(chart: self.userData.periodRates[0])
-                                            .frame(height: geometry.size.height)) {
-                                                ARCurrencyRow(rateModel: dayRate)
-                                        }
+                                        ARCurrencyRow(rateModel: dayRate)
+                                            .onTapGesture { self.showModal.toggle() }
                             }
                         }
                     }
@@ -55,10 +57,17 @@ struct ARAllRatesView: View {
                                 by: ({ $0.Cur_OfficialRate > $1.Cur_OfficialRate })),
                                     id: \.Cur_ID) { dayRate in
                                         ARCurrencyRow(rateModel: dayRate)
+                                            .onTapGesture { self.showModal.toggle() }
                             }
                         }
                     }
-                }
+                } //List
+                    .sheet(isPresented: self.$showModal, content: {
+                        ARGraphView(currencyName: self.selectedCurrencyName,
+                                    chart: self.userData.periodRates[0])
+                            .frame(height: geometry.size.height)
+                            .environmentObject(self.userData)
+                    })
                 .navigationBarTitle(Text("Курсы НБ РБ"))
             } //Geometry
         }

@@ -11,12 +11,13 @@ import SwiftUI
 struct ARGraphView: View {
     @EnvironmentObject var userData: ARUserData
 
+    var currencyName: String
     var chart: LinesSet
     var colorXAxis: Color = Color.secondary
     var colorXMark: Color = Color.primary
     var indent: CGFloat = 0
 
-    var index: Int {userData.periodRates.firstIndex(where: { $0.id == chart.id })!}
+    var index: Int { userData.periodRates.firstIndex(where: { $0.id == chart.id })!}
 
     func rangeTimeFor(indexChat: Int) -> Range<Int> {
         let numberPoints = userData.periodRates[indexChat].xTime.count
@@ -26,30 +27,29 @@ struct ARGraphView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            VStack  (alignment: .leading, spacing: 10) {
-                Text("   CHART \(self.index + 1):  \(self.chart.xTime.first!) - \(self.chart.xTime.last!)  \(self.chart.lines.count)  lines")
-                    .font(.headline)
-                    .foregroundColor(Color("ColorTitle"))
-                Text(" ").font(.footnote)
-
+            VStack (alignment: .leading, spacing: 10) {
                 GraphsViewForChart(
                     chart: self.userData.periodRates[self.index],
                     rangeTime: self.rangeTimeFor (indexChat: self.index))
                     .padding(self.indent)
-                    .frame(height: geometry.size.height  * 0.63)
+                    .frame(height: geometry.size.height * 0.3)
 
-                TickerView(rangeTime: self.rangeTimeFor (indexChat: self.index),chart: self.userData.periodRates[self.index], colorXAxis: self.colorXAxis, colorXMark: self.colorXMark, indent: self.indent)
-                    .frame(height: geometry.size.height  * 0.058)
-
-                RangeView(chart: self.userData.periodRates[self.index], indent: self.indent)
-                    .environmentObject(self.userData)
-                    .frame(height: geometry.size.height  * 0.1)
-
-                CheckMarksView(chart: self.userData.periodRates[self.index])
+                TickerView(rangeTime: self.rangeTimeFor (indexChat: self.index),
+                           chart: self.userData.periodRates[self.index],
+                           colorXAxis: self.colorXAxis,
+                           colorXMark: self.colorXMark,
+                           indent: self.indent)
                     .frame(height: geometry.size.height  * 0.05)
 
-                Text(" ").font(.footnote)
+                RangeView(chart: self.userData.periodRates[self.index],
+                          indent: self.indent)
+                    .environmentObject(self.userData)
+                    .frame(height: geometry.size.height  * 0.08)
+
+                CheckMarksView(chart: self.userData.periodRates[self.index])
+                    .frame(height: geometry.size.height  * 0.01)
             } // VStack
+                .navigationBarTitle(self.currencyName)
         } // Geometry
     }
 }
@@ -57,9 +57,10 @@ struct ARGraphView: View {
 struct ARGraphView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-        ARGraphView(chart: periodRatesData[0])
-              .environmentObject(ARUserData())
-              .navigationBarTitle(Text("Followers"))
+            ARGraphView(currencyName: "Currency name",
+                        chart: periodRatesData[0])
+                .environmentObject(ARUserData())
+                .colorScheme(.dark)
         }
         .colorScheme(.dark)
     }
