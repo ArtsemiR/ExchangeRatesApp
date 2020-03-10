@@ -45,7 +45,6 @@ struct ARCurrencyRow: View {
 
             VStack(alignment: .trailing) {
                 self.officialRate()
-                Text("BYN")
             }
         }
     }

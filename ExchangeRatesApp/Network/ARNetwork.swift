@@ -17,25 +17,19 @@ class ARNetwork {
         return "http://www.nbrb.by/"
     }
 
-    var alamofireManager: SessionManager
+    func request<T: Decodable>(action: String,
+                                   model: Encodable? = nil,
+                                   parameters: [String: String]? = nil,
+                                   okHandler: @escaping (T) -> Void) {
+        let url: String = "\(self.baseUrl)\(action)"
 
-    private init() {
-        self.alamofireManager = SessionManager()
-    }
-
-    func userRequest<T: Decodable>(
-        fullPath: String, action: String, model: Encodable? = nil,
-        parameters: [String: String]? = nil, okHandler: @escaping (T) -> Void) {
-        var url: String = ""
-
-        var _parameters: [String: String] = [:]
-
-        if let parametersTemp = parameters {
-            for parameter in parametersTemp {
-                _parameters[parameter.key] = parameter.value
-            }
-        }
-        url = self.getUrlWithParams(fullPath: "\(fullPath)\(action)", params: _parameters)
+        //        var _parameters: [String: String] = [:]
+        //        if let parametersTemp = parameters {
+//            for parameter in parametersTemp {
+//                _parameters[parameter.key] = parameter.value
+//            }
+//        }
+//        url = self.getUrlWithParams(fullPath: "\(fullPath)\(action)", params: _parameters)
 
         var modelParameters: [String: Any]?
         var method: HTTPMethod = .get
@@ -45,30 +39,29 @@ class ARNetwork {
             method = .post
         }
 
-        self.alamofireManager.request(
-            url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
-            method: method,
-            parameters: modelParameters,
-            encoding: JSONEncoding.default,
-            headers: self.userHeaders).responseJSON { (response) in
-                ARLogManager.logToConsole(response)
-                let statusCode: Int = response.response?.statusCode ?? 0
-                switch statusCode {
-                case 200:
-                    do {
-                        let decoder = JSONDecoder()
-                        if let jsonData = response.data {
-                            let res = try decoder.decode(T.self, from: jsonData)
-                            okHandler(res)
-                        } else {
+        AF.request(url,
+                   method: method,
+                   parameters: parameters,
+                   encoder: JSONParameterEncoder.default).responseJSON { (response) in
+                    ARLogManager.logToConsole(response)
+                    let statusCode: Int = response.response?.statusCode ?? 0
+
+                    switch statusCode {
+                    case 200:
+                        do {
+                            let decoder = JSONDecoder()
+                            if let jsonData = response.data {
+                                let res = try decoder.decode(T.self, from: jsonData)
+                                okHandler(res)
+                            } else {
+                                fatalError("Couldn't decode json from data")
+                            }
+                        } catch {
                             fatalError("Couldn't decode json from data")
                         }
-                    } catch {
-                        fatalError("Couldn't decode json from data")
+                    default:
+                        break
                     }
-                default:
-                    break
-                }
         }
     }
 
@@ -98,7 +91,7 @@ final class ARLogManager {
         return nil
     }
 
-    public static func logToConsole<T>(_ response: Alamofire.DataResponse<T>) {
+    public static func logToConsole<T>(_ response: AFDataResponse<T>) {
         #if DEBUG
         if let httpBody = response.request?.httpBody {
             var body: String?
@@ -141,7 +134,7 @@ final class ARLogManager {
 
     private static func printRequest(url: String? = nil, request: String) {
         if let url = url {
-            print("\nREQUEST\(String(repeating: "-", count: 50))\n URL: \(url) \n \(request)")
+            print("\nREQUEST\(String(repeating: "-", count: 100))\n URL: \(url) \n \(request)")
         } else {
             print("\nREQUEST\(String(repeating: "-", count: 50))\n \(request)")
         }

@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ARAllRatesView: View {
-    @EnvironmentObject var userData: ARUserData
 
     @ObservedObject var dayRatesFetcher = ARDayRatesFetcher(.day)
     @ObservedObject var monthRatesFetcher = ARDayRatesFetcher(.month)
@@ -17,7 +16,7 @@ struct ARAllRatesView: View {
     @State private var showModal = false
     @State private var selectedCurrencyName = ""
 
-    // MARK: - UI Variables
+    // MARK: - ui
     
     private func dayRateSectionHeader() -> Text {
         var date: String = ""
@@ -63,10 +62,8 @@ struct ARAllRatesView: View {
                     }
                 } //List
                     .sheet(isPresented: self.$showModal, content: {
-                        ARGraphView(currencyName: self.selectedCurrencyName,
-                                    chart: self.userData.periodRates[0])
+                        ARCurrencyStatsView()
                             .frame(height: geometry.size.height)
-                            .environmentObject(self.userData)
                     })
                 .navigationBarTitle(Text("Курсы НБ РБ"))
             } //Geometry

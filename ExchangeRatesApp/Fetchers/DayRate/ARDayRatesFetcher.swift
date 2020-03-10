@@ -32,8 +32,7 @@ final class ARDayRatesFetcher: ObservableObject {
     }
 
     public func load() {
-        ARNetwork.shared.userRequest(
-            fullPath: ARNetwork.shared.baseUrl,
+        ARNetwork.shared.request(
             action: "API/ExRates/Rates?Periodicity=\(self.reqMode == .day ? "0" : "1")",
             model: nil) { [weak self] (response: [ARDayRateModel]) in
                 self?.setRates(response)
