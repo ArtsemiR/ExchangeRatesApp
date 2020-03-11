@@ -33,4 +33,9 @@ extension String {
         }
         return ""
     }
+
+    func encodeForURL() -> String {
+        let allowedSet = CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "+"))
+        return self.addingPercentEncoding(withAllowedCharacters: allowedSet) ?? self
+    }
 }

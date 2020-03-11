@@ -12,7 +12,6 @@ import Alamofire
 class ARNetwork {
     static let shared = ARNetwork()
 
-    var userHeaders: [String: String] = ["Content-Type": "application/json"]
     var baseUrl: String {
         return "http://www.nbrb.by/"
     }
@@ -21,27 +20,20 @@ class ARNetwork {
                                    model: Encodable? = nil,
                                    parameters: [String: String]? = nil,
                                    okHandler: @escaping (T) -> Void) {
-        let url: String = "\(self.baseUrl)\(action)"
-
-        //        var _parameters: [String: String] = [:]
-        //        if let parametersTemp = parameters {
-//            for parameter in parametersTemp {
-//                _parameters[parameter.key] = parameter.value
-//            }
-//        }
-//        url = self.getUrlWithParams(fullPath: "\(fullPath)\(action)", params: _parameters)
-
-        var modelParameters: [String: Any]?
-        var method: HTTPMethod = .get
-
-        if let model = model {
-            modelParameters = try? model.asDictionary()
-            method = .post
+        var url: String = "\(self.baseUrl)\(action)"
+        if let parameters = parameters {
+            url = self.getUrlWithParams(fullPath: "\(self.baseUrl)\(action)", params: parameters)
         }
+        let method: HTTPMethod = .get
+
+        var modelParameters: [String: String]?
+//        if let model = model {
+//            modelParameters = try? model.asDictionary() as! [String : String]
+//        }
 
         AF.request(url,
                    method: method,
-                   parameters: parameters,
+                   parameters: modelParameters,
                    encoder: JSONParameterEncoder.default).responseJSON { (response) in
                     ARLogManager.logToConsole(response)
                     let statusCode: Int = response.response?.statusCode ?? 0
@@ -74,7 +66,10 @@ class ARNetwork {
                     url[url.count - 1] != "&" {
                     url += "&"
                 }
-                url += "\(param.key)=\(param.value)"
+
+                let key: String = param.key.encodeForURL()
+                let value: String = param.value.encodeForURL()
+                url += "\(key)=\(value)"
             }
         }
         return url

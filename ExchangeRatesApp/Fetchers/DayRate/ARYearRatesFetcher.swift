@@ -31,8 +31,8 @@ final class ARYearRatesFetcher: ObservableObject {
         formatter.dateFormat = "yyyy-MM-dd"
         ARNetwork.shared.request(
             action: "API/ExRates/Rates/Dynamics/\(self.curId)",
-            parameters: ["startDate": formatter.string(from: Date()),
-                         "endDate": formatter.string(from: Date(timeIntervalSinceNow: -365*24*60*60))]) { [weak self] (response: [ARStatsForDayModel]) in
+            parameters: ["startDate": formatter.string(from: Date(timeIntervalSinceNow: -365*24*60*60)),
+                         "endDate": formatter.string(from: Date())]) { [weak self] (response: [ARStatsForDayModel]) in
                             self?.rates = response
         }
     }
