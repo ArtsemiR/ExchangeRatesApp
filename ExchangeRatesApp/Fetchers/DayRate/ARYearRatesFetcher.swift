@@ -9,17 +9,12 @@
 import Foundation
 
 final class ARYearRatesFetcher: ObservableObject {
+
     @Published var rates: [ARStatsForDayModel] = []
+    
+    @Published private(set) var isLoading = false
 
     let curId: String
-
-    private enum CurrencyType: String, CaseIterable {
-        case usd = "USD"
-        case eur = "EUR"
-        case rub = "RUB"
-        case uah = "UAH"
-        case pln = "PLN"
-    }
 
     init(_ curId: String) {
         self.curId = curId
@@ -29,11 +24,21 @@ final class ARYearRatesFetcher: ObservableObject {
     public func load() {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+
+        self.isLoading = true
         ARNetwork.shared.request(
             action: "API/ExRates/Rates/Dynamics/\(self.curId)",
-            parameters: ["startDate": formatter.string(from: Date(timeIntervalSinceNow: -365*24*60*60)),
-                         "endDate": formatter.string(from: Date())]) { [weak self] (response: [ARStatsForDayModel]) in
-                            self?.rates = response
-        }
+            parameters: [
+                "startDate": formatter.string(from: Date(timeIntervalSinceNow: -365*24*60*60)),
+                "endDate": formatter.string(from: Date())],
+            okHandler: { [weak self] (response: [ARStatsForDayModel]) in
+                guard let self = self else { return }
+                self.rates = response
+                self.isLoading = false
+        },
+            errorHandler: { [weak self] in
+                guard let self = self else { return }
+                self.isLoading = false
+        })
     }
 }

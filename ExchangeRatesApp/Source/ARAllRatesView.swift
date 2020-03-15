@@ -10,63 +10,70 @@ import SwiftUI
 
 struct ARAllRatesView: View {
 
-    @ObservedObject var dayRatesFetcher = ARDayRatesFetcher(.day)
-    @ObservedObject var monthRatesFetcher = ARDayRatesFetcher(.month)
+    @EnvironmentObject var dayRates: ARDayRatesFetcher
+    @EnvironmentObject var monthRates: ARMonthRatesFetcher
 
-    @State private var showModal = false
+    @State private var showCountryRate = false
     @State private var selectedCurrencyName = ""
 
     // MARK: - ui
     
     private func dayRateSectionHeader() -> Text {
         var date: String = ""
-        if let resDate = self.dayRatesFetcher.rates.first?.Date {
-            date = "за \(resDate.formattedDate())"
+        if let resDate = self.dayRates.rates.first?.Date {
+            date = "на \(resDate.formattedDate(format: .ddMMyyyy))"
         }
         return Text("\("Ежедневный курс") \(date)")
+            .fontWeight(.thin)
     }
 
     private func monthRateSectionHeader() -> Text {
         var date: String = ""
-        if let resDate = self.monthRatesFetcher.rates.first?.Date {
-            date = "за \(resDate.formattedDate())"
+        if let resDate = self.monthRates.rates.first?.Date {
+            date = "на \(resDate.formattedDate(format: .ddMMyyyy))"
         }
         return Text("\("Ежемесячный курс") \(date)")
+            .fontWeight(.thin)
     }
 
     // MARK: Body
 
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                List {
-                    if !self.dayRatesFetcher.rates.isEmpty {
-                        Section(header: self.dayRateSectionHeader()) {
-                            ForEach(self.dayRatesFetcher.rates,
-                                    id: \.Cur_ID) { dayRate in
-                                        ARCurrencyRow(rateModel: dayRate)
-                                            .onTapGesture { self.showModal.toggle() }
+            Group {
+                if self.dayRates.isLoading || self.monthRates.isLoading {
+                    ARActivityIndicatorView()
+                        .scaleEffect(2)
+                } else {
+                    List {
+                        if !self.dayRates.rates.isEmpty {
+                            Section(header: self.dayRateSectionHeader()) {
+                                ForEach(self.dayRates.rates,
+                                        id: \.Cur_ID) { dayRate in
+                                            NavigationLink(destination: ARCurrencyStatsView()
+                                                .environmentObject(ARYearRatesFetcher("\(dayRate.Cur_ID)"))) {
+                                                    ARCurrencyRow(rateModel: dayRate)
+                                            }
+                                }
                             }
                         }
-                    }
 
-                    if !self.monthRatesFetcher.rates.isEmpty {
-                        Section(header: self.monthRateSectionHeader()) {
-                            ForEach(self.monthRatesFetcher.rates.sorted(
-                                by: ({ $0.Cur_OfficialRate > $1.Cur_OfficialRate })),
-                                    id: \.Cur_ID) { dayRate in
-                                        ARCurrencyRow(rateModel: dayRate)
-                                            .onTapGesture { self.showModal.toggle() }
+                        if !self.monthRates.rates.isEmpty {
+                            Section(header: self.monthRateSectionHeader()) {
+                                ForEach(self.monthRates.rates,
+                                        id: \.Cur_ID) { monthRate in
+                                            ARCurrencyRow(rateModel: monthRate)
+                                }
                             }
                         }
                     }
-                } //List
-                    .sheet(isPresented: self.$showModal, content: {
+                    .sheet(isPresented: self.$showCountryRate, content: {
                         ARCurrencyStatsView()
-                            .frame(height: geometry.size.height)
+                            .environmentObject(ARYearRatesFetcher("145"))
                     })
-                .navigationBarTitle(Text("Курсы НБ РБ"))
-            } //Geometry
+                }
+            }
+            .navigationBarTitle(Text("Курсы НБ РБ"))
         }
     }
 }

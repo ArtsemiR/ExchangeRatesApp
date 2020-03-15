@@ -9,11 +9,16 @@
 import SwiftUI
 
 struct ARCurrencyStatsView: View {
-    @ObservedObject var yearRatesFetcher = ARYearRatesFetcher("170")
+
+    @EnvironmentObject var yearRatesFetcher: ARYearRatesFetcher
 
     var body: some View {
-        VStack(alignment: .leading) {
-            
+        VStack {
+            if !self.yearRatesFetcher.isLoading {
+                ARChartSwiftUIView()
+                    .environmentObject(yearRatesFetcher)
+                    .frame(height: 250.0)
+            }
         }
     }
 }

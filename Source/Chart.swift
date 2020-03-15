@@ -7,6 +7,7 @@
 
 import UIKit
 
+// swiftlint:disable type_body_length
 public protocol ChartDelegate: class {
 
     /**
@@ -110,7 +111,7 @@ open class Chart: UIControl {
     Formatter for the labels on the y-axis.
     */
     open var yLabelsFormatter = { (labelIndex: Int, labelValue: Double) -> String in
-        String(Int(labelValue))
+        String(labelValue)
     }
 
     /**
@@ -849,3 +850,4 @@ extension Sequence where Element == Double {
         return self.max() ?? 0.0
     }
 }
+// swiftlint:enable type_body_length

@@ -21,16 +21,20 @@ struct ARCurrencyRow: View {
 
     fileprivate func currencyCode() -> Text {
         return Text(self.rateModel.Cur_Abbreviation)
+            .fontWeight(.semibold)
     }
 
     fileprivate func currencyName() -> Text {
         return Text("\(self.rateModel.Cur_Scale) \(self.rateModel.Cur_Name)")
+            .font(.footnote)
+            .fontWeight(.thin)
     }
 
     // MARK: - Body
 
     fileprivate func officialRate() -> Text {
         return Text("\(rateModel.Cur_OfficialRate.toAmountString)")
+            .fontWeight(.semibold)
     }
 
     var body: some View {
@@ -47,6 +51,7 @@ struct ARCurrencyRow: View {
                 self.officialRate()
             }
         }
+        .frame(height: 60)
     }
 }
 

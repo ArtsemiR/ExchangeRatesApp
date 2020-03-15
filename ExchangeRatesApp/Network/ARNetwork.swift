@@ -19,24 +19,27 @@ class ARNetwork {
     func request<T: Decodable>(action: String,
                                    model: Encodable? = nil,
                                    parameters: [String: String]? = nil,
-                                   okHandler: @escaping (T) -> Void) {
+                                   okHandler: @escaping (T) -> Void,
+                                   errorHandler: @escaping () -> Void) {
         var url: String = "\(self.baseUrl)\(action)"
         if let parameters = parameters {
             url = self.getUrlWithParams(fullPath: "\(self.baseUrl)\(action)", params: parameters)
         }
-        let method: HTTPMethod = .get
 
         var modelParameters: [String: String]?
-//        if let model = model {
-//            modelParameters = try? model.asDictionary() as! [String : String]
-//        }
 
+        let method: HTTPMethod = .get
         AF.request(url,
                    method: method,
                    parameters: modelParameters,
                    encoder: JSONParameterEncoder.default).responseJSON { (response) in
                     ARLogManager.logToConsole(response)
                     let statusCode: Int = response.response?.statusCode ?? 0
+
+                    if response.error != nil {
+                        errorHandler()
+                        return
+                    }
 
                     switch statusCode {
                     case 200:
