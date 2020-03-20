@@ -33,6 +33,7 @@ struct ARMainView: View {
             }
             .tag(1)
         }
+        .accentColor(.red)
     }
 }
 

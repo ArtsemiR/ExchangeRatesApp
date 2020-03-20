@@ -111,7 +111,7 @@ open class Chart: UIControl {
     Formatter for the labels on the y-axis.
     */
     open var yLabelsFormatter = { (labelIndex: Int, labelValue: Double) -> String in
-        String(labelValue)
+        String(format: "%.4f", labelValue)
     }
 
     /**
@@ -140,7 +140,7 @@ open class Chart: UIControl {
     Color for the grid.
     */
     @IBInspectable
-    open var gridColor: UIColor = UIColor.gray.withAlphaComponent(0.3)
+    open var gridColor: UIColor = UIColor.gray//.withAlphaComponent(0.3)
     /**
     Enable the lines for the labels on the x-axis
     */
@@ -199,7 +199,7 @@ open class Chart: UIControl {
     /**
     Width for the highlight line.
     */
-    open var highlightLineWidth: CGFloat = 0.5
+    open var highlightLineWidth: CGFloat = 1.5
 
     /**
     Hide the highlight line when touch event ends, e.g. when stop swiping over the chart
@@ -209,7 +209,7 @@ open class Chart: UIControl {
     /**
     Alpha component for the area color.
     */
-    open var areaAlphaComponent: CGFloat = 0.1
+    open var areaAlphaComponent: CGFloat = 0.45
 
     // MARK: Private variables
 
@@ -586,9 +586,11 @@ open class Chart: UIControl {
 
             // Add label
             let label = UILabel(frame: CGRect(x: x, y: drawingHeight, width: 0, height: 0))
+            label.adjustsFontSizeToFitWidth = true
+            label.minimumScaleFactor = 0.6
             label.font = labelFont
             label.text = xLabelsFormatter(i, labels[i])
-            label.textColor = labelColor
+//            label.textColor = labelColor
 
             // Set label size
             label.sizeToFit()
@@ -662,7 +664,7 @@ open class Chart: UIControl {
             let label = UILabel(frame: CGRect(x: padding, y: y, width: 0, height: 0))
             label.font = labelFont
             label.text = yLabelsFormatter(i, labels[i])
-            label.textColor = labelColor
+//            label.textColor = labelColor
             label.sizeToFit()
 
             if yLabelsOnRightSide {
@@ -697,7 +699,7 @@ open class Chart: UIControl {
             let shapeLayer = CAShapeLayer()
             shapeLayer.frame = self.bounds
             shapeLayer.path = path
-            shapeLayer.strokeColor = highlightLineColor.cgColor
+            shapeLayer.strokeColor = ChartColors.blueColor().cgColor
             shapeLayer.fillColor = nil
             shapeLayer.lineWidth = highlightLineWidth
 

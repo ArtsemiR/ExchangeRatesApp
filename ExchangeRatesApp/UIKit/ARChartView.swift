@@ -11,6 +11,8 @@ import SwiftUI
 
 struct ARChartSwiftUIView: UIViewRepresentable {
 
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+
     @EnvironmentObject var yearRatesFetcher: ARYearRatesFetcher
 
     let chartView = ARChartView()
@@ -20,6 +22,7 @@ struct ARChartSwiftUIView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: ARChartView, context: Context) {
+        uiView.updateTheme(theme: colorScheme)
         uiView.setChart(rates: self.yearRatesFetcher.rates)
     }
 }
@@ -35,7 +38,16 @@ final class ARChartView: UIView, ChartDelegate {
         view.delegate = self
         return view
     }()
-    var label = UILabel()
+
+    var label: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 5
+        label.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        label.isHidden = true
+        return label
+    }()
 
     var labelLeadingMarginConstraint: NSLayoutConstraint!
     fileprivate var labelLeadingMarginInitialConstant: CGFloat!
@@ -43,18 +55,16 @@ final class ARChartView: UIView, ChartDelegate {
     init() {
         super.init(frame: CGRect.zero)
 
-        self.addSubview(label)
-        self.addSubview(chart)
+        self.addSubview(self.label)
+        self.insertSubview(self.chart, at: 0)
 
         self.label.translatesAutoresizingMaskIntoConstraints = false
-        self.label.numberOfLines = 0
         self.chart.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            self.label.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-            self.label.heightAnchor.constraint(equalToConstant: 42),
+            self.label.topAnchor.constraint(equalTo: self.topAnchor),
 
-            self.chart.topAnchor.constraint(equalTo: self.label.bottomAnchor),
+            self.chart.topAnchor.constraint(equalTo: self.topAnchor),
             self.chart.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.chart.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.chart.bottomAnchor.constraint(equalTo: self.bottomAnchor)
@@ -69,7 +79,18 @@ final class ARChartView: UIView, ChartDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func updateTheme(theme: ColorScheme) {
+        if theme == .light {
+            self.label.backgroundColor = #colorLiteral(red: 0.7852933407, green: 0.8643416762, blue: 0.9621810317, alpha: 1)
+            self.chart.areaAlphaComponent = 0.3
+        } else {
+            self.label.backgroundColor = #colorLiteral(red: 0.1909946203, green: 0.3861761689, blue: 0.6175481677, alpha: 1)
+            self.chart.areaAlphaComponent = 0.45
+        }
+    }
+
     func setChart(rates: [ARStatsForDayModel]) {
+        self.chart.removeAllSeries()
         let mappedRates = rates.map { (date: $0.Date,rate: $0.Cur_OfficialRate)  }
         self.rates = mappedRates
 
@@ -100,7 +121,7 @@ final class ARChartView: UIView, ChartDelegate {
         let series = ChartSeries(mappedRates.map { $0.rate })
         series.area = true
 
-        chart.lineWidth = 1
+        chart.lineWidth = 2
         chart.labelFont = UIFont.systemFont(ofSize: 12)
         chart.xLabels = labels
         chart.xLabelsFormatter = { (labelIndex: Int, labelValue: Double) -> String in
@@ -128,7 +149,7 @@ final class ARChartView: UIView, ChartDelegate {
             self.setNeedsUpdateConstraints()
 
             // Align the label to the touch left position, centered
-            var constant = labelLeadingMarginInitialConstant + left - (label.frame.width / 2)
+            var constant = labelLeadingMarginInitialConstant + left - label.frame.width - 3
 
             // Avoid placing the label on the left of the chart
             if constant < labelLeadingMarginInitialConstant {
@@ -142,6 +163,9 @@ final class ARChartView: UIView, ChartDelegate {
             }
 
             labelLeadingMarginConstraint.constant = constant
+            UIView.animate(withDuration: 0.2) {
+                self.label.isHidden = false
+            }
         }
     }
 

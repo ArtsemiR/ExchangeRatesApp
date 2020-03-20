@@ -13,8 +13,10 @@ struct ARAllRatesView: View {
     @EnvironmentObject var dayRates: ARDayRatesFetcher
     @EnvironmentObject var monthRates: ARMonthRatesFetcher
 
-    @State private var showCountryRate = false
     @State private var selectedCurrencyName = ""
+
+    init() {
+    }
 
     // MARK: - ui
     
@@ -50,9 +52,11 @@ struct ARAllRatesView: View {
                             Section(header: self.dayRateSectionHeader()) {
                                 ForEach(self.dayRates.rates,
                                         id: \.Cur_ID) { dayRate in
-                                            NavigationLink(destination: ARCurrencyStatsView()
-                                                .environmentObject(ARYearRatesFetcher("\(dayRate.Cur_ID)"))) {
-                                                    ARCurrencyRow(rateModel: dayRate)
+                                            NavigationLink(destination:
+                                                ARLazyView(ARCurrencyStatsView(rateModel: dayRate)
+                                                    .environmentObject(ARYearRatesFetcher("\(dayRate.Cur_ID)")))) {
+                                                            ARCurrencyRow(rateModel: dayRate)
+                                                            .frame(height: 60)
                                             }
                                 }
                             }
@@ -67,10 +71,6 @@ struct ARAllRatesView: View {
                             }
                         }
                     }
-                    .sheet(isPresented: self.$showCountryRate, content: {
-                        ARCurrencyStatsView()
-                            .environmentObject(ARYearRatesFetcher("145"))
-                    })
                 }
             }
             .navigationBarTitle(Text("Курсы НБ РБ"))

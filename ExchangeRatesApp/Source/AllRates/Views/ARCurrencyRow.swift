@@ -11,47 +11,47 @@ import SwiftUI
 struct ARCurrencyRow: View {
 
     var rateModel: ARDayRateModel
+    var isNeedCurrency: Bool = false
 
-    // MARK: - GUI
+    // MARK: - gui
 
-    fileprivate func title() -> Text {
-        return Text(ARRate.s.getFlag(rateModel.Cur_Abbreviation))
+    private var title: Text {
+        Text(ARRate.s.getFlag(rateModel.Cur_Abbreviation))
             .font(.largeTitle)
     }
 
-    fileprivate func currencyCode() -> Text {
-        return Text(self.rateModel.Cur_Abbreviation)
+    private var currencyCode: Text {
+        Text(self.rateModel.Cur_Abbreviation)
             .fontWeight(.semibold)
     }
 
-    fileprivate func currencyName() -> Text {
-        return Text("\(self.rateModel.Cur_Scale) \(self.rateModel.Cur_Name)")
+    private var currencyName: Text {
+        Text("\(self.rateModel.Cur_Scale) \(self.rateModel.Cur_Name)")
             .font(.footnote)
             .fontWeight(.thin)
     }
 
-    // MARK: - Body
-
-    fileprivate func officialRate() -> Text {
-        return Text("\(rateModel.Cur_OfficialRate.toAmountString)")
+    private var officialRate: Text {
+        Text("\(rateModel.Cur_OfficialRate.toAmountString) \(self.isNeedCurrency ? "BYN" : "")")
             .fontWeight(.semibold)
     }
 
+    // MARK: - Body
+
     var body: some View {
-        HStack(alignment: .center) {
-            self.title()
+        HStack {
+            self.title
 
             VStack(alignment: .leading) {
-                self.currencyCode()
-                self.currencyName()
+                self.currencyCode
+                self.currencyName
             }
             Spacer()
 
             VStack(alignment: .trailing) {
-                self.officialRate()
+                self.officialRate
             }
         }
-        .frame(height: 60)
     }
 }
 
