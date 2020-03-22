@@ -42,12 +42,12 @@ struct ARCurrencyStatsView: View {
     }
 
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 2) {
             if self.yearRatesFetcher.isLoading {
                 ARActivityIndicatorView()
             } else {
                 ARCurrencyRow(rateModel: self.rateModel, isNeedCurrency: true)
-                    .padding(EdgeInsets(top: 4, leading: 8, bottom: 0, trailing: 8))
+                    .padding(EdgeInsets(top: 4, leading: 5, bottom: 0, trailing: 8))
                 ARChartSwiftUIView(periodSelection: $periodSelection.wrappedValue)
                     .environmentObject(self.yearRatesFetcher)
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))

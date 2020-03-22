@@ -247,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				22D060C3241BA0D000295688 /* ARActivityIndicatorView.swift */,
-				22D060C5241BA11B00295688 /* ARChartView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -273,6 +272,7 @@
 		22D060CE242232FF00295688 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				22D060C5241BA11B00295688 /* ARChartView.swift */,
 				22D060CF2422334D00295688 /* ChartDetailView.swift */,
 				2290010D24276B4D00D2124B /* ARChartPeriodView.swift */,
 			);
@@ -426,6 +426,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -486,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

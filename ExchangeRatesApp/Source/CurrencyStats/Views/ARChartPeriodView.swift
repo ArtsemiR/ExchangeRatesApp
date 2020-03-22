@@ -13,7 +13,7 @@ struct ARPeriodView: View {
     let isChecked: Bool
 
     private var dividerColor: Color {
-        return self.isChecked ? .red : .gray
+        return self.isChecked ? Color(#colorLiteral(red: 0.1909946203, green: 0.3861761689, blue: 0.6175481677, alpha: 1)) : Color.gray.opacity(0.7)
     }
     
     var body: some View {

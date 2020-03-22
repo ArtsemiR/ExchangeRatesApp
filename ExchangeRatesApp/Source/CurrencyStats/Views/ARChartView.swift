@@ -56,6 +56,7 @@ final class ARChartView: UIView, ChartDelegate {
         label.layer.cornerRadius = 5
         label.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         label.isHidden = true
+        label.textAlignment = .center
         return label
     }()
 
@@ -112,6 +113,19 @@ final class ARChartView: UIView, ChartDelegate {
         let monthFormatter = DateFormatter()
         monthFormatter.dateFormat = "MM"
 
+        let monthDict = [1: "январь",
+                         2: "февраль",
+                         3: "март",
+                         4: "апрель",
+                         5: "май",
+                         6: "июнь",
+                         7: "июль",
+                         8: "август",
+                         9: "сентябрь",
+                         10: "октябрь",
+                         11: "ноябрь",
+                         12: "декабрь"]
+
         for (i, value) in mappedRates.enumerated() {
             serieData.append(value.rate)
 
@@ -121,12 +135,13 @@ final class ARChartView: UIView, ChartDelegate {
             guard let date = responseFormatter.date(from: value.date) else { return }
 
             let month = Int(monthFormatter.string(from: date))!
-            let monthAsString:String = monthFormatter.monthSymbols[month - 1]
+            let monthAsString:String = monthDict[month] ?? monthFormatter.monthSymbols[month - 1]
             if (labels.count == 0 || labelsAsString.last != monthAsString) {
                 labels.append(Double(i))
                 labelsAsString.append(monthAsString)
             }
         }
+        labelsAsString[labelsAsString.startIndex] = ""
 
         let series = ChartSeries(mappedRates.map { $0.rate })
         series.area = true
@@ -148,14 +163,23 @@ final class ARChartView: UIView, ChartDelegate {
 
 
     func didTouchChart(_ chart: Chart, indexes: [Int?], x: Double, left: CGFloat) {
-
+        label.isHidden = false
         if let value = chart.valueForSeries(0, atIndex: indexes[0]) {
 
             let numberFormatter = NumberFormatter()
             numberFormatter.minimumFractionDigits = 2
             numberFormatter.maximumFractionDigits = 4
-            label.text = numberFormatter.string(from: NSNumber(value: value))
-            label.text?.append("\n\(self.rates[indexes[0] ?? 0].date.formattedDate())")
+
+            let firstAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
+            let secondAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .thin)]
+
+            let string = NSMutableAttributedString(string: "\(numberFormatter.string(from: NSNumber(value: value)) ?? "--") BYN",
+                                                        attributes: firstAttributes)
+            let secondString = NSAttributedString(string: "\n\(self.rates[indexes[0] ?? 0].date.formattedDate(format: .ddMWordyyyy))",
+                                                  attributes: secondAttributes)
+            string.append(secondString)
+
+            label.attributedText = string
             self.setNeedsUpdateConstraints()
 
             // Align the label to the touch left position, centered
@@ -185,6 +209,6 @@ final class ARChartView: UIView, ChartDelegate {
     }
 
     func didEndTouchingChart(_ chart: Chart) {
-
+        label.isHidden = true
     }
 }

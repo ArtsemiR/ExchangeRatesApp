@@ -587,7 +587,7 @@ open class Chart: UIControl {
             // Add label
             let label = UILabel(frame: CGRect(x: x, y: drawingHeight, width: 0, height: 0))
             label.adjustsFontSizeToFitWidth = true
-            label.minimumScaleFactor = 0.6
+            label.minimumScaleFactor = 0.8
             label.font = labelFont
             label.text = xLabelsFormatter(i, labels[i])
 //            label.textColor = labelColor
@@ -684,6 +684,7 @@ open class Chart: UIControl {
 
     fileprivate func drawHighlightLineFromLeftPosition(_ left: CGFloat) {
         if let shapeLayer = highlightShapeLayer {
+            highlightShapeLayer.isHidden = false
             // Use line already created
             let path = CGMutablePath()
 
@@ -756,6 +757,7 @@ open class Chart: UIControl {
                 shapeLayer.path = nil
             }
         }
+        highlightShapeLayer.isHidden = true
         delegate?.didEndTouchingChart(self)
     }
 
