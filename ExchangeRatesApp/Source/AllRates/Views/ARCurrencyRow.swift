@@ -15,7 +15,7 @@ struct ARCurrencyRow: View {
 
     // MARK: - gui
 
-    private var title: Text {
+    private var flag: Text {
         Text(ARRate.s.getFlag(rateModel.Cur_Abbreviation))
             .font(.largeTitle)
     }
@@ -40,8 +40,7 @@ struct ARCurrencyRow: View {
 
     var body: some View {
         HStack {
-            self.title
-
+            self.flag
             VStack(alignment: .leading) {
                 self.currencyCode
                 self.currencyName

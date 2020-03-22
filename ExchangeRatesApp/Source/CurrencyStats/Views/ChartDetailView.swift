@@ -10,8 +10,28 @@ import SwiftUI
 
 struct ChartDetailView: View {
 
-    var title: String
-    var value: String
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+
+    enum Status {
+        case none
+        case up
+        case down
+    }
+
+    let title: String
+    let value: String
+    let status: Status
+
+    private var color: Color {
+        switch self.status {
+        case .none:
+            return self.colorScheme == .light ? .black : .white
+        case .up:
+            return .red
+        case .down:
+            return .green
+        }
+    }
     
     var body: some View {
         VStack {
@@ -19,15 +39,15 @@ struct ChartDetailView: View {
                 Text(self.title)
                 Spacer()
                 Text(self.value)
+                    .foregroundColor(self.color)
             }
             Divider()
         }
-        .frame(height: 50)
     }
 }
 
 struct ChartDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartDetailView(title: "Title", value: "value")
+        ChartDetailView(title: "Title", value: "value", status: .none)
     }
 }

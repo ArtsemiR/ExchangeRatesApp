@@ -12,21 +12,29 @@ struct ARCurrencyStatsView: View {
 
     @EnvironmentObject var yearRatesFetcher: ARYearRatesFetcher
 
+    @State private(set) var periodSelection = 0
+
     private let rateModel: ARDayRateModel
 
-    private var devaluation: String {
+    private var devaluationView: ChartDetailView {
         if let minRate = self.yearRatesFetcher.rates.first?.Cur_OfficialRate {
-            return ((minRate - rateModel.Cur_OfficialRate) * 100.0 / minRate).toAmountString
+            let devaluation = (self.rateModel.Cur_OfficialRate - minRate) * 100.0 / self.rateModel.Cur_OfficialRate
+            let stringVal = String(format: "\(devaluation > 0 ? "+" : "")%.2f", devaluation)
+            return ChartDetailView(title: "Разница",
+                            value: "\(stringVal) %",
+                            status: devaluation > 0 ? .up : .down)
         }
-        return "--"
+        return ChartDetailView(title: "Разница", value: "--", status: .none)
     }
 
-    private var maxRate: String {
-        return self.yearRatesFetcher.rates.map { $0.Cur_OfficialRate }.max()?.toAmountString ?? "--"
+    private var maxRateView: ChartDetailView {
+        let stringVal = self.yearRatesFetcher.rates.map { $0.Cur_OfficialRate }.max()?.toAmountString ?? "--"
+        return ChartDetailView(title: "Максимум", value: stringVal, status: .none)
     }
 
-    private var minRate: String {
-        return self.yearRatesFetcher.rates.map { $0.Cur_OfficialRate }.max()?.toAmountString ?? "--"
+    private var minRateView: ChartDetailView {
+        let stringVal = self.yearRatesFetcher.rates.map { $0.Cur_OfficialRate }.max()?.toAmountString ?? "--"
+        return ChartDetailView(title: "Минимум", value: stringVal, status: .none)
     }
 
     init(rateModel: ARDayRateModel) {
@@ -40,15 +48,17 @@ struct ARCurrencyStatsView: View {
             } else {
                 ARCurrencyRow(rateModel: self.rateModel, isNeedCurrency: true)
                     .padding(EdgeInsets(top: 4, leading: 8, bottom: 0, trailing: 8))
-                ARChartSwiftUIView()
+                ARChartSwiftUIView(periodSelection: $periodSelection.wrappedValue)
                     .environmentObject(self.yearRatesFetcher)
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
-                ChartDetailView(title: "Девальвация", value: "\(self.devaluation) %")
+                ARChartPeriodView(periodSelection: $periodSelection)
+                    .frame(height: 30)
+                self.devaluationView
+                    .padding(EdgeInsets(top: 16, leading: 8, bottom: 8, trailing: 8))
+                self.maxRateView
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
-                ChartDetailView(title: "Максимум", value: self.maxRate)
-                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
-                ChartDetailView(title: "Минимум", value: self.minRate)
-                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 25, trailing: 8))
+                self.minRateView
+                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 32, trailing: 8))
             }
         }
         .navigationBarTitle("", displayMode: .inline)

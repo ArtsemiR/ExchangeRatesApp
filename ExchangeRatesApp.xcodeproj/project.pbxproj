@@ -26,6 +26,7 @@
 		227CE6592372BEA60041808D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227CE6582372BEA60041808D /* Assets.xcassets */; };
 		227CE65C2372BEA60041808D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227CE65B2372BEA60041808D /* Preview Assets.xcassets */; };
 		227CE65F2372BEA60041808D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227CE65D2372BEA60041808D /* LaunchScreen.storyboard */; };
+		2290010E24276B4D00D2124B /* ARChartPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290010D24276B4D00D2124B /* ARChartPeriodView.swift */; };
 		22A5E41F239FABA0007E13F6 /* ARMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E41E239FABA0007E13F6 /* ARMainView.swift */; };
 		22A5E423239FD3B2007E13F6 /* ARCurrencyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E422239FD3B2007E13F6 /* ARCurrencyStatsView.swift */; };
 		22A5E47023A2300A007E13F6 /* yearStatistic.json in Resources */ = {isa = PBXBuildFile; fileRef = 22A5E46F23A2300A007E13F6 /* yearStatistic.json */; };
@@ -62,6 +63,7 @@
 		227CE65E2372BEA60041808D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		227CE6602372BEA60041808D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		227CE6672372F8180041808D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		2290010D24276B4D00D2124B /* ARChartPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartPeriodView.swift; sourceTree = "<group>"; };
 		22A5E41E239FABA0007E13F6 /* ARMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMainView.swift; sourceTree = "<group>"; };
 		22A5E422239FD3B2007E13F6 /* ARCurrencyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCurrencyStatsView.swift; sourceTree = "<group>"; };
 		22A5E46F23A2300A007E13F6 /* yearStatistic.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = yearStatistic.json; sourceTree = "<group>"; };
@@ -164,7 +166,6 @@
 			children = (
 				22A5E41E239FABA0007E13F6 /* ARMainView.swift */,
 				22D060CC242232D800295688 /* AllRates */,
-				22588F92237EC90E008B9916 /* ARAllRatesView.swift */,
 				22D060CD242232EC00295688 /* CurrencyStats */,
 			);
 			path = Source;
@@ -255,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				22588F8B237E9319008B9916 /* Views */,
+				22588F92237EC90E008B9916 /* ARAllRatesView.swift */,
 			);
 			path = AllRates;
 			sourceTree = "<group>";
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				22D060CF2422334D00295688 /* ChartDetailView.swift */,
+				2290010D24276B4D00D2124B /* ARChartPeriodView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				223FB5532418F6C70026CD18 /* ChartColors.swift in Sources */,
 				223FB5512418F6C70026CD18 /* ChartSeries.swift in Sources */,
 				22A5E47223A234B7007E13F6 /* ARStatsForDayModel.swift in Sources */,
+				2290010E24276B4D00D2124B /* ARChartPeriodView.swift in Sources */,
 				22D060D02422334D00295688 /* ChartDetailView.swift in Sources */,
 				227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */,
 				22A5E47423A3BC47007E13F6 /* ARYearRatesFetcher.swift in Sources */,
