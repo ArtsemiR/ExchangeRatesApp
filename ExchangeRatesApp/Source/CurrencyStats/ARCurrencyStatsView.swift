@@ -16,8 +16,23 @@ struct ARCurrencyStatsView: View {
 
     private let rateModel: ARDayRateModel
 
+    private var rates: [ARStatsForDayModel] {
+        var array: [ARStatsForDayModel] = []
+        switch self.periodSelection {
+        case 0:
+            array = self.yearRatesFetcher.rates.suffix(30)
+        case 1:
+            array = self.yearRatesFetcher.rates.suffix(90)
+        case 2:
+            array = self.yearRatesFetcher.rates
+        default:
+            array = self.yearRatesFetcher.rates
+        }
+        return array
+    }
+
     private var devaluationView: ChartDetailView {
-        if let minRate = self.yearRatesFetcher.rates.first?.Cur_OfficialRate {
+        if let minRate = self.rates.first?.Cur_OfficialRate {
             let devaluation = (self.rateModel.Cur_OfficialRate - minRate) * 100.0 / self.rateModel.Cur_OfficialRate
             let stringVal = String(format: "\(devaluation > 0 ? "+" : "")%.2f", devaluation)
             return ChartDetailView(title: "Разница",
@@ -28,12 +43,12 @@ struct ARCurrencyStatsView: View {
     }
 
     private var maxRateView: ChartDetailView {
-        let stringVal = self.yearRatesFetcher.rates.map { $0.Cur_OfficialRate }.max()?.toAmountString ?? "--"
+        let stringVal = self.rates.map { $0.Cur_OfficialRate }.max()?.toAmountString ?? "--"
         return ChartDetailView(title: "Максимум", value: stringVal, status: .none)
     }
 
     private var minRateView: ChartDetailView {
-        let stringVal = self.yearRatesFetcher.rates.map { $0.Cur_OfficialRate }.max()?.toAmountString ?? "--"
+        let stringVal = self.rates.map { $0.Cur_OfficialRate }.min()?.toAmountString ?? "--"
         return ChartDetailView(title: "Минимум", value: stringVal, status: .none)
     }
 

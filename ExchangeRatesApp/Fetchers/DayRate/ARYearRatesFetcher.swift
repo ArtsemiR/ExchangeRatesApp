@@ -29,7 +29,7 @@ final class ARYearRatesFetcher: ObservableObject {
         ARNetwork.shared.request(
             action: "API/ExRates/Rates/Dynamics/\(self.curId)",
             parameters: [
-                "startDate": formatter.string(from: Date(timeIntervalSinceNow: -365*24*60*60)),
+                "startDate": formatter.string(from: Date(timeIntervalSinceNow: -364*24*60*60)),
                 "endDate": formatter.string(from: Date())],
             okHandler: { [weak self] (response: [ARStatsForDayModel]) in
                 guard let self = self else { return }
