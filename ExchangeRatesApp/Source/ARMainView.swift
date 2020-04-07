@@ -12,26 +12,31 @@ struct ARMainView: View {
 
     @State private var selection = 0
 
+    @State private var dayFetcher = ARDayRatesFetcher()
+    @State private var monthFetcher = ARMonthRatesFetcher()
+
     var body: some View {
         TabView(selection: $selection) {
             ARAllRatesView()
-                .environmentObject(ARDayRatesFetcher())
-                .environmentObject(ARMonthRatesFetcher())
+                .environmentObject(self.dayFetcher)
+                .environmentObject(self.monthFetcher)
                 .tabItem {
                     VStack {
-                        Image(systemName: "list.dash")
+                        Image(systemName: "list.bullet")
                         Text("Курсы")
                     }
             }
             .tag(0)
-            Text("Конвертер")
+            ARConverterView()
+                .environmentObject(self.dayFetcher)
+                .environmentObject(self.monthFetcher)
                 .tabItem {
                     VStack {
                         Image(systemName: "arrow.right.arrow.left")
                         Text("Конвертер")
                     }
             }
-            .tag(1)
+            .tag(2)
         }
         .accentColor(.red)
     }

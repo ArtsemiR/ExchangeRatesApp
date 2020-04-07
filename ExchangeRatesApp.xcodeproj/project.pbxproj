@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2209345824309796004A5FDE /* ARConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209345724309796004A5FDE /* ARConverterView.swift */; };
+		2209345B243099B3004A5FDE /* CurrencyConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209345A243099B3004A5FDE /* CurrencyConverterView.swift */; };
 		223FB5512418F6C70026CD18 /* ChartSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FB54E2418F6C70026CD18 /* ChartSeries.swift */; };
 		223FB5522418F6C70026CD18 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FB54F2418F6C70026CD18 /* Chart.swift */; };
 		223FB5532418F6C70026CD18 /* ChartColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FB5502418F6C70026CD18 /* ChartColors.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2209345724309796004A5FDE /* ARConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARConverterView.swift; sourceTree = "<group>"; };
+		2209345A243099B3004A5FDE /* CurrencyConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterView.swift; sourceTree = "<group>"; };
 		223FB54E2418F6C70026CD18 /* ChartSeries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartSeries.swift; sourceTree = "<group>"; };
 		223FB54F2418F6C70026CD18 /* Chart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		223FB5502418F6C70026CD18 /* ChartColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartColors.swift; sourceTree = "<group>"; };
@@ -88,6 +92,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2209345524309715004A5FDE /* Converter */ = {
+			isa = PBXGroup;
+			children = (
+				2209345924309998004A5FDE /* VIews */,
+				2209345724309796004A5FDE /* ARConverterView.swift */,
+			);
+			path = Converter;
+			sourceTree = "<group>";
+		};
+		2209345924309998004A5FDE /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				2209345A243099B3004A5FDE /* CurrencyConverterView.swift */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
 		223FB54A2418F6A10026CD18 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +188,7 @@
 				22A5E41E239FABA0007E13F6 /* ARMainView.swift */,
 				22D060CC242232D800295688 /* AllRates */,
 				22D060CD242232EC00295688 /* CurrencyStats */,
+				2209345524309715004A5FDE /* Converter */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -390,6 +412,8 @@
 				22A5E47223A234B7007E13F6 /* ARStatsForDayModel.swift in Sources */,
 				2290010E24276B4D00D2124B /* ARChartPeriodView.swift in Sources */,
 				22D060D02422334D00295688 /* ChartDetailView.swift in Sources */,
+				2209345B243099B3004A5FDE /* CurrencyConverterView.swift in Sources */,
+				2209345824309796004A5FDE /* ARConverterView.swift in Sources */,
 				227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */,
 				22A5E47423A3BC47007E13F6 /* ARYearRatesFetcher.swift in Sources */,
 				22588F86237AEA92008B9916 /* ARRateModel.swift in Sources */,

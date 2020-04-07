@@ -19,4 +19,15 @@ extension Double {
 
         return formatter.string(from: NSNumber(value: self)) ?? ""
     }
+
+    public var toAmountStringWith2Zeros: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = " "
+        formatter.decimalSeparator = "."
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 0
+
+        return formatter.string(from: NSNumber(value: self)) ?? ""
+    }
 }
