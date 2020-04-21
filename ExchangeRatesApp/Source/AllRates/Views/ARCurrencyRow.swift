@@ -47,9 +47,7 @@ struct ARCurrencyRow: View {
             }
             Spacer()
 
-            VStack(alignment: .trailing) {
-                self.officialRate
-            }
+            self.officialRate
         }
     }
 }

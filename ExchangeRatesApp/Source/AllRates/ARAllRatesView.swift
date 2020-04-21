@@ -15,6 +15,8 @@ struct ARAllRatesView: View {
 
     @State private var selectedCurrencyName = ""
 
+    @State var isModal: Bool = false
+
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
         UIScrollView.appearance().keyboardDismissMode = .onDrag
@@ -50,7 +52,7 @@ struct ARAllRatesView: View {
                     List {
                         if !self.dayRates.rates.isEmpty {
                             Section(header: self.dayRateSectionHeader) {
-                                ForEach(self.dayRates.rates,
+                                ForEach(self.dayRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) },
                                         id: \.Cur_ID) { dayRate in
                                             NavigationLink(destination:
                                                 ARLazyView(ARCurrencyStatsView(rateModel: dayRate)
@@ -64,7 +66,7 @@ struct ARAllRatesView: View {
 
                         if !self.monthRates.rates.isEmpty {
                             Section(header: monthRateSectionHeader) {
-                                ForEach(self.monthRates.rates,
+                                ForEach(self.monthRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) },
                                         id: \.Cur_ID) { monthRate in
                                             ARCurrencyRow(rateModel: monthRate)
                                                 .frame(height: 60)
@@ -75,6 +77,18 @@ struct ARAllRatesView: View {
                 }
             }
             .navigationBarTitle("Курсы НБ РБ")
+            .navigationBarItems(trailing:
+                Button(action: {
+                    self.isModal = true
+                }, label: {
+                    Text("Изменить")
+                })
+                .sheet(isPresented: $isModal, content: {
+                    ARChooseCountryView(showSheetView: self.$isModal)
+                        .environmentObject(self.dayRates)
+                        .environmentObject(self.monthRates)
+                })
+            )
         }
     }
 }

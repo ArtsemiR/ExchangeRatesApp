@@ -14,6 +14,8 @@ struct ARConverterView: View {
 
     @State private var changedRate: (code: String, amount: String) = (code: "BYN", amount: "1")
 
+    @State var isModal: Bool = false
+
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
         UIScrollView.appearance().keyboardDismissMode = .onDrag
@@ -32,7 +34,7 @@ struct ARConverterView: View {
                         BYNCurrencyConverterView(changedRate: self.$changedRate)
                             .frame(height: 60)
                         if !self.dayRates.rates.isEmpty {
-                            ForEach(self.dayRates.rates,
+                            ForEach(self.dayRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) },
                                     id: \.Cur_ID) { dayRate in
                                         CurrencyConverterView(rateModel: dayRate, changedRate: self.$changedRate)
                                         .frame(height: 60)
@@ -40,7 +42,7 @@ struct ARConverterView: View {
                         }
 
                         if !self.monthRates.rates.isEmpty {
-                            ForEach(self.monthRates.rates,
+                            ForEach(self.monthRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) },
                                     id: \.Cur_ID) { monthRate in
                                         CurrencyConverterView(rateModel: monthRate, changedRate: self.$changedRate)
                                             .frame(height: 60)
@@ -50,6 +52,18 @@ struct ARConverterView: View {
                 }
             }
             .navigationBarTitle("Конвертер")
+            .navigationBarItems(trailing:
+                Button(action: {
+                    self.isModal = true
+                }, label: {
+                    Text("Изменить")
+                })
+                .sheet(isPresented: $isModal, content: {
+                    ARChooseCountryView(showSheetView: self.$isModal)
+                        .environmentObject(self.dayRates)
+                        .environmentObject(self.monthRates)
+                })
+            )
         }
     }
 }
