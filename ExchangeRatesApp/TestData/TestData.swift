@@ -1,5 +1,5 @@
 //
-//  ARData.swift
+//  TestData.swift
 //  ExchangeRatesApp
 //
 //  Created by Artsemi Ryzhankou on 11/15/19.

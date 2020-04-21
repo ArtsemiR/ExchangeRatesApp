@@ -14,30 +14,33 @@ struct CurrencyConverterView: View {
     var rateModel: ARDayRateModel
     @Binding var changedRate: (code: String, amount: String)
 
-    @State var currentValue: String = ""
-
     // MARK: - Body
 
-    var body: some View {
-        var bindingString = Binding<String>(
+    private var bindingString: Binding<String> {
+        Binding<String>(
             get: {
-                if self.changedRate.code == self.rateModel.Cur_Abbreviation {
-                    return self.currentValue
-                } else {
-                    return (((Double(self.changedRate.amount) ?? 0.0)
-                        * Double(self.rateModel.Cur_Scale))
-                        / self.rateModel.Cur_OfficialRate).toAmountStringWith2Zeros
-                }},
+                guard let bynVal = Double(self.changedRate.amount.replacingOccurrences(of: " ", with: "")) else { return "0" }
+                let scale = Double(self.rateModel.Cur_Scale)
+                return ((bynVal * scale) / self.rateModel.Cur_OfficialRate).toAmountStringWithManyZeros
+        },
             set: {
-                self.changedRate = (code: self.rateModel.Cur_Abbreviation,
-                                    amount: ((Double($0) ?? 0.0)
-                                        * self.rateModel.Cur_OfficialRate
-                                        / self.rateModel.Cur_OfficialRate).toAmountStringWith2Zeros)
-                self.currentValue = $0
-                print(self.changedRate)
-        })
+                let acceptableNumbers: String = " 0987654321."
+                if CharacterSet(charactersIn: acceptableNumbers).isSuperset(of: CharacterSet(charactersIn: $0)) {
+                    guard let forVal = Double($0.replacingOccurrences(of: " ", with: "")) else { return }
+                    let scale = Double(self.rateModel.Cur_Scale)
+                    let byn = ((forVal * self.rateModel.Cur_OfficialRate) / scale).toAmountStringWithManyZeros
 
-        return HStack {
+                    self.changedRate = (code: self.rateModel.Cur_Abbreviation,
+                                        amount: byn)
+                    print(self.changedRate)
+                } else {
+                    self.changedRate = (code: self.rateModel.Cur_Abbreviation, amount: "0")
+                }
+        })
+    }
+
+    var body: some View {
+        HStack {
             Text(ARRate.s.getFlag(self.rateModel.Cur_Abbreviation))
                 .font(.largeTitle)
             Text(self.rateModel.Cur_Abbreviation)
@@ -46,10 +49,10 @@ struct CurrencyConverterView: View {
                       text: bindingString,
                       onEditingChanged: { (changed) in
                         if changed {
-                            bindingString.wrappedValue = ""
+                            //bindingString.wrappedValue = ""
                         }
             })
-                .keyboardType(.decimalPad)
+                .keyboardType(.numberPad)
                 .multilineTextAlignment(.trailing)
                 .font(.headline)
                 .padding(8)
@@ -79,8 +82,8 @@ struct BYNCurrencyConverterView: View {
         let bindingString = Binding<String>(
             get: { self.changedRate.amount },
             set: {
-                self.changedRate = (code: "BYN",
-                                    amount: $0)
+                guard let val = Double($0.replacingOccurrences(of: " ", with: "")) else { return }
+                self.changedRate = (code: "BYN", amount: val.toAmountStringWithManyZeros)
                 print(self.changedRate)
         })
 
@@ -91,7 +94,7 @@ struct BYNCurrencyConverterView: View {
                 .fontWeight(.semibold)
             TextField("0",
                       text: bindingString)
-                .keyboardType(.decimalPad)
+                .keyboardType(.numberPad)
                 .multilineTextAlignment(.trailing)
                 .font(.headline)
                 .padding(8)

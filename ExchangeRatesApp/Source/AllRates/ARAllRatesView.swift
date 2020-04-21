@@ -15,6 +15,11 @@ struct ARAllRatesView: View {
 
     @State private var selectedCurrencyName = ""
 
+    init() {
+        UITableView.appearance().showsVerticalScrollIndicator = false
+        UIScrollView.appearance().keyboardDismissMode = .onDrag
+    }
+
     // MARK: - ui
     
     private var dayRateSectionHeader: Text {

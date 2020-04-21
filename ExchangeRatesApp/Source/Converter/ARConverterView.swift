@@ -14,15 +14,9 @@ struct ARConverterView: View {
 
     @State private var changedRate: (code: String, amount: String) = (code: "BYN", amount: "1")
 
-    // MARK: - ui
-
-    private var dayRateSectionHeader: Text {
-        var date: String = ""
-        if let resDate = self.dayRates.rates.first?.Date {
-            date = "на \(resDate.formattedDate(format: .ddMMyyyy))"
-        }
-        return Text("\("Ежедневный курс") \(date)")
-            .fontWeight(.thin)
+    init() {
+        UITableView.appearance().showsVerticalScrollIndicator = false
+        UIScrollView.appearance().keyboardDismissMode = .onDrag
     }
 
     // MARK: Body
@@ -35,7 +29,7 @@ struct ARConverterView: View {
                         .scaleEffect(2)
                 } else {
                     List {
-                        BYNCurrencyConverterView(changedRate: $changedRate)
+                        BYNCurrencyConverterView(changedRate: self.$changedRate)
                             .frame(height: 60)
                         if !self.dayRates.rates.isEmpty {
                             ForEach(self.dayRates.rates,
