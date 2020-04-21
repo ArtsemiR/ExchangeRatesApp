@@ -34,6 +34,8 @@
 		22A5E47023A2300A007E13F6 /* yearStatistic.json in Resources */ = {isa = PBXBuildFile; fileRef = 22A5E46F23A2300A007E13F6 /* yearStatistic.json */; };
 		22A5E47223A234B7007E13F6 /* ARStatsForDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E47123A234B7007E13F6 /* ARStatsForDayModel.swift */; };
 		22A5E47423A3BC47007E13F6 /* ARYearRatesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E47323A3BC47007E13F6 /* ARYearRatesFetcher.swift */; };
+		22C47DDD244ED8E8009320D1 /* ARCurrencyInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C47DDC244ED8E8009320D1 /* ARCurrencyInputView.swift */; };
+		22C47DDF244EE61F009320D1 /* NumberFormatterEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C47DDE244EE61F009320D1 /* NumberFormatterEx.swift */; };
 		22CA5F142417957F0012B9EB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 22CA5F132417957F0012B9EB /* Alamofire */; };
 		22D060C4241BA0D000295688 /* ARActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D060C3241BA0D000295688 /* ARActivityIndicatorView.swift */; };
 		22D060C6241BA11B00295688 /* ARChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D060C5241BA11B00295688 /* ARChartView.swift */; };
@@ -73,6 +75,8 @@
 		22A5E46F23A2300A007E13F6 /* yearStatistic.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = yearStatistic.json; sourceTree = "<group>"; };
 		22A5E47123A234B7007E13F6 /* ARStatsForDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARStatsForDayModel.swift; sourceTree = "<group>"; };
 		22A5E47323A3BC47007E13F6 /* ARYearRatesFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARYearRatesFetcher.swift; sourceTree = "<group>"; };
+		22C47DDC244ED8E8009320D1 /* ARCurrencyInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCurrencyInputView.swift; sourceTree = "<group>"; };
+		22C47DDE244EE61F009320D1 /* NumberFormatterEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterEx.swift; sourceTree = "<group>"; };
 		22D060C3241BA0D000295688 /* ARActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARActivityIndicatorView.swift; sourceTree = "<group>"; };
 		22D060C5241BA11B00295688 /* ARChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartView.swift; sourceTree = "<group>"; };
 		22D060CA241FB8B800295688 /* ARLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARLazyView.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				2209345A243099B3004A5FDE /* CurrencyConverterView.swift */,
+				22C47DDC244ED8E8009320D1 /* ARCurrencyInputView.swift */,
 			);
 			path = VIews;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 				22588F7F237AE8E2008B9916 /* StringEx.swift */,
 				22588F81237AE938008B9916 /* EncodableEx.swift */,
 				22DF55292386932A0058739C /* DoubleEx.swift */,
+				22C47DDE244EE61F009320D1 /* NumberFormatterEx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				223FB5522418F6C70026CD18 /* Chart.swift in Sources */,
+				22C47DDD244ED8E8009320D1 /* ARCurrencyInputView.swift in Sources */,
 				22A5E423239FD3B2007E13F6 /* ARCurrencyStatsView.swift in Sources */,
 				22588F93237EC90E008B9916 /* ARAllRatesView.swift in Sources */,
 				227CE6502372BEA40041808D /* AppDelegate.swift in Sources */,
@@ -424,6 +431,7 @@
 				22588F82237AE938008B9916 /* EncodableEx.swift in Sources */,
 				22D060C4241BA0D000295688 /* ARActivityIndicatorView.swift in Sources */,
 				22588F96237EE88D008B9916 /* ARRate.swift in Sources */,
+				22C47DDF244EE61F009320D1 /* NumberFormatterEx.swift in Sources */,
 				22588F7B237AE54D008B9916 /* ARNetwork.swift in Sources */,
 				22DF552A2386932A0058739C /* DoubleEx.swift in Sources */,
 				22588F8F237E935F008B9916 /* ARCurrencyRow.swift in Sources */,

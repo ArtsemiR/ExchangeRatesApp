@@ -21,21 +21,16 @@ struct CurrencyConverterView: View {
             get: {
                 guard let bynVal = Double(self.changedRate.amount.replacingOccurrences(of: " ", with: "")) else { return "0" }
                 let scale = Double(self.rateModel.Cur_Scale)
-                return ((bynVal * scale) / self.rateModel.Cur_OfficialRate).toAmountStringWithManyZeros
+                return String(((bynVal * scale) / self.rateModel.Cur_OfficialRate))
         },
             set: {
-                let acceptableNumbers: String = " 0987654321."
-                if CharacterSet(charactersIn: acceptableNumbers).isSuperset(of: CharacterSet(charactersIn: $0)) {
-                    guard let forVal = Double($0.replacingOccurrences(of: " ", with: "")) else { return }
-                    let scale = Double(self.rateModel.Cur_Scale)
-                    let byn = ((forVal * self.rateModel.Cur_OfficialRate) / scale).toAmountStringWithManyZeros
+                guard let forVal = Double($0.replacingOccurrences(of: " ", with: "")) else { return }
+                let scale = Double(self.rateModel.Cur_Scale)
+                let byn = String(((forVal * self.rateModel.Cur_OfficialRate) / scale))
 
-                    self.changedRate = (code: self.rateModel.Cur_Abbreviation,
-                                        amount: byn)
-                    print(self.changedRate)
-                } else {
-                    self.changedRate = (code: self.rateModel.Cur_Abbreviation, amount: "0")
-                }
+                self.changedRate = (code: self.rateModel.Cur_Abbreviation,
+                                    amount: byn)
+                print(self.changedRate)
         })
     }
 
@@ -45,16 +40,7 @@ struct CurrencyConverterView: View {
                 .font(.largeTitle)
             Text(self.rateModel.Cur_Abbreviation)
                 .fontWeight(.semibold)
-            TextField("0",
-                      text: bindingString,
-                      onEditingChanged: { (changed) in
-                        if changed {
-                            //bindingString.wrappedValue = ""
-                        }
-            })
-                .keyboardType(.numberPad)
-                .multilineTextAlignment(.trailing)
-                .font(.headline)
+            ARCurrencyInputView(isBYN: false, text: bindingString)
                 .padding(8)
                 .background(RoundedRectangle(cornerRadius: 5)
                     .strokeBorder(Color.blue, lineWidth: 1))
@@ -78,25 +64,19 @@ struct BYNCurrencyConverterView: View {
 
     // MARK: - Body
 
-    var body: some View {
-        let bindingString = Binding<String>(
+    private var bindingString: Binding<String> {
+        Binding<String>(
             get: { self.changedRate.amount },
-            set: {
-                guard let val = Double($0.replacingOccurrences(of: " ", with: "")) else { return }
-                self.changedRate = (code: "BYN", amount: val.toAmountStringWithManyZeros)
-                print(self.changedRate)
-        })
+            set: { self.changedRate = (code: self.curCode, amount: $0) })
+    }
 
+    var body: some View {
         return HStack {
             Text(ARRate.s.getFlag(self.curCode))
                 .font(.largeTitle)
             Text(self.curCode)
                 .fontWeight(.semibold)
-            TextField("0",
-                      text: bindingString)
-                .keyboardType(.numberPad)
-                .multilineTextAlignment(.trailing)
-                .font(.headline)
+            ARCurrencyInputView(isBYN: true, text: bindingString)
                 .padding(8)
                 .background(RoundedRectangle(cornerRadius: 5)
                     .strokeBorder(Color.blue, lineWidth: 1))

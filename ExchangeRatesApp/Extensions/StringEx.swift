@@ -67,4 +67,27 @@ extension String {
         let allowedSet = CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "+"))
         return self.addingPercentEncoding(withAllowedCharacters: allowedSet) ?? self
     }
+
+    func substring(start: Int, length: Int) -> String {
+        if start >= 0 {
+            if length > 0 {
+                if start + length <= self.count {
+                    let startIndex = self.index(self.startIndex, offsetBy: start)
+                    let end: Int = start + length
+                    let endIndex = self.index(self.startIndex, offsetBy: end)
+                    let range = startIndex..<endIndex
+                    return String(self[range])
+                }
+            } else if length < 0 {
+                if start <= self.count && start + length >= 0 {
+                    let st: Int = start + length
+                    let startIndex = self.index(self.startIndex, offsetBy: st)
+                    let endIndex = self.index(self.startIndex, offsetBy: start)
+                    let range = startIndex..<endIndex
+                    return String(self[range])
+                }
+            }
+        }
+        return ""
+    }
 }
