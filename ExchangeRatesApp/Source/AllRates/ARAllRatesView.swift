@@ -22,6 +22,13 @@ struct ARAllRatesView: View {
         UIScrollView.appearance().keyboardDismissMode = .onDrag
     }
 
+    private var dayRatesList: [ARDayRateModel] {
+        return self.dayRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) }
+    }
+    private var monthRatesList: [ARDayRateModel] {
+        return self.monthRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) }
+    }
+
     // MARK: - ui
     
     private var dayRateSectionHeader: Text {
@@ -50,30 +57,28 @@ struct ARAllRatesView: View {
                     ARActivityIndicatorView().scaleEffect(2)
                 } else {
                     List {
-                        if !self.dayRates.rates.isEmpty {
+                        if !self.dayRatesList.isEmpty {
                             Section(header: self.dayRateSectionHeader) {
-                                ForEach(self.dayRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) },
+                                ForEach(self.dayRatesList,
                                         id: \.Cur_ID) { dayRate in
                                             NavigationLink(destination:
                                                 ARLazyView(ARCurrencyStatsView(rateModel: dayRate)
                                                     .environmentObject(ARYearRatesFetcher("\(dayRate.Cur_ID)")))) {
                                                         ARCurrencyRow(rateModel: dayRate)
-                                                            .frame(height: 60)
                                             }
                                 }
                             }
                         }
 
-                        if !self.monthRates.rates.isEmpty {
-                            Section(header: monthRateSectionHeader) {
-                                ForEach(self.monthRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) },
+                        if !self.monthRatesList.isEmpty {
+                            Section(header: self.monthRateSectionHeader) {
+                                ForEach(self.monthRatesList,
                                         id: \.Cur_ID) { monthRate in
                                             ARCurrencyRow(rateModel: monthRate)
-                                                .frame(height: 60)
                                 }
                             }
                         }
-                    }
+                    }.id(UUID())
                 }
             }
             .navigationBarTitle("Курсы НБ РБ")

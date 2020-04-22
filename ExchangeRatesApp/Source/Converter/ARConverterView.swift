@@ -21,6 +21,13 @@ struct ARConverterView: View {
         UIScrollView.appearance().keyboardDismissMode = .onDrag
     }
 
+    private var dayRatesList: [ARDayRateModel] {
+        return self.dayRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) }
+    }
+    private var monthRatesList: [ARDayRateModel] {
+        return self.monthRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) }
+    }
+
     // MARK: Body
 
     var body: some View {
@@ -32,23 +39,20 @@ struct ARConverterView: View {
                 } else {
                     List {
                         BYNCurrencyConverterView(changedRate: self.$changedRate)
-                            .frame(height: 60)
-                        if !self.dayRates.rates.isEmpty {
-                            ForEach(self.dayRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) },
+                        if !self.dayRatesList.isEmpty {
+                            ForEach(self.dayRatesList,
                                     id: \.Cur_ID) { dayRate in
                                         CurrencyConverterView(rateModel: dayRate, changedRate: self.$changedRate)
-                                        .frame(height: 60)
                             }
                         }
 
-                        if !self.monthRates.rates.isEmpty {
-                            ForEach(self.monthRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) },
+                        if !self.monthRatesList.isEmpty {
+                            ForEach(self.monthRatesList,
                                     id: \.Cur_ID) { monthRate in
                                         CurrencyConverterView(rateModel: monthRate, changedRate: self.$changedRate)
-                                            .frame(height: 60)
                             }
                         }
-                    }
+                    }.id(UUID())
                 }
             }
             .navigationBarTitle("Конвертер")

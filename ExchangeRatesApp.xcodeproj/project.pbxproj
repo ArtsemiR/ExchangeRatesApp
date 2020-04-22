@@ -103,19 +103,19 @@
 		2209345524309715004A5FDE /* Converter */ = {
 			isa = PBXGroup;
 			children = (
-				2209345924309998004A5FDE /* VIews */,
+				2209345924309998004A5FDE /* Views */,
 				2209345724309796004A5FDE /* ARConverterView.swift */,
 			);
 			path = Converter;
 			sourceTree = "<group>";
 		};
-		2209345924309998004A5FDE /* VIews */ = {
+		2209345924309998004A5FDE /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				2209345A243099B3004A5FDE /* CurrencyConverterView.swift */,
 				22C47DDC244ED8E8009320D1 /* ARCurrencyInputView.swift */,
 			);
-			path = VIews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		223FB54A2418F6A10026CD18 /* Charts */ = {

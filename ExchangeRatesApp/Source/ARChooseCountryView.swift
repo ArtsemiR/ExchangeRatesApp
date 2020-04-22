@@ -24,9 +24,7 @@ struct ARChooseCountryView: View {
                     ForEach(self.dayRates.rates,
                             id: \.Cur_ID) { dayRate in
                                 ARConverterCurrencyView(rateModel: dayRate,
-                                                        isShowing: Defaults.countryCodes().contains(dayRate.Cur_ID))
-                                    .frame(height: 60)
-                    }
+                                                        isShowing: Defaults.countryCodes().contains(dayRate.Cur_ID))                    }
                 }
 
                 if !self.monthRates.rates.isEmpty {
@@ -34,10 +32,9 @@ struct ARChooseCountryView: View {
                             id: \.Cur_ID) { monthRate in
                                 ARConverterCurrencyView(rateModel: monthRate,
                                                         isShowing: Defaults.countryCodes().contains(monthRate.Cur_ID))
-                                    .frame(height: 60)
                     }
                 }
-            }
+            }.id(UUID())
             .navigationBarTitle(Text(""), displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
@@ -77,6 +74,7 @@ struct ARConverterCurrencyView: View {
         Toggle(isOn: $isShowing) {
             HStack {
                 self.flag
+                    .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
                 VStack(alignment: .leading) {
                     self.currencyCode
                     self.currencyName

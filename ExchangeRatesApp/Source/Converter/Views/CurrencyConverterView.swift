@@ -30,7 +30,6 @@ struct CurrencyConverterView: View {
 
                 self.changedRate = (code: self.rateModel.Cur_Abbreviation,
                                     amount: byn)
-                print(self.changedRate)
         })
     }
 
@@ -74,6 +73,7 @@ struct BYNCurrencyConverterView: View {
         return HStack {
             Text(ARRate.s.getFlag(self.curCode))
                 .font(.largeTitle)
+                .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
             Text(self.curCode)
                 .fontWeight(.semibold)
             ARCurrencyInputView(isBYN: true, text: bindingString)

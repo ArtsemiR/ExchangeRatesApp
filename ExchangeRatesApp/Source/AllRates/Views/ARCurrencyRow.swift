@@ -41,12 +41,12 @@ struct ARCurrencyRow: View {
     var body: some View {
         HStack {
             self.flag
+                .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
             VStack(alignment: .leading) {
                 self.currencyCode
                 self.currencyName
             }
             Spacer()
-
             self.officialRate
         }
     }
