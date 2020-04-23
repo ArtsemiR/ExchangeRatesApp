@@ -76,8 +76,9 @@ struct ARAllRatesView: View {
                                 ForEach(self.dayRatesList,
                                         id: \.Cur_ID) { dayRate in
                                             NavigationLink(destination:
-                                                ARLazyView(ARCurrencyStatsView(rateModel: dayRate)
-                                                    .environmentObject(ARYearRatesFetcher("\(dayRate.Cur_ID)")))) {
+                                                // TODO: Lazy view
+                                                ARCurrencyStatsView(rateModel: dayRate)
+                                                    .environmentObject(ARYearRatesFetcher("\(dayRate.Cur_ID)"))) {
                                                         ARCurrencyRow(rateModel: dayRate, isNeedRightArrow: true)
                                             }
                                 }

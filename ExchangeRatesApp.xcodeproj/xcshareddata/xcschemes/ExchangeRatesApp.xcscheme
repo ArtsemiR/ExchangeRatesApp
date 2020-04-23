@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "227CE64B2372BEA40041808D"
-               BuildableName = "iBYN.app"
+               BuildableName = "&#x41a;&#x443;&#x440;&#x441;&#x44b; &#x41d;&#x411; &#x420;&#x411;.app"
                BlueprintName = "ExchangeRatesApp"
                ReferencedContainer = "container:ExchangeRatesApp.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "227CE64B2372BEA40041808D"
-            BuildableName = "iBYN.app"
+            BuildableName = "&#x41a;&#x443;&#x440;&#x441;&#x44b; &#x41d;&#x411; &#x420;&#x411;.app"
             BlueprintName = "ExchangeRatesApp"
             ReferencedContainer = "container:ExchangeRatesApp.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "227CE64B2372BEA40041808D"
-            BuildableName = "iBYN.app"
+            BuildableName = "&#x41a;&#x443;&#x440;&#x441;&#x44b; &#x41d;&#x411; &#x420;&#x411;.app"
             BlueprintName = "ExchangeRatesApp"
             ReferencedContainer = "container:ExchangeRatesApp.xcodeproj">
          </BuildableReference>
