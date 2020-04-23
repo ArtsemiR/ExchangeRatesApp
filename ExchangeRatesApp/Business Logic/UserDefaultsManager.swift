@@ -8,12 +8,20 @@
 
 import Foundation
 
-struct Defaults {
-    private static let userDefault = UserDefaults.standard
+class Defaults {
+    static var shared: Defaults = Defaults()
+    
+    private let userDefault = UserDefaults.standard
 
-    static let countryCodesKey =  "countryCodes"
-    static func countryCodes() -> [Int] {
-        if let codes = userDefault.object(forKey: countryCodesKey) as? [Int] {
+    private init() {}
+
+    lazy var countryCodes: [Int] = {
+        return self.getCountryCodes()
+    }()
+
+    let countryCodesKey =  "countryCodes"
+    func getCountryCodes() -> [Int] {
+        if let codes = userDefault.object(forKey: self.countryCodesKey) as? [Int] {
             return codes
         } else {
             let array = [145, 292, 298, 290, 293]
@@ -21,15 +29,17 @@ struct Defaults {
             return array
         }
     }
-    static func addCountryCode(_ code: Int) {
+    func addCountryCode(_ code: Int) {
         var array = userDefault.object(forKey: countryCodesKey) as? [Int] ?? [145, 292, 298, 290, 293]
         array.append(code)
+        self.countryCodes = array
         userDefault.removeObject(forKey: countryCodesKey)
         userDefault.set(array, forKey: countryCodesKey)
     }
-    static func removeCountryCode(_ code: Int) {
+    func removeCountryCode(_ code: Int) {
         let array = (userDefault.object(forKey: countryCodesKey) as? [Int] ?? [145, 292, 298, 290, 293])
             .filter { $0 != code }
+        self.countryCodes = array
         userDefault.removeObject(forKey: countryCodesKey)
         userDefault.set(array, forKey: countryCodesKey)
     }

@@ -15,26 +15,19 @@ struct ARChooseCountryView: View {
 
     @Binding var showSheetView: Bool
 
+    @State var filtered: [ARDayRateModel] = []
+
     // MARK: - Body
 
     var body: some View {
         NavigationView {
-            List {
-                if !self.dayRates.rates.isEmpty {
-                    ForEach(self.dayRates.rates,
-                            id: \.Cur_ID) { dayRate in
-                                ARConverterCurrencyView(rateModel: dayRate,
-                                                        isShowing: Defaults.countryCodes().contains(dayRate.Cur_ID))                    }
-                }
-
-                if !self.monthRates.rates.isEmpty {
-                    ForEach(self.monthRates.rates,
-                            id: \.Cur_ID) { monthRate in
-                                ARConverterCurrencyView(rateModel: monthRate,
-                                                        isShowing: Defaults.countryCodes().contains(monthRate.Cur_ID))
-                    }
-                }
+            List(filtered, id: \.Cur_ID) { rate in
+               ARConverterCurrencyView(rateModel: rate,
+                                       isShowing: Defaults.shared.countryCodes.contains(rate.Cur_ID))
             }.id(UUID())
+            .onAppear {
+                self.filterRates()
+            }
             .navigationBarTitle(Text(""), displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
@@ -43,6 +36,14 @@ struct ARChooseCountryView: View {
                     Text("Сохранить").bold()
                 })
             )
+        }
+    }
+
+    fileprivate func filterRates() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(30)) {
+            var arr = self.dayRates.rates
+            arr.append(contentsOf: self.monthRates.rates)
+            self.filtered = arr
         }
     }
 }
@@ -82,9 +83,9 @@ struct ARConverterCurrencyView: View {
             }
         }.onTapGesture {
             if self.isShowing {
-                Defaults.removeCountryCode(self.rateModel.Cur_ID)
+                Defaults.shared.removeCountryCode(self.rateModel.Cur_ID)
             } else {
-                Defaults.addCountryCode(self.rateModel.Cur_ID)
+                Defaults.shared.addCountryCode(self.rateModel.Cur_ID)
             }
         }
     }

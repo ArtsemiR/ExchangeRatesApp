@@ -16,14 +16,12 @@ struct ARCurrencyInputView: UIViewRepresentable {
     let isBYN: Bool
 
     @Binding var text: String
+    @Binding var isFirstResponder: Bool
 
     func makeUIView(context: Context) -> ARCurrencyTextField {
-        let textField = ARCurrencyTextField { (string) in
-            self.text = string
-        }
-        textField.placeholder = "0"
-        textField.keyboardType = .decimalPad
-        textField.textAlignment = .right
+        let textField = ARCurrencyTextField(
+            stringAction: { (string) in self.text = string },
+            firstResponderAction: { self.isFirstResponder = true })
         return textField
     }
 
@@ -36,16 +34,27 @@ struct ARCurrencyInputView: UIViewRepresentable {
 final class ARCurrencyTextField: UITextField, UITextFieldDelegate {
 
     private var stringAction: ((String) -> Void)
+    private var firstResponderAction: (() -> Void)
 
-    required init(stringAction: @escaping ((String) -> Void)) {
+    required init(stringAction: @escaping ((String) -> Void),
+                  firstResponderAction: @escaping (() -> Void)) {
         self.stringAction = stringAction
+        self.firstResponderAction = firstResponderAction
         super.init(frame: CGRect.zero)
         self.delegate = self
+        self.placeholder = "0"
+        self.keyboardType = .decimalPad
+        self.textAlignment = .right
         self.addTarget(self, action: #selector(self.changeEditing(_:)), for: UIControl.Event.editingChanged)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func becomeFirstResponder() -> Bool {
+        self.firstResponderAction()
+        return super.becomeFirstResponder()
     }
 
     @objc func changeEditing(_ sender: UITextField) {
@@ -117,7 +126,7 @@ final class ARCurrencyTextField: UITextField, UITextFieldDelegate {
                 : cleanedString.substring(start: 0, length: maxInt))) ?? ""
         }
 
-        return formattedString
+        return formattedString.isEmpty ? "0" : formattedString
     }
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {

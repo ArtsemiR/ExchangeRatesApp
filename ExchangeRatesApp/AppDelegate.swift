@@ -14,6 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        #if DEBUG
+        NSSetUncaughtExceptionHandler { exception in
+                print(exception)
+                exception.callStackSymbols.forEach { (stackSymbol) in
+                    print(stackSymbol)
+                }
+        }
+        #endif
+
         return true
     }
 

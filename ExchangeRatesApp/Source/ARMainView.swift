@@ -25,8 +25,7 @@ struct ARMainView: View {
                         Image(systemName: "list.bullet")
                         Text("Курсы")
                     }
-            }
-            .tag(0)
+            }.tag(0)
             ARConverterView()
                 .environmentObject(self.dayFetcher)
                 .environmentObject(self.monthFetcher)
@@ -35,8 +34,7 @@ struct ARMainView: View {
                         Image(systemName: "arrow.right.arrow.left")
                         Text("Конвертер")
                     }
-            }
-            .tag(2)
+            }.tag(1)
         }
         .accentColor(.red)
     }

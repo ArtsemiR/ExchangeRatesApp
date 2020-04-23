@@ -23,10 +23,10 @@ struct ARAllRatesView: View {
     }
 
     private var dayRatesList: [ARDayRateModel] {
-        return self.dayRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) }
+        return self.dayRates.rates.filter { Defaults.shared.countryCodes.contains($0.Cur_ID) }
     }
     private var monthRatesList: [ARDayRateModel] {
-        return self.monthRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) }
+        return self.monthRates.rates.filter { Defaults.shared.countryCodes.contains($0.Cur_ID) }
     }
 
     // MARK: - ui
@@ -56,29 +56,31 @@ struct ARAllRatesView: View {
                 if self.dayRates.isLoading || self.monthRates.isLoading {
                     ARActivityIndicatorView().scaleEffect(2)
                 } else {
-                    List {
-                        if !self.dayRatesList.isEmpty {
-                            Section(header: self.dayRateSectionHeader) {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 12) {
+                            if !self.dayRatesList.isEmpty {
+                                self.dayRateSectionHeader
+                                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
                                 ForEach(self.dayRatesList,
                                         id: \.Cur_ID) { dayRate in
                                             NavigationLink(destination:
                                                 ARLazyView(ARCurrencyStatsView(rateModel: dayRate)
                                                     .environmentObject(ARYearRatesFetcher("\(dayRate.Cur_ID)")))) {
-                                                        ARCurrencyRow(rateModel: dayRate)
+                                                        ARCurrencyRow(rateModel: dayRate, isNeedRightArrow: true)
                                             }
                                 }
                             }
-                        }
 
-                        if !self.monthRatesList.isEmpty {
-                            Section(header: self.monthRateSectionHeader) {
+                            if !self.monthRatesList.isEmpty {
+                                self.monthRateSectionHeader
+                                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
                                 ForEach(self.monthRatesList,
                                         id: \.Cur_ID) { monthRate in
                                             ARCurrencyRow(rateModel: monthRate)
                                 }
                             }
-                        }
-                    }.id(UUID())
+                        }.id(UUID())
+                    }
                 }
             }
             .navigationBarTitle("Курсы НБ РБ")
@@ -88,12 +90,12 @@ struct ARAllRatesView: View {
                 }, label: {
                     Text("Изменить")
                 })
-                .sheet(isPresented: $isModal, content: {
-                    ARChooseCountryView(showSheetView: self.$isModal)
-                        .environmentObject(self.dayRates)
-                        .environmentObject(self.monthRates)
-                })
             )
+            .sheet(isPresented: $isModal, content: {
+                ARChooseCountryView(showSheetView: self.$isModal)
+                    .environmentObject(self.dayRates)
+                    .environmentObject(self.monthRates)
+            })
         }
     }
 }

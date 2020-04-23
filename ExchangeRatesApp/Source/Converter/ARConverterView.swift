@@ -13,8 +13,8 @@ struct ARConverterView: View {
     @EnvironmentObject var monthRates: ARMonthRatesFetcher
 
     @State private var changedRate: (code: String, amount: String) = (code: "BYN", amount: "1")
-
     @State var isModal: Bool = false
+    @State var activeCurrency: String = "BYN"
 
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
@@ -22,37 +22,40 @@ struct ARConverterView: View {
     }
 
     private var dayRatesList: [ARDayRateModel] {
-        return self.dayRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) }
+        return self.dayRates.rates.filter { Defaults.shared.countryCodes.contains($0.Cur_ID) }
     }
     private var monthRatesList: [ARDayRateModel] {
-        return self.monthRates.rates.filter { Defaults.countryCodes().contains($0.Cur_ID) }
+        return self.monthRates.rates.filter { Defaults.shared.countryCodes.contains($0.Cur_ID) }
     }
 
     // MARK: Body
 
     var body: some View {
         NavigationView {
-            Group {
-                if self.dayRates.isLoading || self.monthRates.isLoading {
-                    ARActivityIndicatorView()
-                        .scaleEffect(2)
-                } else {
-                    List {
-                        BYNCurrencyConverterView(changedRate: self.$changedRate)
-                        if !self.dayRatesList.isEmpty {
-                            ForEach(self.dayRatesList,
-                                    id: \.Cur_ID) { dayRate in
-                                        CurrencyConverterView(rateModel: dayRate, changedRate: self.$changedRate)
-                            }
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 8) {
+                    BYNCurrencyConverterView(changedRate: self.$changedRate,
+                                             activeCurrency: self.$activeCurrency)
+                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
+                    if !self.dayRatesList.isEmpty {
+                        ForEach(self.dayRatesList,
+                                id: \.Cur_ID) { dayRate in
+                                    CurrencyConverterView(rateModel: dayRate,
+                                                          changedRate: self.$changedRate,
+                                                          activeCurrency: self.$activeCurrency)
+                                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
                         }
+                    }
 
-                        if !self.monthRatesList.isEmpty {
-                            ForEach(self.monthRatesList,
-                                    id: \.Cur_ID) { monthRate in
-                                        CurrencyConverterView(rateModel: monthRate, changedRate: self.$changedRate)
-                            }
+                    if !self.monthRatesList.isEmpty {
+                        ForEach(self.monthRatesList,
+                                id: \.Cur_ID) { monthRate in
+                                    CurrencyConverterView(rateModel: monthRate,
+                                                          changedRate: self.$changedRate,
+                                                          activeCurrency: self.$activeCurrency)
+                                        .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 0))
                         }
-                    }.id(UUID())
+                    }
                 }
             }
             .navigationBarTitle("Конвертер")
@@ -62,12 +65,12 @@ struct ARConverterView: View {
                 }, label: {
                     Text("Изменить")
                 })
-                .sheet(isPresented: $isModal, content: {
-                    ARChooseCountryView(showSheetView: self.$isModal)
-                        .environmentObject(self.dayRates)
-                        .environmentObject(self.monthRates)
-                })
             )
+            .sheet(isPresented: $isModal, content: {
+                ARChooseCountryView(showSheetView: self.$isModal)
+                    .environmentObject(self.dayRates)
+                    .environmentObject(self.monthRates)
+            })
         }
     }
 }

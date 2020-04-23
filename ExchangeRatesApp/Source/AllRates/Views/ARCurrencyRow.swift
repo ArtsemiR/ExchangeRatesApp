@@ -10,7 +10,10 @@ import SwiftUI
 
 struct ARCurrencyRow: View {
 
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+
     var rateModel: ARDayRateModel
+    var isNeedRightArrow = false
     var isNeedCurrency: Bool = false
 
     // MARK: - gui
@@ -41,14 +44,27 @@ struct ARCurrencyRow: View {
     var body: some View {
         HStack {
             self.flag
-                .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
-            VStack(alignment: .leading) {
-                self.currencyCode
-                self.currencyName
+                .offset(x: 0, y: -8)
+            VStack {
+                HStack {
+                    VStack(alignment: .leading) {
+                        self.currencyCode
+                            .accentColor(self.colorScheme == .light ? .black : .white)
+                        self.currencyName
+                            .accentColor(self.colorScheme == .light ? .black : .white)
+                    }
+                    Spacer()
+                    self.officialRate
+                        .accentColor(self.colorScheme == .light ? .black : .white)
+                    if self.isNeedRightArrow {
+                        Image(systemName: "chevron.right")
+                        .accentColor(.gray)
+                    }
+                }
+                Divider()
             }
-            Spacer()
-            self.officialRate
         }
+        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
     }
 }
 
