@@ -101,6 +101,7 @@ struct ARAllRatesView: View {
                     self.isModal = true
                 }, label: {
                     Text("Изменить")
+                        .bold()
                 })
             )
             .sheet(isPresented: $isModal, content: {

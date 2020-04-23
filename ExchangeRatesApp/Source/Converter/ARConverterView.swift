@@ -29,7 +29,7 @@ struct ARConverterView: View {
     }
 
     // MARK: Body
-
+    
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
@@ -57,13 +57,14 @@ struct ARConverterView: View {
                         }
                     }
                 }
-            }
+            }.modifier(AdaptsToSoftwareKeyboard())
             .navigationBarTitle("Конвертер")
             .navigationBarItems(trailing:
                 Button(action: {
                     self.isModal = true
                 }, label: {
                     Text("Изменить")
+                        .bold()
                 })
             )
             .sheet(isPresented: $isModal, content: {
