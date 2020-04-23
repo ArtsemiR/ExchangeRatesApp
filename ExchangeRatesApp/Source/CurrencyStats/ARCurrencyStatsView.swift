@@ -60,6 +60,12 @@ struct ARCurrencyStatsView: View {
         VStack(spacing: 2) {
             if self.yearRatesFetcher.isLoading {
                 ARActivityIndicatorView()
+            } else if self.yearRatesFetcher.error != nil {
+                ARActivityIndicatorView().scaleEffect(2)
+                Text(String(self.yearRatesFetcher.error ?? ""))
+                    .padding()
+                    .multilineTextAlignment(.center)
+                    .font(.footnote)
             } else {
                 ARCurrencyRow(rateModel: self.rateModel, isNeedCurrency: true)
                     .padding(EdgeInsets(top: 4, leading: 5, bottom: 0, trailing: 8))

@@ -11,8 +11,8 @@ import Foundation
 final class ARYearRatesFetcher: ObservableObject {
 
     @Published var rates: [ARStatsForDayModel] = []
-    
     @Published private(set) var isLoading = false
+    var error: String?
 
     let curId: String
 
@@ -38,6 +38,7 @@ final class ARYearRatesFetcher: ObservableObject {
         },
             errorHandler: { [weak self] in
                 guard let self = self else { return }
+                self.error = "Соединение прервано или сервер временно недоступен."
                 self.isLoading = false
         })
     }

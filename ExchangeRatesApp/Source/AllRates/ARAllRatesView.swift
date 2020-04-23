@@ -55,6 +55,18 @@ struct ARAllRatesView: View {
             Group {
                 if self.dayRates.isLoading || self.monthRates.isLoading {
                     ARActivityIndicatorView().scaleEffect(2)
+                } else if self.dayRates.error != nil {
+                    ARActivityIndicatorView().scaleEffect(2)
+                    Text(String(self.dayRates.error ?? ""))
+                        .padding()
+                        .multilineTextAlignment(.center)
+                        .font(.footnote)
+                } else if self.monthRates.error != nil {
+                    ARActivityIndicatorView().scaleEffect(2)
+                        .padding()
+                        .multilineTextAlignment(.center)
+                        .font(.footnote)
+                    Text(String(self.monthRates.error ?? ""))
                 } else {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 12) {

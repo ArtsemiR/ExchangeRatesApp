@@ -12,6 +12,7 @@ final class ARDayRatesFetcher: ObservableObject {
 
     @Published private(set) var rates: [ARDayRateModel] = []
     @Published private(set) var isLoading = false
+    var error: String?
 
     required init() {
         self.load()
@@ -28,6 +29,7 @@ final class ARDayRatesFetcher: ObservableObject {
             },
             errorHandler: { [weak self] in
                 guard let self = self else { return }
+                self.error = "Соединение прервано или сервер временно недоступен."
                 self.isLoading = false
         })
     }
@@ -61,6 +63,7 @@ final class ARMonthRatesFetcher: ObservableObject {
 
     @Published private(set) var rates: [ARDayRateModel] = []
     @Published private(set) var isLoading = false
+    var error: String?
 
     required init() {
         self.load()
@@ -77,6 +80,7 @@ final class ARMonthRatesFetcher: ObservableObject {
             },
             errorHandler: { [weak self] in
                 guard let self = self else { return }
+                self.error = "Соединение прервано или сервер временно недоступен."
                 self.isLoading = false
         })
     }
