@@ -25,9 +25,9 @@
 		227CE6502372BEA40041808D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE64F2372BEA40041808D /* AppDelegate.swift */; };
 		227CE6522372BEA40041808D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6512372BEA40041808D /* SceneDelegate.swift */; };
 		227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6532372BEA40041808D /* ExchangeRatesApp.xcdatamodeld */; };
-		227CE6592372BEA60041808D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227CE6582372BEA60041808D /* Assets.xcassets */; };
 		227CE65C2372BEA60041808D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227CE65B2372BEA60041808D /* Preview Assets.xcassets */; };
 		227CE65F2372BEA60041808D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227CE65D2372BEA60041808D /* LaunchScreen.storyboard */; };
+		2289235F2452C267005DEA08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2289235E2452C267005DEA08 /* Assets.xcassets */; };
 		2290010E24276B4D00D2124B /* ARChartPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290010D24276B4D00D2124B /* ARChartPeriodView.swift */; };
 		22A5E41F239FABA0007E13F6 /* ARMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E41E239FABA0007E13F6 /* ARMainView.swift */; };
 		22A5E423239FD3B2007E13F6 /* ARCurrencyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E422239FD3B2007E13F6 /* ARCurrencyStatsView.swift */; };
@@ -68,11 +68,11 @@
 		227CE64F2372BEA40041808D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		227CE6512372BEA40041808D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		227CE6542372BEA40041808D /* ExchangeRatesApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExchangeRatesApp.xcdatamodel; sourceTree = "<group>"; };
-		227CE6582372BEA60041808D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		227CE65B2372BEA60041808D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		227CE65E2372BEA60041808D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		227CE6602372BEA60041808D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		227CE6672372F8180041808D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		2289235E2452C267005DEA08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2290010D24276B4D00D2124B /* ARChartPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartPeriodView.swift; sourceTree = "<group>"; };
 		22A5E41E239FABA0007E13F6 /* ARMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMainView.swift; sourceTree = "<group>"; };
 		22A5E422239FD3B2007E13F6 /* ARCurrencyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCurrencyStatsView.swift; sourceTree = "<group>"; };
@@ -250,8 +250,8 @@
 			children = (
 				227CE64F2372BEA40041808D /* AppDelegate.swift */,
 				227CE6512372BEA40041808D /* SceneDelegate.swift */,
-				227CE6582372BEA60041808D /* Assets.xcassets */,
 				227CE65D2372BEA60041808D /* LaunchScreen.storyboard */,
+				2289235E2452C267005DEA08 /* Assets.xcassets */,
 				227CE6602372BEA60041808D /* Info.plist */,
 				227CE6532372BEA40041808D /* ExchangeRatesApp.xcdatamodeld */,
 				22588F87237E91BF008B9916 /* TestData */,
@@ -396,7 +396,7 @@
 				227CE65C2372BEA60041808D /* Preview Assets.xcassets in Resources */,
 				22588F89237E928E008B9916 /* everyDayRates.json in Resources */,
 				22A5E47023A2300A007E13F6 /* yearStatistic.json in Resources */,
-				227CE6592372BEA60041808D /* Assets.xcassets in Resources */,
+				2289235F2452C267005DEA08 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,10 +603,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ExchangeRatesApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = ExchangeRatesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -630,10 +626,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ExchangeRatesApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = ExchangeRatesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
