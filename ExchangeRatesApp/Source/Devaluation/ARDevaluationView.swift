@@ -66,9 +66,13 @@ struct ARDevaluationView: View {
             let stringVal = String(format: "\(devaluation > 0 ? "+" : "")%.2f", devaluation)
             return ChartDetailView(title: devaluation > 0 ? "Девальвация" : "Ревальвация",
                             value: "\(stringVal) %",
-                            status: devaluation > 0 ? .up : .down)
+                            status: devaluation > 0 ? .up : .down,
+                            isLast: true)
         }
-        return ChartDetailView(title: "Разница", value: "--", status: .none)
+        return ChartDetailView(title: "Разница",
+                               value: "--",
+                               status: .none,
+                               isLast: true)
     }
 
     var body: some View {
@@ -91,10 +95,13 @@ struct ARDevaluationView: View {
                     ARChartPeriodView(periodSelection: $periodSelection)
                         .frame(height: 30)
                     self.devaluationView
-                        .padding(EdgeInsets(top: 16, leading: 8, bottom: 8, trailing: 8))
+                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 32, trailing: 8))
+                    ARBannerView("ca-app-pub-2699836089641813/7757906294")
+                        .frame(height: 50, alignment: .center)
                 }
             }
             .navigationBarTitle("Корзина Валют")
+
         }
 
     }

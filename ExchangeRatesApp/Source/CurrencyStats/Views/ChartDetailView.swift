@@ -21,6 +21,7 @@ struct ChartDetailView: View {
     let title: String
     let value: String
     let status: Status
+    let isLast: Bool
 
     private var color: Color {
         switch self.status {
@@ -41,13 +42,18 @@ struct ChartDetailView: View {
                 Text(self.value)
                     .foregroundColor(self.color)
             }
-            Divider()
+            if !self.isLast {
+                Divider()
+            }
         }
     }
 }
 
 struct ChartDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartDetailView(title: "Title", value: "value", status: .none)
+        ChartDetailView(title: "Title",
+                        value: "value",
+                        status: .none,
+                        isLast: false)
     }
 }

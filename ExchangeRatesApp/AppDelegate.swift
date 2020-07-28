@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,12 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         #if DEBUG
         NSSetUncaughtExceptionHandler { exception in
-                print(exception)
-                exception.callStackSymbols.forEach { (stackSymbol) in
-                    print(stackSymbol)
-                }
+            print(exception)
+            exception.callStackSymbols.forEach { (stackSymbol) in
+                print(stackSymbol)
+            }
         }
         #endif
+
+        print("Google Mobile Ads SDK version: \(GADRequest.sdkVersion())")
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
 
         return true
     }
@@ -41,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ExchangeRatesApp")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }

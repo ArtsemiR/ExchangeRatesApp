@@ -48,6 +48,7 @@ struct ARAllRatesView: View {
         return Text("\("Ежемесячный курс") \(date)")
             .fontWeight(.thin)
     }
+
     // MARK: Body
 
     var body: some View {
@@ -94,6 +95,8 @@ struct ARAllRatesView: View {
                             }
                         }.id(UUID())
                     }
+                    ARBannerView("ca-app-pub-2699836089641813/7777253448")
+                        .frame(height: 50, alignment: .center)
                 }
             }
             .navigationBarTitle("Курсы НБ РБ")

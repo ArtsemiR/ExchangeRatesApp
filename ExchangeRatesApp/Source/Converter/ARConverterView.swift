@@ -56,6 +56,9 @@ struct ARConverterView: View {
                                         .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 0))
                         }
                     }
+                    ARBannerView("ca-app-pub-2699836089641813/9182668607")
+                        .frame(height: 50, alignment: .center)
+                        .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
                 }
             }.modifier(AdaptsToSoftwareKeyboard())
             .sheet(isPresented: $isModal, content: {

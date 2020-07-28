@@ -36,25 +36,29 @@ struct ARCurrencyStatsView: View {
             return ChartDetailView(
                 title: devaluation > 0 ? "Девальвация" : "Ревальвация",
                 value: "\(stringVal) %",
-                status: devaluation > 0 ? .up : .down)
+                status: devaluation > 0 ? .up : .down,
+                isLast: false)
         }
         return ChartDetailView(title: "Разница",
                                value: "--",
-                               status: .none)
+                               status: .none,
+                               isLast: false)
     }
 
     private var maxRateView: ChartDetailView {
         let stringVal = self.rates.map { $0.Cur_OfficialRate }.max()?.toAmountString ?? "--"
         return ChartDetailView(title: "Максимум",
                                value: stringVal,
-                               status: .none)
+                               status: .none,
+                               isLast: false)
     }
 
     private var minRateView: ChartDetailView {
         let stringVal = self.rates.map { $0.Cur_OfficialRate }.min()?.toAmountString ?? "--"
         return ChartDetailView(title: "Минимум",
                                value: stringVal,
-                               status: .none)
+                               status: .none,
+                               isLast: true)
     }
 
     init(rateModel: ARDayRateModel) {
@@ -76,7 +80,6 @@ struct ARCurrencyStatsView: View {
                     .padding(EdgeInsets(top: 4, leading: 5, bottom: 0, trailing: 8))
                 ARChartSwiftUIView(periodSelection: $periodSelection.wrappedValue,
                                    rates: self.rates)
-//                    .environmentObject(self.rates)
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
                 ARChartPeriodView(periodSelection: $periodSelection)
                     .frame(height: 30)
@@ -86,6 +89,8 @@ struct ARCurrencyStatsView: View {
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
                 self.minRateView
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 32, trailing: 8))
+                ARBannerView("ca-app-pub-2699836089641813/6342658949")
+                    .frame(height: 50, alignment: .center)
             }
         }
         .navigationBarTitle("", displayMode: .inline)

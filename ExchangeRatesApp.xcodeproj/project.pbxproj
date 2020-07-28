@@ -23,6 +23,16 @@
 		22588F93237EC90E008B9916 /* ARAllRatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F92237EC90E008B9916 /* ARAllRatesView.swift */; };
 		22588F96237EE88D008B9916 /* ARRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F95237EE88D008B9916 /* ARRate.swift */; };
 		2264AAD724B761A000B07988 /* ARDevaluationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264AAD624B761A000B07988 /* ARDevaluationView.swift */; };
+		22724F0124D02D2E0002E1A2 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22724EF724D02D2E0002E1A2 /* nanopb.xcframework */; };
+		22724F0224D02D2E0002E1A2 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22724EF824D02D2E0002E1A2 /* GoogleAppMeasurement.framework */; };
+		22724F0324D02D2E0002E1A2 /* Promises-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22724EFA24D02D2E0002E1A2 /* Promises-LICENSE */; };
+		22724F0424D02D2E0002E1A2 /* NanoPB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22724EFB24D02D2E0002E1A2 /* NanoPB-LICENSE */; };
+		22724F0524D02D2E0002E1A2 /* OpenMeasurement-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22724EFC24D02D2E0002E1A2 /* OpenMeasurement-LICENSE */; };
+		22724F0624D02D2E0002E1A2 /* GoogleUtilities-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22724EFD24D02D2E0002E1A2 /* GoogleUtilities-LICENSE */; };
+		22724F0724D02D2E0002E1A2 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22724EFE24D02D2E0002E1A2 /* PromisesObjC.xcframework */; };
+		22724F0824D02D2E0002E1A2 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22724EFF24D02D2E0002E1A2 /* GoogleMobileAds.framework */; };
+		22724F0924D02D2E0002E1A2 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22724F0024D02D2E0002E1A2 /* GoogleUtilities.xcframework */; };
+		22724F0B24D030720002E1A2 /* ARBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724F0A24D030720002E1A2 /* ARBannerView.swift */; };
 		227CE6502372BEA40041808D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE64F2372BEA40041808D /* AppDelegate.swift */; };
 		227CE6522372BEA40041808D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6512372BEA40041808D /* SceneDelegate.swift */; };
 		227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6532372BEA40041808D /* ExchangeRatesApp.xcdatamodeld */; };
@@ -65,6 +75,16 @@
 		22588F92237EC90E008B9916 /* ARAllRatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARAllRatesView.swift; sourceTree = "<group>"; };
 		22588F95237EE88D008B9916 /* ARRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRate.swift; sourceTree = "<group>"; };
 		2264AAD624B761A000B07988 /* ARDevaluationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARDevaluationView.swift; sourceTree = "<group>"; };
+		22724EF724D02D2E0002E1A2 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = nanopb.xcframework; sourceTree = "<group>"; };
+		22724EF824D02D2E0002E1A2 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		22724EFA24D02D2E0002E1A2 /* Promises-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Promises-LICENSE"; sourceTree = "<group>"; };
+		22724EFB24D02D2E0002E1A2 /* NanoPB-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NanoPB-LICENSE"; sourceTree = "<group>"; };
+		22724EFC24D02D2E0002E1A2 /* OpenMeasurement-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "OpenMeasurement-LICENSE"; sourceTree = "<group>"; };
+		22724EFD24D02D2E0002E1A2 /* GoogleUtilities-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GoogleUtilities-LICENSE"; sourceTree = "<group>"; };
+		22724EFE24D02D2E0002E1A2 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PromisesObjC.xcframework; sourceTree = "<group>"; };
+		22724EFF24D02D2E0002E1A2 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		22724F0024D02D2E0002E1A2 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleUtilities.xcframework; sourceTree = "<group>"; };
+		22724F0A24D030720002E1A2 /* ARBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARBannerView.swift; sourceTree = "<group>"; };
 		227CE64C2372BEA40041808D /* Курсы НБ РБ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Курсы НБ РБ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		227CE64F2372BEA40041808D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		227CE6512372BEA40041808D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +118,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				22CA5F142417957F0012B9EB /* Alamofire in Frameworks */,
+				22724F0124D02D2E0002E1A2 /* nanopb.xcframework in Frameworks */,
+				22724F0824D02D2E0002E1A2 /* GoogleMobileAds.framework in Frameworks */,
+				22724F0224D02D2E0002E1A2 /* GoogleAppMeasurement.framework in Frameworks */,
+				22724F0724D02D2E0002E1A2 /* PromisesObjC.xcframework in Frameworks */,
+				22724F0924D02D2E0002E1A2 /* GoogleUtilities.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +261,30 @@
 			path = Devaluation;
 			sourceTree = "<group>";
 		};
+		22724EF624D02D2E0002E1A2 /* GoogleMobileAdsSdkiOS-7.62.0 */ = {
+			isa = PBXGroup;
+			children = (
+				22724EF724D02D2E0002E1A2 /* nanopb.xcframework */,
+				22724EF824D02D2E0002E1A2 /* GoogleAppMeasurement.framework */,
+				22724EF924D02D2E0002E1A2 /* Licenses */,
+				22724EFE24D02D2E0002E1A2 /* PromisesObjC.xcframework */,
+				22724EFF24D02D2E0002E1A2 /* GoogleMobileAds.framework */,
+				22724F0024D02D2E0002E1A2 /* GoogleUtilities.xcframework */,
+			);
+			path = "GoogleMobileAdsSdkiOS-7.62.0";
+			sourceTree = "<group>";
+		};
+		22724EF924D02D2E0002E1A2 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				22724EFA24D02D2E0002E1A2 /* Promises-LICENSE */,
+				22724EFB24D02D2E0002E1A2 /* NanoPB-LICENSE */,
+				22724EFC24D02D2E0002E1A2 /* OpenMeasurement-LICENSE */,
+				22724EFD24D02D2E0002E1A2 /* GoogleUtilities-LICENSE */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
 		227CE6432372BEA40041808D = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +334,7 @@
 		227CE6662372F8180041808D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22724EF624D02D2E0002E1A2 /* GoogleMobileAdsSdkiOS-7.62.0 */,
 				223FB54A2418F6A10026CD18 /* Charts */,
 				227CE6672372F8180041808D /* Alamofire.framework */,
 			);
@@ -303,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				22D060C3241BA0D000295688 /* ARActivityIndicatorView.swift */,
+				22724F0A24D030720002E1A2 /* ARBannerView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -403,8 +454,12 @@
 				227CE65F2372BEA60041808D /* LaunchScreen.storyboard in Resources */,
 				227CE65C2372BEA60041808D /* Preview Assets.xcassets in Resources */,
 				22588F89237E928E008B9916 /* everyDayRates.json in Resources */,
+				22724F0424D02D2E0002E1A2 /* NanoPB-LICENSE in Resources */,
 				22A5E47023A2300A007E13F6 /* yearStatistic.json in Resources */,
+				22724F0324D02D2E0002E1A2 /* Promises-LICENSE in Resources */,
+				22724F0624D02D2E0002E1A2 /* GoogleUtilities-LICENSE in Resources */,
 				2289235F2452C267005DEA08 /* Assets.xcassets in Resources */,
+				22724F0524D02D2E0002E1A2 /* OpenMeasurement-LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				223FB5522418F6C70026CD18 /* Chart.swift in Sources */,
+				22724F0B24D030720002E1A2 /* ARBannerView.swift in Sources */,
 				22C47DDD244ED8E8009320D1 /* ARCurrencyInputView.swift in Sources */,
 				22C47DEA2451E5F0009320D1 /* KeyboardAdaptive.swift in Sources */,
 				22A5E423239FD3B2007E13F6 /* ARCurrencyStatsView.swift in Sources */,
@@ -541,6 +597,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -595,6 +652,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -611,12 +669,18 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ExchangeRatesApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.62.0",
+				);
 				INFOPLIST_FILE = ExchangeRatesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ar.ExchangeRatesApp;
 				PRODUCT_NAME = "Курсы НБ РБ";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -634,12 +698,17 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ExchangeRatesApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.62.0",
+				);
 				INFOPLIST_FILE = ExchangeRatesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ar.ExchangeRatesApp;
 				PRODUCT_NAME = "Курсы НБ РБ";
 				PROVISIONING_PROFILE_SPECIFIER = "";
