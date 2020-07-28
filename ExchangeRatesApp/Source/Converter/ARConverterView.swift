@@ -12,7 +12,7 @@ struct ARConverterView: View {
     @EnvironmentObject var dayRates: ARDayRatesFetcher
     @EnvironmentObject var monthRates: ARMonthRatesFetcher
 
-    @State private var changedRate: (code: String, amount: String) = (code: "BYN", amount: "1")
+    @State private var changedRate: (code: String, amount: String) = (code: "BYN", amount: "0")
     @State var isModal: Bool = false
     @State var activeCurrency: String = "BYN"
 
@@ -58,6 +58,11 @@ struct ARConverterView: View {
                     }
                 }
             }.modifier(AdaptsToSoftwareKeyboard())
+            .sheet(isPresented: $isModal, content: {
+                ARChooseCountryView(showSheetView: self.$isModal)
+                    .environmentObject(self.dayRates)
+                    .environmentObject(self.monthRates)
+            })
             .navigationBarTitle("Конвертер")
             .navigationBarItems(trailing:
                 Button(action: {
@@ -67,11 +72,6 @@ struct ARConverterView: View {
                         .bold()
                 })
             )
-            .sheet(isPresented: $isModal, content: {
-                ARChooseCountryView(showSheetView: self.$isModal)
-                    .environmentObject(self.dayRates)
-                    .environmentObject(self.monthRates)
-            })
         }
     }
 }

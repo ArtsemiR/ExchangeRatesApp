@@ -11,7 +11,6 @@ import SwiftUI
 struct ARMainView: View {
 
     @State private var selection = 0
-
     @State private var dayFetcher = ARDayRatesFetcher()
     @State private var monthFetcher = ARMonthRatesFetcher()
 
@@ -22,7 +21,9 @@ struct ARMainView: View {
                 .environmentObject(self.monthFetcher)
                 .tabItem {
                     VStack {
-                        Image(systemName: "list.bullet")
+                        Image("list_icon")
+                        .renderingMode(.template)
+                        .foregroundColor(.red)
                         Text("Курсы")
                     }
             }.tag(0)
@@ -31,10 +32,21 @@ struct ARMainView: View {
                 .environmentObject(self.monthFetcher)
                 .tabItem {
                     VStack {
-                        Image(systemName: "arrow.right.arrow.left")
+                        Image("converter_icon")
+                        .renderingMode(.template)
+                        .foregroundColor(.red)
                         Text("Конвертер")
                     }
             }.tag(1)
+            ARDevaluationView()
+                .tabItem {
+                    VStack {
+                        Image("chart_icon")
+                        .renderingMode(.template)
+                        .foregroundColor(.red)
+                        Text("BYN")
+                    }
+            }.tag(2)
         }
         .accentColor(.red)
     }

@@ -17,10 +17,10 @@ class ARNetwork {
     }
 
     func request<T: Decodable>(action: String,
-                                   model: Encodable? = nil,
-                                   parameters: [String: String]? = nil,
-                                   okHandler: @escaping (T) -> Void,
-                                   errorHandler: @escaping () -> Void) {
+                               model: Encodable? = nil,
+                               parameters: [String: String]? = nil,
+                               okHandler: @escaping (T) -> Void,
+                               errorHandler: @escaping () -> Void) {
         var url: String = "\(self.baseUrl)\(action)"
         if let parameters = parameters {
             url = self.getUrlWithParams(fullPath: "\(self.baseUrl)\(action)", params: parameters)

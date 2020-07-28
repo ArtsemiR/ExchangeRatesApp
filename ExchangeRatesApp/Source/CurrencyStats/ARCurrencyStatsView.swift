@@ -11,11 +11,9 @@ import SwiftUI
 struct ARCurrencyStatsView: View {
 
     @EnvironmentObject var yearRatesFetcher: ARYearRatesFetcher
-
     @State private(set) var periodSelection = 0
 
     private let rateModel: ARDayRateModel
-
     private var rates: [ARStatsForDayModel] {
         var array: [ARStatsForDayModel] = []
         switch self.periodSelection {
@@ -35,21 +33,28 @@ struct ARCurrencyStatsView: View {
         if let minRate = self.rates.first?.Cur_OfficialRate {
             let devaluation = (self.rateModel.Cur_OfficialRate - minRate) * 100.0 / self.rateModel.Cur_OfficialRate
             let stringVal = String(format: "\(devaluation > 0 ? "+" : "")%.2f", devaluation)
-            return ChartDetailView(title: "Разница",
-                            value: "\(stringVal) %",
-                            status: devaluation > 0 ? .up : .down)
+            return ChartDetailView(
+                title: devaluation > 0 ? "Девальвация" : "Ревальвация",
+                value: "\(stringVal) %",
+                status: devaluation > 0 ? .up : .down)
         }
-        return ChartDetailView(title: "Разница", value: "--", status: .none)
+        return ChartDetailView(title: "Разница",
+                               value: "--",
+                               status: .none)
     }
 
     private var maxRateView: ChartDetailView {
         let stringVal = self.rates.map { $0.Cur_OfficialRate }.max()?.toAmountString ?? "--"
-        return ChartDetailView(title: "Максимум", value: stringVal, status: .none)
+        return ChartDetailView(title: "Максимум",
+                               value: stringVal,
+                               status: .none)
     }
 
     private var minRateView: ChartDetailView {
         let stringVal = self.rates.map { $0.Cur_OfficialRate }.min()?.toAmountString ?? "--"
-        return ChartDetailView(title: "Минимум", value: stringVal, status: .none)
+        return ChartDetailView(title: "Минимум",
+                               value: stringVal,
+                               status: .none)
     }
 
     init(rateModel: ARDayRateModel) {
@@ -69,8 +74,9 @@ struct ARCurrencyStatsView: View {
             } else {
                 ARCurrencyRow(rateModel: self.rateModel, isNeedCurrency: true)
                     .padding(EdgeInsets(top: 4, leading: 5, bottom: 0, trailing: 8))
-                ARChartSwiftUIView(periodSelection: $periodSelection.wrappedValue)
-                    .environmentObject(self.yearRatesFetcher)
+                ARChartSwiftUIView(periodSelection: $periodSelection.wrappedValue,
+                                   rates: self.rates)
+//                    .environmentObject(self.rates)
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
                 ARChartPeriodView(periodSelection: $periodSelection)
                     .frame(height: 30)

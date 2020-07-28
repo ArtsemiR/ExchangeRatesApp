@@ -12,9 +12,9 @@ import SwiftUI
 struct ARChartSwiftUIView: UIViewRepresentable {
 
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    @EnvironmentObject var yearRatesFetcher: ARYearRatesFetcher
 
     let periodSelection: Int
+    let rates: [ARStatsForDayModel]
 
     let chartView = ARChartView()
 
@@ -26,13 +26,13 @@ struct ARChartSwiftUIView: UIViewRepresentable {
         uiView.updateTheme(theme: colorScheme)
         switch periodSelection {
         case 0:
-            uiView.setChart(rates: self.yearRatesFetcher.rates.suffix(30))
+            uiView.setChart(rates: self.rates)
         case 1:
-            uiView.setChart(rates: self.yearRatesFetcher.rates.suffix(90))
+            uiView.setChart(rates: self.rates)
         case 2:
-            uiView.setChart(rates: self.yearRatesFetcher.rates)
+            uiView.setChart(rates: self.rates)
         default:
-            uiView.setChart(rates: self.yearRatesFetcher.rates.suffix(90))
+            uiView.setChart(rates: self.rates)
         }
     }
 }

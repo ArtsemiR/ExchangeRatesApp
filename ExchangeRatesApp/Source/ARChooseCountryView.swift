@@ -15,13 +15,13 @@ struct ARChooseCountryView: View {
 
     @Binding var showSheetView: Bool
 
-    @State var filtered: [ARDayRateModel] = []
+    @State private var filtered: [ARDayRateModel] = []
 
     // MARK: - Body
 
     var body: some View {
         NavigationView {
-            List(filtered, id: \.Cur_ID) { rate in
+            List(self.filtered, id: \.Cur_ID) { rate in
                ARConverterCurrencyView(rateModel: rate,
                                        isShowing: Defaults.shared.countryCodes.contains(rate.Cur_ID))
             }.id(UUID())
@@ -53,32 +53,20 @@ struct ARConverterCurrencyView: View {
     var rateModel: ARDayRateModel
     @State var isShowing: Bool
 
-    private var flag: Text {
-        Text(ARRate.s.getFlag(rateModel.Cur_Abbreviation))
-            .font(.largeTitle)
-    }
-
-    private var currencyCode: Text {
-        Text(self.rateModel.Cur_Abbreviation)
-            .fontWeight(.semibold)
-    }
-
-    private var currencyName: Text {
-        Text("\(self.rateModel.Cur_Scale) \(self.rateModel.Cur_Name)")
-            .font(.footnote)
-            .fontWeight(.thin)
-    }
-
     // MARK: - Body
 
     var body: some View {
         Toggle(isOn: $isShowing) {
             HStack {
-                self.flag
+                Text(ARRate.s.getFlag(rateModel.Cur_Abbreviation))
+                    .font(.largeTitle)
                     .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
                 VStack(alignment: .leading) {
-                    self.currencyCode
-                    self.currencyName
+                    Text(self.rateModel.Cur_Abbreviation)
+                        .fontWeight(.semibold)
+                    Text("\(self.rateModel.Cur_Scale) \(self.rateModel.Cur_Name)")
+                        .font(.footnote)
+                        .fontWeight(.thin)
                 }
             }
         }.onTapGesture {
