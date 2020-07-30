@@ -13,19 +13,37 @@ import GoogleMobileAds
 final class ARBannerView: UIViewControllerRepresentable {
 
     let adUnitID: String
+    let width: CGFloat
 
-    init(_ adUnitID: String) {
+    init(adUnitID: String,
+         width: CGFloat) {
+        self.width = width
+
+        #if DEBUG
+        self.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        #else
+        // бой
         self.adUnitID = adUnitID
+        #endif
     }
 
     func makeUIViewController(context: Context) -> UIViewController {
-        let view = GADBannerView(adSize: kGADAdSizeBanner)
+        let banner = GADBannerView(adSize: kGADAdSizeBanner)
+        banner.adUnitID = adUnitID
+        banner.translatesAutoresizingMaskIntoConstraints = false
+
         let viewController = UIViewController()
-        view.adUnitID = adUnitID
-        view.rootViewController = viewController
-        viewController.view.addSubview(view)
-        viewController.view.frame = CGRect(origin: .zero, size: kGADAdSizeBanner.size)
-        view.load(GADRequest())
+        viewController.view.addSubview(banner)
+        banner.rootViewController = viewController
+
+        NSLayoutConstraint.activate([
+            banner.topAnchor.constraint(equalTo: viewController.view.topAnchor),
+            banner.leftAnchor.constraint(equalTo: viewController.view.leftAnchor),
+            banner.rightAnchor.constraint(equalTo: viewController.view.rightAnchor),
+            banner.bottomAnchor.constraint(equalTo: viewController.view.bottomAnchor)
+        ])
+        banner.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(self.width)
+        banner.load(GADRequest())
 
         return viewController
     }

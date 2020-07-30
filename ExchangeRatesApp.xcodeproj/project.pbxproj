@@ -33,6 +33,7 @@
 		22724F0824D02D2E0002E1A2 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22724EFF24D02D2E0002E1A2 /* GoogleMobileAds.framework */; };
 		22724F0924D02D2E0002E1A2 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22724F0024D02D2E0002E1A2 /* GoogleUtilities.xcframework */; };
 		22724F0B24D030720002E1A2 /* ARBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724F0A24D030720002E1A2 /* ARBannerView.swift */; };
+		22724F0D24D05DDC0002E1A2 /* ARCurrencyCartInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724F0C24D05DDC0002E1A2 /* ARCurrencyCartInfoView.swift */; };
 		227CE6502372BEA40041808D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE64F2372BEA40041808D /* AppDelegate.swift */; };
 		227CE6522372BEA40041808D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6512372BEA40041808D /* SceneDelegate.swift */; };
 		227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6532372BEA40041808D /* ExchangeRatesApp.xcdatamodeld */; };
@@ -85,6 +86,7 @@
 		22724EFF24D02D2E0002E1A2 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		22724F0024D02D2E0002E1A2 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleUtilities.xcframework; sourceTree = "<group>"; };
 		22724F0A24D030720002E1A2 /* ARBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARBannerView.swift; sourceTree = "<group>"; };
+		22724F0C24D05DDC0002E1A2 /* ARCurrencyCartInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCurrencyCartInfoView.swift; sourceTree = "<group>"; };
 		227CE64C2372BEA40041808D /* Курсы НБ РБ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Курсы НБ РБ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		227CE64F2372BEA40041808D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		227CE6512372BEA40041808D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				2264AAD624B761A000B07988 /* ARDevaluationView.swift */,
+				22724F0C24D05DDC0002E1A2 /* ARCurrencyCartInfoView.swift */,
 			);
 			path = Devaluation;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				22588F7B237AE54D008B9916 /* ARNetwork.swift in Sources */,
 				22DF552A2386932A0058739C /* DoubleEx.swift in Sources */,
 				22588F8F237E935F008B9916 /* ARCurrencyRow.swift in Sources */,
+				22724F0D24D05DDC0002E1A2 /* ARCurrencyCartInfoView.swift in Sources */,
 				22D060CB241FB8B800295688 /* ARLazyView.swift in Sources */,
 				22A5E41F239FABA0007E13F6 /* ARMainView.swift in Sources */,
 			);
@@ -679,6 +683,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ar.ExchangeRatesApp;
@@ -708,6 +713,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ar.ExchangeRatesApp;
 				PRODUCT_NAME = "Курсы НБ РБ";

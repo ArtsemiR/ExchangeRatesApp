@@ -89,20 +89,27 @@ struct ARDevaluationView: View {
                         .multilineTextAlignment(.center)
                         .font(.footnote)
                 } else {
-                    ARChartSwiftUIView(periodSelection: $periodSelection.wrappedValue,
-                                       rates: self.rates)
-                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
-                    ARChartPeriodView(periodSelection: $periodSelection)
-                        .frame(height: 30)
-                    self.devaluationView
-                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 32, trailing: 8))
-                    ARBannerView("ca-app-pub-2699836089641813/7757906294")
-                        .frame(height: 50, alignment: .center)
+
+                        ARChartSwiftUIView(periodSelection: self.$periodSelection.wrappedValue,
+                                           rates: self.rates)
+                            .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
+                        ARChartPeriodView(periodSelection: self.$periodSelection)
+                            .frame(height: 30)
+                        self.devaluationView
+                            .padding(EdgeInsets(top: 16, leading: 8, bottom: 32, trailing: 8))
+                    GeometryReader { (geometry) in
+                        ARBannerView(adUnitID: "ca-app-pub-2699836089641813/7757906294",
+                                     width: geometry.size.width)
+                    }
+                    .frame(height: 50)
                 }
             }
             .navigationBarTitle("Корзина Валют")
-
+            .navigationBarItems(trailing:
+                NavigationLink(destination: ARCurrencyCartInfoView()) {
+                    Text("Что это?")
+                }
+            )
         }
-
     }
 }

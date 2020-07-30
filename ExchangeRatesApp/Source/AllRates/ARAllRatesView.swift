@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 struct ARAllRatesView: View {
 
@@ -95,8 +96,10 @@ struct ARAllRatesView: View {
                             }
                         }.id(UUID())
                     }
-                    ARBannerView("ca-app-pub-2699836089641813/7777253448")
-                        .frame(height: 50, alignment: .center)
+                    GeometryReader { (geometry) in
+                        ARBannerView(adUnitID: "ca-app-pub-2699836089641813/7777253448",
+                                     width: geometry.size.width)
+                    }.frame(height: 50)
                 }
             }
             .navigationBarTitle("Курсы НБ РБ")

@@ -22,8 +22,8 @@ struct ARMainView: View {
                 .tabItem {
                     VStack {
                         Image("list_icon")
-                        .renderingMode(.template)
-                        .foregroundColor(.red)
+                            .renderingMode(.template)
+                            .foregroundColor(.red)
                         Text("Курсы")
                     }
             }.tag(0)
@@ -33,8 +33,8 @@ struct ARMainView: View {
                 .tabItem {
                     VStack {
                         Image("converter_icon")
-                        .renderingMode(.template)
-                        .foregroundColor(.red)
+                            .renderingMode(.template)
+                            .foregroundColor(.red)
                         Text("Конвертер")
                     }
             }.tag(1)
@@ -42,8 +42,8 @@ struct ARMainView: View {
                 .tabItem {
                     VStack {
                         Image("chart_icon")
-                        .renderingMode(.template)
-                        .foregroundColor(.red)
+                            .renderingMode(.template)
+                            .foregroundColor(.red)
                         Text("BYN")
                     }
             }.tag(2)

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct ARConverterView: View {
+
     @EnvironmentObject var dayRates: ARDayRatesFetcher
     @EnvironmentObject var monthRates: ARMonthRatesFetcher
 
@@ -56,12 +57,15 @@ struct ARConverterView: View {
                                         .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 0))
                         }
                     }
-                    ARBannerView("ca-app-pub-2699836089641813/9182668607")
-                        .frame(height: 50, alignment: .center)
-                        .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                    GeometryReader { (geometry) in
+                        ARBannerView(adUnitID: "ca-app-pub-2699836089641813/9182668607",
+                                     width: geometry.size.width)
+                    }
+                    .frame(height: 50)
+                    .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
                 }
             }.modifier(AdaptsToSoftwareKeyboard())
-            .sheet(isPresented: $isModal, content: {
+                .sheet(isPresented: $isModal, content: {
                 ARChooseCountryView(showSheetView: self.$isModal)
                     .environmentObject(self.dayRates)
                     .environmentObject(self.monthRates)
