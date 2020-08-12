@@ -81,10 +81,12 @@ struct ARDevaluationView: View {
                 if self.yearRatesFetcherRus.isLoading
                     || self.yearRatesFetcherUsd.isLoading
                     || self.yearRatesFetcherEur.isLoading {
-                    ARActivityIndicatorView()
-                } else if self.yearRatesFetcherRus.error != nil {
                     ARActivityIndicatorView().scaleEffect(2)
-                    Text(String(self.yearRatesFetcherRus.error ?? ""))
+                } else if self.yearRatesFetcherRus.error != nil
+                    || self.yearRatesFetcherUsd.error != nil
+                    || self.yearRatesFetcherEur.error != nil {
+                    ARActivityIndicatorView().scaleEffect(2)
+                    Text("Соединение прервано или сервер временно недоступен.")
                         .padding()
                         .multilineTextAlignment(.center)
                         .font(.footnote)
@@ -97,18 +99,18 @@ struct ARDevaluationView: View {
                             .frame(height: 30)
                         self.devaluationView
                             .padding(EdgeInsets(top: 16, leading: 8, bottom: 32, trailing: 8))
-//                    GeometryReader { (geometry) in
-//                        ARBannerView(adUnitID: "ca-app-pub-2699836089641813/7757906294",
-//                                     width: geometry.size.width)
-//                    }
-//                    .frame(height: 50)
+                    GeometryReader { (geometry) in
+                        ARBannerView(adUnitID: "ca-app-pub-2699836089641813/7757906294",
+                                     width: geometry.size.width)
+                    }
+                    .frame(height: 50)
                 }
             }
             .navigationBarTitle("Корзина Валют")
             .navigationBarItems(trailing:
                 NavigationLink(destination: ARCurrencyCartInfoView()) {
                     Text("Что это?")
-                }com.apple.uikit.eventfetch-thread (6)
+                }
             )
         }
     }

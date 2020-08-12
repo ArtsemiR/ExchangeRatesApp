@@ -89,10 +89,10 @@ struct ARCurrencyStatsView: View {
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
                 self.minRateView
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 32, trailing: 8))
-//                GeometryReader { (geometry) in
-//                    ARBannerView(adUnitID: "ca-app-pub-2699836089641813/6342658949",
-//                                 width: geometry.size.width)
-//                }.frame(height: 50)
+                GeometryReader { (geometry) in
+                    ARBannerView(adUnitID: "ca-app-pub-2699836089641813/6342658949",
+                                 width: geometry.size.width)
+                }.frame(height: 50)
             }
         }
         .navigationBarTitle("", displayMode: .inline)
