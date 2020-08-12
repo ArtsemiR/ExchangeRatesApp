@@ -10,9 +10,11 @@ import SwiftUI
 
 struct ARCurrencyCartInfoView: View {
 
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+
     private let title: String = "Белорусская валютная корзина"
 
-    private let firstP: String = "    Как правило, для расчета корзины выбирают валюты, на которые завязана наибольшая часть торгового оборота страны. Для Беларуси это российский рубль, доллар и евро. На российский рубль приходится самая большая часть торгового оборота, поэтому в нашей корзине российский рубль занимает 50%, доллар - 30% и евро - 20%."
+    private let firstP: String = "    Как правило, для расчета корзины выбирают валюты, на которые завязана наибольшая часть торгового оборота страны. Для Беларуси это российский рубль, доллар и евро.\n    На российский рубль приходится самая большая часть торгового оборота, поэтому в нашей корзине российский рубль занимает 50%, доллар — 30% и евро — 20%."
 
     private let secondP: String = "    Такой метод оценки национальных валют используют Центробанки многих стран с целью понять, что происходит с национальной валютой по отношению к основным валютам."
 
@@ -23,15 +25,22 @@ struct ARCurrencyCartInfoView: View {
             VStack(spacing: 10) {
                 Text(self.title)
                     .fontWeight(.semibold)
-                    .font(.subheadline)
+                    .font(.system(size: 22))
+                    .foregroundColor(.red)
                 Text(self.firstP)
                     .font(.footnote)
-                Image("pie-chart-icon").resizable()                    .frame(width: 150, height: 150)
+                    .font(.system(size: 15))
+                Image(self.colorScheme == .light
+                    ? "diag_white"
+                    : "diag_black").resizable()
+                    .frame(width: 200, height: 200)
                 Text(self.secondP)
                     .font(.footnote)
+                    .font(.system(size: 15))
                 Text(self.thirdP)
                     .fontWeight(.light)
                     .font(.footnote)
+                    .font(.system(size: 15))
                     .italic()
             }
             .padding(EdgeInsets(top: 16, leading: 8, bottom: 8, trailing: 8))

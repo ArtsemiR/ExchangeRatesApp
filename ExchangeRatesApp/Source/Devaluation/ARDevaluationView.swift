@@ -97,18 +97,18 @@ struct ARDevaluationView: View {
                             .frame(height: 30)
                         self.devaluationView
                             .padding(EdgeInsets(top: 16, leading: 8, bottom: 32, trailing: 8))
-                    GeometryReader { (geometry) in
-                        ARBannerView(adUnitID: "ca-app-pub-2699836089641813/7757906294",
-                                     width: geometry.size.width)
-                    }
-                    .frame(height: 50)
+//                    GeometryReader { (geometry) in
+//                        ARBannerView(adUnitID: "ca-app-pub-2699836089641813/7757906294",
+//                                     width: geometry.size.width)
+//                    }
+//                    .frame(height: 50)
                 }
             }
             .navigationBarTitle("Корзина Валют")
             .navigationBarItems(trailing:
                 NavigationLink(destination: ARCurrencyCartInfoView()) {
                     Text("Что это?")
-                }
+                }com.apple.uikit.eventfetch-thread (6)
             )
         }
     }
