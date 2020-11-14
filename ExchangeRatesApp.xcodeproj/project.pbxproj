@@ -39,6 +39,7 @@
 		227CE6552372BEA40041808D /* ExchangeRatesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 227CE6532372BEA40041808D /* ExchangeRatesApp.xcdatamodeld */; };
 		227CE65C2372BEA60041808D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227CE65B2372BEA60041808D /* Preview Assets.xcassets */; };
 		227CE65F2372BEA60041808D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227CE65D2372BEA60041808D /* LaunchScreen.storyboard */; };
+		227F361D2560750D000DE433 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 227F361C2560750D000DE433 /* Alamofire */; };
 		2289235F2452C267005DEA08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2289235E2452C267005DEA08 /* Assets.xcassets */; };
 		2290010E24276B4D00D2124B /* ARChartPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290010D24276B4D00D2124B /* ARChartPeriodView.swift */; };
 		22A5E41F239FABA0007E13F6 /* ARMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E41E239FABA0007E13F6 /* ARMainView.swift */; };
@@ -51,7 +52,6 @@
 		22C47DE1244F08AC009320D1 /* ARChooseCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C47DE0244F08AC009320D1 /* ARChooseCountryView.swift */; };
 		22C47DE3244F1026009320D1 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C47DE2244F1026009320D1 /* UserDefaultsManager.swift */; };
 		22C47DEA2451E5F0009320D1 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C47DE92451E5F0009320D1 /* KeyboardAdaptive.swift */; };
-		22CA5F142417957F0012B9EB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 22CA5F132417957F0012B9EB /* Alamofire */; };
 		22D060C4241BA0D000295688 /* ARActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D060C3241BA0D000295688 /* ARActivityIndicatorView.swift */; };
 		22D060C6241BA11B00295688 /* ARChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D060C5241BA11B00295688 /* ARChartView.swift */; };
 		22D060CB241FB8B800295688 /* ARLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D060CA241FB8B800295688 /* ARLazyView.swift */; };
@@ -119,10 +119,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22CA5F142417957F0012B9EB /* Alamofire in Frameworks */,
 				22724F0124D02D2E0002E1A2 /* nanopb.xcframework in Frameworks */,
 				22724F0824D02D2E0002E1A2 /* GoogleMobileAds.framework in Frameworks */,
 				22724F0224D02D2E0002E1A2 /* GoogleAppMeasurement.framework in Frameworks */,
+				227F361D2560750D000DE433 /* Alamofire in Frameworks */,
 				22724F0724D02D2E0002E1A2 /* PromisesObjC.xcframework in Frameworks */,
 				22724F0924D02D2E0002E1A2 /* GoogleUtilities.xcframework in Frameworks */,
 			);
@@ -407,7 +407,7 @@
 			);
 			name = ExchangeRatesApp;
 			packageProductDependencies = (
-				22CA5F132417957F0012B9EB /* Alamofire */,
+				227F361C2560750D000DE433 /* Alamofire */,
 			);
 			productName = ExchangeRatesApp;
 			productReference = 227CE64C2372BEA40041808D /* Курсы НБ РБ.app */;
@@ -670,7 +670,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExchangeRatesApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
@@ -684,7 +684,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = "-ObjC";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ar.ExchangeRatesApp;
@@ -701,7 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExchangeRatesApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L8TNME9M5W;
 				ENABLE_PREVIEWS = YES;
@@ -715,7 +715,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ar.ExchangeRatesApp;
 				PRODUCT_NAME = "Курсы НБ РБ";
@@ -760,7 +760,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		22CA5F132417957F0012B9EB /* Alamofire */ = {
+		227F361C2560750D000DE433 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22CA5F122417957F0012B9EB /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;

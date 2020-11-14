@@ -13,7 +13,7 @@ class ARNetwork {
     static let shared = ARNetwork()
 
     var baseUrl: String {
-        return "http://www.nbrb.by/"
+        return "https://www.nbrb.by/"
     }
 
     func request<T: Decodable>(action: String,
