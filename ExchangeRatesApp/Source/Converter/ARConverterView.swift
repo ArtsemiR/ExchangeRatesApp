@@ -23,10 +23,10 @@ struct ARConverterView: View {
     }
 
     private var dayRatesList: [ARDayRateModel] {
-        return self.dayRates.rates.filter { Defaults.shared.countryCodes.contains($0.Cur_ID) }
+        return self.dayRates.rates.filter { ARUserDefaultsManager.shared.countryCodes.contains($0.Cur_ID) }
     }
     private var monthRatesList: [ARDayRateModel] {
-        return self.monthRates.rates.filter { Defaults.shared.countryCodes.contains($0.Cur_ID) }
+        return self.monthRates.rates.filter { ARUserDefaultsManager.shared.countryCodes.contains($0.Cur_ID) }
     }
 
     // MARK: Body

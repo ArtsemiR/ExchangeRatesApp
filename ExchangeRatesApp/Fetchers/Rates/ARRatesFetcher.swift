@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
+import UIKit
 
 final class ARDayRatesFetcher: ObservableObject {
 
     @Published private(set) var rates: [ARDayRateModel] = []
     @Published private(set) var isLoading = false
-    var error: String?
+    var error: Bool = false
 
     required init() {
         self.load()
@@ -25,11 +27,15 @@ final class ARDayRatesFetcher: ObservableObject {
             okHandler: { [weak self] (response: [ARDayRateModel]) in
                 guard let self = self else { return }
                 self.setRates(response)
+                Defaults.dayRates = response
                 self.isLoading = false
             },
             errorHandler: { [weak self] in
                 guard let self = self else { return }
-                self.error = "Соединение прервано или сервер временно недоступен."
+                self.error = true
+                if let rates = Defaults.dayRates {
+                    self.setRates(rates)
+                }
                 self.isLoading = false
         })
     }
@@ -63,7 +69,7 @@ final class ARMonthRatesFetcher: ObservableObject {
 
     @Published private(set) var rates: [ARDayRateModel] = []
     @Published private(set) var isLoading = false
-    var error: String?
+    var error: Bool = false
 
     required init() {
         self.load()
@@ -77,10 +83,14 @@ final class ARMonthRatesFetcher: ObservableObject {
                 guard let self = self else { return }
                 self.setRates(response)
                 self.isLoading = false
+                Defaults.monthRates = response
             },
             errorHandler: { [weak self] in
                 guard let self = self else { return }
-                self.error = "Соединение прервано или сервер временно недоступен."
+                self.error = true
+                if let rates = Defaults.monthRates {
+                    self.setRates(rates)
+                }
                 self.isLoading = false
         })
     }

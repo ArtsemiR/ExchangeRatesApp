@@ -8,6 +8,7 @@
 
 import SwiftUI
 import GoogleMobileAds
+import SwiftyUserDefaults
 
 struct ARAllRatesView: View {
 
@@ -24,10 +25,10 @@ struct ARAllRatesView: View {
     }
 
     private var dayRatesList: [ARDayRateModel] {
-        return self.dayRates.rates.filter { Defaults.shared.countryCodes.contains($0.Cur_ID) }
+        return self.dayRates.rates.filter { ARUserDefaultsManager.shared.countryCodes.contains($0.Cur_ID) }
     }
     private var monthRatesList: [ARDayRateModel] {
-        return self.monthRates.rates.filter { Defaults.shared.countryCodes.contains($0.Cur_ID) }
+        return self.monthRates.rates.filter { ARUserDefaultsManager.shared.countryCodes.contains($0.Cur_ID) }
     }
 
     // MARK: - ui
@@ -57,18 +58,14 @@ struct ARAllRatesView: View {
             Group {
                 if self.dayRates.isLoading || self.monthRates.isLoading {
                     ARActivityIndicatorView().scaleEffect(2)
-                } else if self.dayRates.error != nil {
+                } else if (self.dayRates.error || self.monthRates.error)
+                            && Defaults.dayRates?.isEmpty == true
+                            && Defaults.monthRates?.isEmpty == true {
                     ARActivityIndicatorView().scaleEffect(2)
-                    Text(String(self.dayRates.error ?? ""))
+                    Text(String("Соединение прервано или сервер временно недоступен."))
                         .padding()
                         .multilineTextAlignment(.center)
                         .font(.footnote)
-                } else if self.monthRates.error != nil {
-                    ARActivityIndicatorView().scaleEffect(2)
-                        .padding()
-                        .multilineTextAlignment(.center)
-                        .font(.footnote)
-                    Text(String(self.monthRates.error ?? ""))
                 } else {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 12) {

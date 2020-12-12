@@ -6,7 +6,7 @@
 //  Copyright © 2019 Artsemi Ryzhankou. All rights reserved.
 //
 
-import Foundation
+import SwiftyUserDefaults
 
 struct ARRateModel: Decodable {
     /// внутренний код
@@ -45,7 +45,7 @@ struct ARRateModel: Decodable {
     var Cur_DateEnd: String
 }
 
-struct ARDayRateModel: Hashable, Identifiable, Codable {
+struct ARDayRateModel: Hashable, Identifiable, Codable, DefaultsSerializable {
     var id: Int?
     /// внутренний код
     var Cur_ID: Int

@@ -23,7 +23,7 @@ struct ARChooseCountryView: View {
         NavigationView {
             List(self.filtered, id: \.Cur_ID) { rate in
                ARConverterCurrencyView(rateModel: rate,
-                                       isShowing: Defaults.shared.countryCodes.contains(rate.Cur_ID))
+                                       isShowing: ARUserDefaultsManager.shared.countryCodes.contains(rate.Cur_ID))
             }.id(UUID())
             .onAppear {
                 self.filterRates()
@@ -71,9 +71,9 @@ struct ARConverterCurrencyView: View {
             }
         }.onTapGesture {
             if self.isShowing {
-                Defaults.shared.removeCountryCode(self.rateModel.Cur_ID)
+                ARUserDefaultsManager.shared.removeCountryCode(self.rateModel.Cur_ID)
             } else {
-                Defaults.shared.addCountryCode(self.rateModel.Cur_ID)
+                ARUserDefaultsManager.shared.addCountryCode(self.rateModel.Cur_ID)
             }
         }
     }

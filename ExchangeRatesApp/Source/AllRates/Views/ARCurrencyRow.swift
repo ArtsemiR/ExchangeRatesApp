@@ -67,11 +67,3 @@ struct ARCurrencyRow: View {
         .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
     }
 }
-
-// MARK: - Preview
-
-struct ARCurrencyRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ARCurrencyRow(rateModel: everyDayRates.first!)
-    }
-}

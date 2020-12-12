@@ -17,9 +17,7 @@
 		22588F80237AE8E2008B9916 /* StringEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F7F237AE8E2008B9916 /* StringEx.swift */; };
 		22588F82237AE938008B9916 /* EncodableEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F81237AE938008B9916 /* EncodableEx.swift */; };
 		22588F86237AEA92008B9916 /* ARRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F85237AEA92008B9916 /* ARRateModel.swift */; };
-		22588F89237E928E008B9916 /* everyDayRates.json in Resources */ = {isa = PBXBuildFile; fileRef = 22588F88237E928E008B9916 /* everyDayRates.json */; };
 		22588F8F237E935F008B9916 /* ARCurrencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F8E237E935F008B9916 /* ARCurrencyRow.swift */; };
-		22588F91237E9668008B9916 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F90237E9668008B9916 /* TestData.swift */; };
 		22588F93237EC90E008B9916 /* ARAllRatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F92237EC90E008B9916 /* ARAllRatesView.swift */; };
 		22588F96237EE88D008B9916 /* ARRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22588F95237EE88D008B9916 /* ARRate.swift */; };
 		2264AAD724B761A000B07988 /* ARDevaluationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264AAD624B761A000B07988 /* ARDevaluationView.swift */; };
@@ -44,9 +42,10 @@
 		2290010E24276B4D00D2124B /* ARChartPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290010D24276B4D00D2124B /* ARChartPeriodView.swift */; };
 		22A5E41F239FABA0007E13F6 /* ARMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E41E239FABA0007E13F6 /* ARMainView.swift */; };
 		22A5E423239FD3B2007E13F6 /* ARCurrencyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E422239FD3B2007E13F6 /* ARCurrencyStatsView.swift */; };
-		22A5E47023A2300A007E13F6 /* yearStatistic.json in Resources */ = {isa = PBXBuildFile; fileRef = 22A5E46F23A2300A007E13F6 /* yearStatistic.json */; };
 		22A5E47223A234B7007E13F6 /* ARStatsForDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E47123A234B7007E13F6 /* ARStatsForDayModel.swift */; };
 		22A5E47423A3BC47007E13F6 /* ARYearRatesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5E47323A3BC47007E13F6 /* ARYearRatesFetcher.swift */; };
+		22BABD842584B5D10009CA95 /* ARDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABD832584B5D10009CA95 /* ARDefaultKeys.swift */; };
+		22BABD8B2584B6900009CA95 /* SwiftyUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 22BABD8A2584B6900009CA95 /* SwiftyUserDefaults */; };
 		22C47DDD244ED8E8009320D1 /* ARCurrencyInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C47DDC244ED8E8009320D1 /* ARCurrencyInputView.swift */; };
 		22C47DDF244EE61F009320D1 /* NumberFormatterEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C47DDE244EE61F009320D1 /* NumberFormatterEx.swift */; };
 		22C47DE1244F08AC009320D1 /* ARChooseCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C47DE0244F08AC009320D1 /* ARChooseCountryView.swift */; };
@@ -70,9 +69,7 @@
 		22588F7F237AE8E2008B9916 /* StringEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEx.swift; sourceTree = "<group>"; };
 		22588F81237AE938008B9916 /* EncodableEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableEx.swift; sourceTree = "<group>"; };
 		22588F85237AEA92008B9916 /* ARRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRateModel.swift; sourceTree = "<group>"; };
-		22588F88237E928E008B9916 /* everyDayRates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = everyDayRates.json; sourceTree = "<group>"; };
 		22588F8E237E935F008B9916 /* ARCurrencyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCurrencyRow.swift; sourceTree = "<group>"; };
-		22588F90237E9668008B9916 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		22588F92237EC90E008B9916 /* ARAllRatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARAllRatesView.swift; sourceTree = "<group>"; };
 		22588F95237EE88D008B9916 /* ARRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRate.swift; sourceTree = "<group>"; };
 		2264AAD624B761A000B07988 /* ARDevaluationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARDevaluationView.swift; sourceTree = "<group>"; };
@@ -99,9 +96,9 @@
 		2290010D24276B4D00D2124B /* ARChartPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartPeriodView.swift; sourceTree = "<group>"; };
 		22A5E41E239FABA0007E13F6 /* ARMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMainView.swift; sourceTree = "<group>"; };
 		22A5E422239FD3B2007E13F6 /* ARCurrencyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCurrencyStatsView.swift; sourceTree = "<group>"; };
-		22A5E46F23A2300A007E13F6 /* yearStatistic.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = yearStatistic.json; sourceTree = "<group>"; };
 		22A5E47123A234B7007E13F6 /* ARStatsForDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARStatsForDayModel.swift; sourceTree = "<group>"; };
 		22A5E47323A3BC47007E13F6 /* ARYearRatesFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARYearRatesFetcher.swift; sourceTree = "<group>"; };
+		22BABD832584B5D10009CA95 /* ARDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARDefaultKeys.swift; sourceTree = "<group>"; };
 		22C47DDC244ED8E8009320D1 /* ARCurrencyInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCurrencyInputView.swift; sourceTree = "<group>"; };
 		22C47DDE244EE61F009320D1 /* NumberFormatterEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterEx.swift; sourceTree = "<group>"; };
 		22C47DE0244F08AC009320D1 /* ARChooseCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChooseCountryView.swift; sourceTree = "<group>"; };
@@ -121,6 +118,7 @@
 			files = (
 				22724F0124D02D2E0002E1A2 /* nanopb.xcframework in Frameworks */,
 				22724F0824D02D2E0002E1A2 /* GoogleMobileAds.framework in Frameworks */,
+				22BABD8B2584B6900009CA95 /* SwiftyUserDefaults in Frameworks */,
 				22724F0224D02D2E0002E1A2 /* GoogleAppMeasurement.framework in Frameworks */,
 				227F361D2560750D000DE433 /* Alamofire in Frameworks */,
 				22724F0724D02D2E0002E1A2 /* PromisesObjC.xcframework in Frameworks */,
@@ -213,16 +211,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		22588F87237E91BF008B9916 /* TestData */ = {
-			isa = PBXGroup;
-			children = (
-				22588F88237E928E008B9916 /* everyDayRates.json */,
-				22A5E46F23A2300A007E13F6 /* yearStatistic.json */,
-				22588F90237E9668008B9916 /* TestData.swift */,
-			);
-			path = TestData;
-			sourceTree = "<group>";
-		};
 		22588F8A237E92FF008B9916 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,15 +232,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		22588F94237EE7A0008B9916 /* Business Logic */ = {
+		22588F94237EE7A0008B9916 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				22C47DE82451E57C009320D1 /* Keyboard */,
+				22BABD872584B5DF0009CA95 /* Views */,
 				22588F95237EE88D008B9916 /* ARRate.swift */,
-				22D060CA241FB8B800295688 /* ARLazyView.swift */,
-				22C47DE2244F1026009320D1 /* UserDefaultsManager.swift */,
+				22BABD882584B5F30009CA95 /* Defaults */,
 			);
-			path = "Business Logic";
+			path = Common;
 			sourceTree = "<group>";
 		};
 		2264AAD524B7611200B07988 /* Devaluation */ = {
@@ -314,10 +302,9 @@
 				2289235E2452C267005DEA08 /* Assets.xcassets */,
 				227CE6602372BEA60041808D /* Info.plist */,
 				227CE6532372BEA40041808D /* ExchangeRatesApp.xcdatamodeld */,
-				22588F87237E91BF008B9916 /* TestData */,
 				22588F7C237AE656008B9916 /* Extensions */,
 				22588F79237AE52E008B9916 /* Network */,
-				22588F94237EE7A0008B9916 /* Business Logic */,
+				22588F94237EE7A0008B9916 /* Common */,
 				22588F76237AE483008B9916 /* Fetchers */,
 				22588F8A237E92FF008B9916 /* Source */,
 				22D060C1241BA0A600295688 /* UIKit */,
@@ -342,6 +329,23 @@
 				227CE6672372F8180041808D /* Alamofire.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22BABD872584B5DF0009CA95 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22D060CA241FB8B800295688 /* ARLazyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22BABD882584B5F30009CA95 /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				22C47DE2244F1026009320D1 /* UserDefaultsManager.swift */,
+				22BABD832584B5D10009CA95 /* ARDefaultKeys.swift */,
+			);
+			path = Defaults;
 			sourceTree = "<group>";
 		};
 		22C47DE82451E57C009320D1 /* Keyboard */ = {
@@ -408,6 +412,7 @@
 			name = ExchangeRatesApp;
 			packageProductDependencies = (
 				227F361C2560750D000DE433 /* Alamofire */,
+				22BABD8A2584B6900009CA95 /* SwiftyUserDefaults */,
 			);
 			productName = ExchangeRatesApp;
 			productReference = 227CE64C2372BEA40041808D /* Курсы НБ РБ.app */;
@@ -439,6 +444,7 @@
 			mainGroup = 227CE6432372BEA40041808D;
 			packageReferences = (
 				22CA5F122417957F0012B9EB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				22BABD892584B6900009CA95 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
 			);
 			productRefGroup = 227CE64D2372BEA40041808D /* Products */;
 			projectDirPath = "";
@@ -456,9 +462,7 @@
 			files = (
 				227CE65F2372BEA60041808D /* LaunchScreen.storyboard in Resources */,
 				227CE65C2372BEA60041808D /* Preview Assets.xcassets in Resources */,
-				22588F89237E928E008B9916 /* everyDayRates.json in Resources */,
 				22724F0424D02D2E0002E1A2 /* NanoPB-LICENSE in Resources */,
-				22A5E47023A2300A007E13F6 /* yearStatistic.json in Resources */,
 				22724F0324D02D2E0002E1A2 /* Promises-LICENSE in Resources */,
 				22724F0624D02D2E0002E1A2 /* GoogleUtilities-LICENSE in Resources */,
 				2289235F2452C267005DEA08 /* Assets.xcassets in Resources */,
@@ -502,6 +506,7 @@
 				22588F93237EC90E008B9916 /* ARAllRatesView.swift in Sources */,
 				22C47DE3244F1026009320D1 /* UserDefaultsManager.swift in Sources */,
 				227CE6502372BEA40041808D /* AppDelegate.swift in Sources */,
+				22BABD842584B5D10009CA95 /* ARDefaultKeys.swift in Sources */,
 				22D060C6241BA11B00295688 /* ARChartView.swift in Sources */,
 				2264AAD724B761A000B07988 /* ARDevaluationView.swift in Sources */,
 				223FB5532418F6C70026CD18 /* ChartColors.swift in Sources */,
@@ -517,7 +522,6 @@
 				22588F78237AE4E2008B9916 /* ARRatesFetcher.swift in Sources */,
 				22588F80237AE8E2008B9916 /* StringEx.swift in Sources */,
 				22C47DE1244F08AC009320D1 /* ARChooseCountryView.swift in Sources */,
-				22588F91237E9668008B9916 /* TestData.swift in Sources */,
 				227CE6522372BEA40041808D /* SceneDelegate.swift in Sources */,
 				22588F82237AE938008B9916 /* EncodableEx.swift in Sources */,
 				22D060C4241BA0D000295688 /* ARActivityIndicatorView.swift in Sources */,
@@ -684,7 +688,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				OTHER_LDFLAGS = "-ObjC";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ar.ExchangeRatesApp;
@@ -715,7 +719,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ar.ExchangeRatesApp;
 				PRODUCT_NAME = "Курсы НБ РБ";
@@ -749,6 +753,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		22BABD892584B6900009CA95 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		22CA5F122417957F0012B9EB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -764,6 +776,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 22CA5F122417957F0012B9EB /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		22BABD8A2584B6900009CA95 /* SwiftyUserDefaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22BABD892584B6900009CA95 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */;
+			productName = SwiftyUserDefaults;
 		};
 /* End XCSwiftPackageProductDependency section */
 

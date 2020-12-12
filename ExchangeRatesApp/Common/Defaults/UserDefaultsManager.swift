@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Defaults {
-    static var shared: Defaults = Defaults()
+class ARUserDefaultsManager {
+    static var shared: ARUserDefaultsManager = ARUserDefaultsManager()
     
     private let userDefault = UserDefaults.standard
 
