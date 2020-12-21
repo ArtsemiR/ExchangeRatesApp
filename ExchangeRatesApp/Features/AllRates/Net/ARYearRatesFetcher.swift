@@ -35,16 +35,25 @@ final class ARYearRatesFetcher: ObservableObject {
             okHandler: { [weak self] (response: [ARStatsForDayModel]) in
                 guard let self = self else { return }
                 self.rates = response
-                Defaults.yearRates?[self.curId] = response
+
+                var rates = Defaults.yearRates
+                if let rate = rates.first(where: { $0.code == self.curId }) {
+                    rate.model = response
+                } else {
+                    rates.append(ARStatsForDaySerializableModel(code: self.curId, model: response))
+                }
+                Defaults.yearRates = rates
+
                 self.isLoading = false
-        },
+            },
             errorHandler: { [weak self] in
                 guard let self = self else { return }
-                self.error = true
-                if let rates = Defaults.yearRates?[self.curId] {
-                    self.rates = rates
+                if let rate = Defaults.yearRates.first(where: { $0.code == self.curId }) {
+                    self.rates = rate.model
+                } else {
+                    self.error = true
                 }
                 self.isLoading = false
-        })
+            })
     }
 }

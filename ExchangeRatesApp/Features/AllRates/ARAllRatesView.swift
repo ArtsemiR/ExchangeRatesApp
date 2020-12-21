@@ -15,8 +15,6 @@ struct ARAllRatesView: View {
     @EnvironmentObject var dayRates: ARDayRatesFetcher
     @EnvironmentObject var monthRates: ARMonthRatesFetcher
 
-    @State private var selectedCurrencyName = ""
-
     @State var isModal: Bool = false
 
     init() {

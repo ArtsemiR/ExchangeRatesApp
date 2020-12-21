@@ -6,9 +6,9 @@
 //  Copyright © 2019 Artsemi Ryzhankou. All rights reserved.
 //
 
-import Foundation
+import SwiftyUserDefaults
 
-struct ARStatsForDayModel: Hashable, Identifiable, Codable {
+struct ARStatsForDayModel: Hashable, Identifiable, Codable, DefaultsSerializable {
     var id: Int?
     /// внутренний код
     var Cur_ID: Int
@@ -16,4 +16,14 @@ struct ARStatsForDayModel: Hashable, Identifiable, Codable {
     var Date: String
     /// курс
     var Cur_OfficialRate: Double
+}
+
+class ARStatsForDaySerializableModel: Codable, DefaultsSerializable {
+    let code: String
+    var model: [ARStatsForDayModel]
+
+    init(code: String, model: [ARStatsForDayModel]) {
+        self.code = code
+        self.model = model
+    }
 }

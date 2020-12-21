@@ -7,12 +7,18 @@
 //
 
 import SwiftUI
+import SwiftyUserDefaults
 
 struct ARDevaluationView: View {
 
-    @State private var yearRatesFetcherRus = ARYearRatesFetcher("298")
-    @State private var yearRatesFetcherUsd = ARYearRatesFetcher("145")
-    @State private var yearRatesFetcherEur = ARYearRatesFetcher("292")
+    private enum Codes: String {
+        case rus = "298"
+        case usd = "145"
+        case eur = "292"
+    }
+    @State private var yearRatesFetcherRus = ARYearRatesFetcher(Codes.rus.rawValue)
+    @State private var yearRatesFetcherUsd = ARYearRatesFetcher(Codes.usd.rawValue)
+    @State private var yearRatesFetcherEur = ARYearRatesFetcher(Codes.eur.rawValue)
 
     @State private(set) var periodSelection = 0
 
@@ -83,21 +89,21 @@ struct ARDevaluationView: View {
                     || self.yearRatesFetcherEur.isLoading {
                     ARActivityIndicatorView().scaleEffect(2)
                 } else if self.yearRatesFetcherRus.error
-                    || self.yearRatesFetcherUsd.error
-                    || self.yearRatesFetcherEur.error {
+                            || self.yearRatesFetcherUsd.error
+                            || self.yearRatesFetcherEur.error {
                     ARActivityIndicatorView().scaleEffect(2)
                     Text("Соединение прервано или сервер временно недоступен.")
                         .padding()
                         .multilineTextAlignment(.center)
                         .font(.footnote)
                 } else {
-                        ARChartSwiftUIView(periodSelection: self.$periodSelection.wrappedValue,
-                                           rates: self.rates)
-                            .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
-                        ARChartPeriodView(periodSelection: self.$periodSelection)
-                            .frame(height: 30)
-                        self.devaluationView
-                            .padding(EdgeInsets(top: 16, leading: 8, bottom: 32, trailing: 8))
+                    ARChartSwiftUIView(periodSelection: self.$periodSelection.wrappedValue,
+                                       rates: self.rates)
+                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
+                    ARChartPeriodView(periodSelection: self.$periodSelection)
+                        .frame(height: 30)
+                    self.devaluationView
+                        .padding(EdgeInsets(top: 16, leading: 8, bottom: 32, trailing: 8))
                     GeometryReader { (geometry) in
                         ARBannerView(adUnitID: "ca-app-pub-2699836089641813/7757906294",
                                      width: geometry.size.width)

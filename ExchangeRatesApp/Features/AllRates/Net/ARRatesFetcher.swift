@@ -31,9 +31,10 @@ final class ARDayRatesFetcher: ObservableObject {
             },
             errorHandler: { [weak self] in
                 guard let self = self else { return }
-                self.error = true
                 if let rates = Defaults.dayRates {
                     self.setRates(rates)
+                } else {
+                    self.error = true
                 }
                 self.isLoading = false
         })
@@ -86,9 +87,10 @@ final class ARMonthRatesFetcher: ObservableObject {
             },
             errorHandler: { [weak self] in
                 guard let self = self else { return }
-                self.error = true
                 if let rates = Defaults.monthRates {
                     self.setRates(rates)
+                } else {
+                    self.error = true
                 }
                 self.isLoading = false
         })
