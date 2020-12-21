@@ -6,9 +6,10 @@
 //  Copyright © 2020 Artsemi Ryzhankou. All rights reserved.
 //
 
+/**
 import SwiftUI
 import UIKit
-import GoogleMobileAds
+
 
 final class ARBannerView: UIViewControllerRepresentable {
 
@@ -50,3 +51,4 @@ final class ARBannerView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
+ */

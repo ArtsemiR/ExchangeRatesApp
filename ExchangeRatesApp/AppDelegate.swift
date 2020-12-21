@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         #endif
 
-        print("Google Mobile Ads SDK version: \(GADRequest.sdkVersion())")
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+//        print("Google Mobile Ads SDK version: \(GADRequest.sdkVersion())")
+//        GADMobileAds.sharedInstance().start(completionHandler: nil)
 
         return true
     }
