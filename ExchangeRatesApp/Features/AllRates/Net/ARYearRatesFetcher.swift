@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
 
 final class ARYearRatesFetcher: ObservableObject {
 
     @Published var rates: [ARStatsForDayModel] = []
     @Published private(set) var isLoading = false
-    var error: String?
+    var error: Bool = false
 
     let curId: String
 
@@ -34,11 +35,15 @@ final class ARYearRatesFetcher: ObservableObject {
             okHandler: { [weak self] (response: [ARStatsForDayModel]) in
                 guard let self = self else { return }
                 self.rates = response
+                Defaults.yearRates?[self.curId] = response
                 self.isLoading = false
         },
             errorHandler: { [weak self] in
                 guard let self = self else { return }
-                self.error = "Соединение прервано или сервер временно недоступен."
+                self.error = true
+                if let rates = Defaults.yearRates?[self.curId] {
+                    self.rates = rates
+                }
                 self.isLoading = false
         })
     }

@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftyUserDefaults
-import UIKit
 
 final class ARDayRatesFetcher: ObservableObject {
 

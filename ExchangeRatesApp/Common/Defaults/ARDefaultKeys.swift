@@ -11,5 +11,6 @@ import SwiftyUserDefaults
 extension DefaultsKeys {
 
     var dayRates: DefaultsKey<[ARDayRateModel]?> { return .init("dayRates") }
-    var monthRates: DefaultsKey<[ARDayRateModel]?> { return .init("yearRates") }
+    var monthRates: DefaultsKey<[ARDayRateModel]?> { return .init("monthRates") }
+    var yearRates: DefaultsKey<[String: [ARStatsForDayModel]]?> { return .init("yearRates") }
 }

@@ -58,9 +58,7 @@ struct ARAllRatesView: View {
             Group {
                 if self.dayRates.isLoading || self.monthRates.isLoading {
                     ARActivityIndicatorView().scaleEffect(2)
-                } else if (self.dayRates.error || self.monthRates.error)
-                            && Defaults.dayRates?.isEmpty == true
-                            && Defaults.monthRates?.isEmpty == true {
+                } else if self.dayRates.error || self.monthRates.error {
                     ARActivityIndicatorView().scaleEffect(2)
                     Text(String("Соединение прервано или сервер временно недоступен."))
                         .padding()

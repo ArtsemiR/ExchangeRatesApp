@@ -82,16 +82,15 @@ struct ARDevaluationView: View {
                     || self.yearRatesFetcherUsd.isLoading
                     || self.yearRatesFetcherEur.isLoading {
                     ARActivityIndicatorView().scaleEffect(2)
-                } else if self.yearRatesFetcherRus.error != nil
-                    || self.yearRatesFetcherUsd.error != nil
-                    || self.yearRatesFetcherEur.error != nil {
+                } else if self.yearRatesFetcherRus.error
+                    || self.yearRatesFetcherUsd.error
+                    || self.yearRatesFetcherEur.error {
                     ARActivityIndicatorView().scaleEffect(2)
                     Text("Соединение прервано или сервер временно недоступен.")
                         .padding()
                         .multilineTextAlignment(.center)
                         .font(.footnote)
                 } else {
-
                         ARChartSwiftUIView(periodSelection: self.$periodSelection.wrappedValue,
                                            rates: self.rates)
                             .padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))

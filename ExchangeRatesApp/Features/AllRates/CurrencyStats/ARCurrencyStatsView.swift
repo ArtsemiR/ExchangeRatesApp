@@ -69,9 +69,9 @@ struct ARCurrencyStatsView: View {
         VStack(spacing: 2) {
             if self.yearRatesFetcher.isLoading {
                 ARActivityIndicatorView()
-            } else if self.yearRatesFetcher.error != nil {
+            } else if self.yearRatesFetcher.error {
                 ARActivityIndicatorView().scaleEffect(2)
-                Text(String(self.yearRatesFetcher.error ?? ""))
+                Text("Соединение прервано или сервер временно недоступен.")
                     .padding()
                     .multilineTextAlignment(.center)
                     .font(.footnote)

@@ -51,9 +51,3 @@ struct ARMainView: View {
         .accentColor(.red)
     }
 }
-
-struct ARMainViewUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        ARMainView()
-    }
-}
