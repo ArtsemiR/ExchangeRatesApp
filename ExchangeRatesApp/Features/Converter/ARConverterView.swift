@@ -64,7 +64,7 @@ struct ARConverterView: View {
                     .frame(height: 50)
                     .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
                 }
-                .opacity(self.isModal ? 0.4 : 1.0)
+                .blur(radius: self.isModal ? 2 : 0)
             }.modifier(AdaptsToSoftwareKeyboard())
                 .sheet(isPresented: $isModal, content: {
                 ARChooseCountryView(showSheetView: self.$isModal)

@@ -88,7 +88,7 @@ struct ARAllRatesView: View {
                                 }
                             }
                         }.id(UUID())
-                        .opacity(self.isModal ? 0.4 : 1.0)
+                        .blur(radius: self.isModal ? 2 : 0)
                     }
                     GeometryReader { (geometry) in
                         ARBannerView(adUnitID: "ca-app-pub-2699836089641813/7777253448",
