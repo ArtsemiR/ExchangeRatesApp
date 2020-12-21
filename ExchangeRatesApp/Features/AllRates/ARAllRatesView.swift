@@ -112,10 +112,3 @@ struct ARAllRatesView: View {
         }
     }
 }
-
-
-struct AllRatesView_Previews: PreviewProvider {
-    static var previews: some View {
-        ARAllRatesView()
-    }
-}
